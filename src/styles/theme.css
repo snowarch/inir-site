@@ -1,0 +1,49 @@
+/* The iRiS field: black, one warm orange accent, Inter for words and Rubik for figures. */
+:root {
+	--sl-font: 'Inter', system-ui, sans-serif;
+	--sl-font-system-mono: 'JetBrains Mono', ui-monospace, monospace;
+	--sl-color-accent-low: #3a2400;
+	--sl-color-accent: #ff9f0a;
+	--sl-color-accent-high: #ffd9a3;
+	--sl-color-white: #f5f5f7;
+	--sl-color-gray-1: #e5e5ea;
+	--sl-color-gray-2: #c7c7cc;
+	--sl-color-gray-3: #8e8e93;
+	--sl-color-gray-4: #48484a;
+	--sl-color-gray-5: #2c2c2e;
+	--sl-color-gray-6: #1c1c1e;
+	--sl-color-black: #000000;
+	--sl-nav-height: 3.75rem;
+}
+:root[data-theme='light'] {
+	--sl-color-accent-low: #ffe7c2;
+	--sl-color-accent: #c26a00;
+	--sl-color-accent-high: #5c3300;
+	--sl-color-white: #1c1c1e;
+	--sl-color-gray-1: #2c2c2e;
+	--sl-color-gray-2: #48484a;
+	--sl-color-gray-3: #6e6e73;
+	--sl-color-gray-5: #d1d1d6;
+	--sl-color-gray-6: #f2f2f7;
+	--sl-color-gray-7: #f9f9fb;
+	--sl-color-black: #ffffff;
+}
+.sl-markdown-content :is(h1, h2, h3) { letter-spacing: -0.01em; }
+.sl-markdown-content code:not(pre code) { border-radius: 6px; padding: 0.1em 0.35em; }
+.sl-markdown-content img { border-radius: 14px; }
+kbd { font-family: 'Rubik', var(--sl-font); }
+
+/* The current page is a quiet fill with its label in the accent, as a lit row in iRiS, never a solid block. */
+.sidebar-content a[aria-current='page'],
+.sidebar-content a[aria-current='page']:hover,
+.sidebar-content a[aria-current='page']:focus {
+	background: var(--sl-color-accent-low);
+	color: var(--sl-color-accent-high);
+	font-weight: 600;
+	border-radius: 8px;
+}
+.sidebar-content a { border-radius: 8px; }
+
+/* Native controls and scrollbars follow the theme; without it the sidebar's scrollbar paints a white strip. */
+:root { color-scheme: dark; scrollbar-color: var(--sl-color-gray-5) transparent; }
+:root[data-theme='light'] { color-scheme: light; }
