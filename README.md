@@ -29,8 +29,11 @@ npm run dev
 
 ## Deploying
 
-Pushing to `main` builds and publishes to GitHub Pages. The site also rebuilds every day, and when iNiR sends a
-`docs-updated` dispatch, so doc changes show up without touching this repository. Pull requests build as a check.
+GitHub Pages serves the `gh-pages` branch. Pushing to `main` builds the site and publishes it there; it also
+rebuilds every day, and when iNiR sends a `docs-updated` dispatch, so doc changes show up without touching this
+repository. Pull requests build as a check.
+
+`npm run deploy` does the same from your machine.
 
 ## License
 
