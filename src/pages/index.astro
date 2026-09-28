@@ -4,172 +4,317 @@ import '@fontsource/inter/500.css';
 import '@fontsource/inter/600.css';
 import '@fontsource/inter/700.css';
 import '@fontsource/rubik/500.css';
+import '../styles/looks.css';
 
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const docs = (path = '') => `${base}docs/${path}`;
-const media = (path) => `${base}docs-media/${path}`;
+const asset = (path) => `${base}${path}`;
 const repo = 'https://github.com/snowarch/iNiR';
 const discord = 'https://discord.gg/pAPTfAhZUJ';
 const install = ['git clone https://github.com/snowarch/inir.git', 'cd inir', './setup install'];
 
+const looks = [
+	{ id: 'inir', label: 'iNiR', swatch: ['#1d1233', '#e7b75a'] },
+	{ id: 'material', label: 'Material ii', swatch: ['#1d2027', '#aac7ff'] },
+	{ id: 'waffle', label: 'Waffle', swatch: ['#2b2b2b', '#60cdff'] },
+	{ id: 'iris', label: 'iRiS', swatch: ['#000000', '#ff9f0a'] },
+];
 const families = [
-	{ name: 'iRiS', line: 'An Island on any screen edge that grows into pages, cards and panels. Pieces you can carry, a Dock on any edge, whole-redesign themes.' },
-	{ name: 'Material ii', line: 'A floating bar, sidebars and a dock, with nine global styles from Material to Editorial.' },
-	{ name: 'Waffle', line: 'A Windows 11 style taskbar, start menu, action center and notification center.' },
+	{ id: 'material', name: 'Material ii', shot: 'shots/material-1.webp', doc: 'panel-families/',
+		line: 'The default family. A floating bar, sidebars and a dock, in nine global styles.' },
+	{ id: 'waffle', name: 'Waffle', shot: 'shots/waffle-1.webp', doc: 'panel-families/',
+		line: 'A taskbar at the bottom, a start menu, an action center and widgets, in the style of Windows 11.' },
+	{ id: 'iris', name: 'iRiS', shot: 'docs-media/images/iris-2.31-principal.webp', doc: 'iris/',
+		line: 'An Island on a screen edge that becomes the page, card or panel you open.' },
+];
+const palettes = ['shots/material-2.webp', 'shots/material-3.webp', 'shots/material-4.webp'];
+const distros = [
+	{ id: 'arch', label: 'Arch' }, { id: 'fedora', label: 'Fedora' }, { id: 'debian', label: 'Debian' },
+	{ id: 'ubuntu', label: 'Ubuntu' }, { id: 'nixos', label: 'NixOS' },
 ];
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-look="inir">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>iNiR</title>
-		<meta name="description" content="A complete desktop shell for Niri, built on Quickshell." />
-		<link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+		<meta name="description" content="A desktop shell for Niri, built on Quickshell." />
+		<link rel="icon" href={asset('favicon.svg')} type="image/svg+xml" />
 		<meta property="og:title" content="iNiR" />
-		<meta property="og:description" content="A complete desktop shell for Niri, built on Quickshell." />
-		<meta property="og:image" content={media('images/iris-2.31-principal.webp')} />
+		<meta property="og:description" content="A desktop shell for Niri, built on Quickshell." />
+		<meta property="og:image" content={asset('shots/material-1.webp')} />
+		<script is:inline>
+			try {
+				const asked = new URLSearchParams(location.search).get('look');
+				const look = ['inir', 'material', 'waffle', 'iris'].includes(asked) ? asked : localStorage.getItem('inir-look');
+				if (look) document.documentElement.dataset.look = look;
+			} catch {}
+		</script>
 	</head>
 	<body>
+		<div class="backdrop" aria-hidden="true">
+			<img src={asset('shots/background.webp')} alt="" />
+		</div>
+
 		<header class="bar">
-			<a class="mark" href={base}>
-				<img src={`${base}favicon.svg`} alt="" width="22" height="22" />
+			<a class="mark" href={base} aria-label="iNiR">
+				<img src={asset('favicon.svg')} alt="" width="26" height="26" />
 				<span>iNiR</span>
 			</a>
 			<nav>
 				<a href={docs()}>Docs</a>
-				<a href={docs('iris/')}>iRiS</a>
 				<a href={repo}>GitHub</a>
 				<a href={discord}>Discord</a>
 			</nav>
+			<div class="looks" role="radiogroup" aria-label="Site look">
+				{looks.map((look) => (
+					<button type="button" role="radio" data-set-look={look.id} aria-label={look.label} title={look.label}
+						style={`--a:${look.swatch[0]};--b:${look.swatch[1]}`}></button>
+				))}
+			</div>
 		</header>
 
 		<main>
 			<section class="hero">
 				<h1>iNiR</h1>
-				<p class="lede">A complete desktop shell for Niri, built on Quickshell.</p>
-				<p class="sub">The bar, the Dock, notifications, settings, wallpapers and the lock screen, as one shell you shape from its own settings.</p>
+				<p class="lede">A desktop shell for Niri, built on Quickshell.</p>
 				<div class="actions">
 					<a class="primary" href={docs('install/')}>Install</a>
-					<a class="quiet" href={docs()}>Read the docs</a>
+					<a class="secondary" href={docs()}>Documentation</a>
 				</div>
-				<figure class="shot">
-					<img src={media('images/iris-2.31-principal.webp')} alt="The iRiS desktop: the Island on the top edge, pieces and the Dock" width="1920" height="1080" />
-				</figure>
 			</section>
 
-			<section class="families">
-				<h2>Three families, one shell</h2>
-				<p class="hint">Switch between them any time with <kbd>Super</kbd> <kbd>Shift</kbd> <kbd>W</kbd>.</p>
-				<ul>
-					{families.map((family) => (
-						<li>
-							<h3>{family.name}</h3>
-							<p>{family.line}</p>
-						</li>
+			<section class="families" aria-labelledby="families-title">
+				<div class="head">
+					<h2 id="families-title">Three families</h2>
+					<p>Switch between them any time with <kbd>Super</kbd> <kbd>Shift</kbd> <kbd>W</kbd>.</p>
+				</div>
+				<div class="tabs" role="tablist">
+					{families.map((family, index) => (
+						<button type="button" role="tab" id={`tab-${family.id}`} aria-controls={`panel-${family.id}`}
+							aria-selected={index === 0 ? 'true' : 'false'} data-family={family.id}>{family.name}</button>
 					))}
-				</ul>
+				</div>
+				{families.map((family, index) => (
+					<figure class="family" role="tabpanel" id={`panel-${family.id}`} aria-labelledby={`tab-${family.id}`} hidden={index !== 0}>
+						<img src={asset(family.shot)} alt={`${family.name} desktop`} width="1920" height="1080" loading={index === 0 ? 'eager' : 'lazy'} />
+						<figcaption>
+							<span>{family.line}</span>
+							<a href={docs(family.doc)}>More about {family.name}</a>
+						</figcaption>
+					</figure>
+				))}
 			</section>
 
-			<section class="gallery">
-				<img src={media('images/iris-2.31-desktop.webp')} alt="iRiS desktop layout with pieces on the screen contour" loading="lazy" />
-				<img src={media('images/iris-2.31-card.webp')} alt="An iRiS card grown from a piece" loading="lazy" />
-				<img class="wide" src={media('images/iris-2.31-dock.webp')} alt="The iRiS Dock and edge layout" loading="lazy" />
+			<section class="palette">
+				<div class="head">
+					<h2>Colours from your wallpaper</h2>
+					<p>Change the wallpaper and the shell, GTK and Qt apps, terminals, Firefox, Discord and the login screen take its colours.</p>
+				</div>
+				<div class="strip">
+					{palettes.map((shot) => <img src={asset(shot)} alt="Material ii with a different wallpaper and its colours" loading="lazy" />)}
+				</div>
 			</section>
 
 			<section class="install">
-				<h2>Install</h2>
-				<pre><code>{install.join('\n')}</code></pre>
-				<p class="hint">Arch is the primary target. Fedora and Debian or Ubuntu have automated paths too. iNiR needs Qt 6.9 or newer. Restart after the installer finishes, then pick Niri at the login screen.</p>
-				<a class="quiet" href={docs('install/')}>Everything about installing</a>
+				<div class="head">
+					<h2>Install</h2>
+					<p>Arch comes first. Fedora, Debian and Ubuntu have automated paths, and NixOS has an experimental flake. iNiR needs Qt 6.9 or newer.</p>
+				</div>
+				<div class="terminal">
+					<pre><code>{install.join('\n')}</code></pre>
+					<button type="button" class="copy" data-copy={install.join('\n')}>Copy</button>
+				</div>
+				<ul class="distros">
+					{distros.map((distro) => (
+						<li><img src={asset(`distros/${distro.id}-symbolic.svg`)} alt="" width="18" height="18" />{distro.label}</li>
+					))}
+				</ul>
+				<p class="after">Restart after the installer finishes, then pick Niri at the login screen. <a href={docs('install/')}>Installing in detail</a></p>
+			</section>
+
+			<section class="kira">
+				<img src={asset('kira/inir-mascot-cheer-wink.png')} alt="Kira, the iNiR mascot" width="640" height="640" />
+				<div>
+					<h2>Kira</h2>
+					<p>The iNiR mascot. She can live on your desktop; she stays off until you turn her on.</p>
+				</div>
 			</section>
 		</main>
 
 		<footer>
-			<span>GPL-3.0</span>
-			<a href={repo}>GitHub</a>
-			<a href={discord}>Discord</a>
-			<a href={docs()}>Docs</a>
+			<span>iNiR · GPL-3.0</span>
+			<nav>
+				<a href={docs()}>Docs</a>
+				<a href={repo}>GitHub</a>
+				<a href={discord}>Discord</a>
+			</nav>
 		</footer>
+
+		<script is:inline>
+			const root = document.documentElement;
+			const buttons = document.querySelectorAll('[data-set-look]');
+			const mark = () => buttons.forEach((b) => b.setAttribute('aria-checked', String(b.dataset.setLook === root.dataset.look)));
+			buttons.forEach((b) => b.addEventListener('click', () => {
+				root.dataset.look = b.dataset.setLook;
+				try { localStorage.setItem('inir-look', b.dataset.setLook) } catch {}
+				mark();
+			}));
+			mark();
+
+			const tabs = document.querySelectorAll('[role="tab"]');
+			const show = (tab) => {
+				tabs.forEach((t) => t.setAttribute('aria-selected', String(t === tab)));
+				document.querySelectorAll('[role="tabpanel"]').forEach((p) => { p.hidden = p.id !== tab.getAttribute('aria-controls') });
+			};
+			tabs.forEach((tab) => tab.addEventListener('click', () => show(tab)));
+			// A look named after a family opens on that family.
+			const own = document.querySelector(`[data-family="${root.dataset.look}"]`);
+			if (own) show(own);
+
+			document.querySelectorAll('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
+				try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = 'Copied'; setTimeout(() => b.textContent = 'Copy', 1600) } catch {}
+			}));
+		</script>
 	</body>
 </html>
 
 <style is:global>
-	:root {
-		--field: #000;
-		--raised: #1c1c1e;
-		--line: rgba(255, 255, 255, 0.08);
-		--ink: #f5f5f7;
-		--quiet: #a1a1a6;
-		--accent: #ff9f0a;
-		color-scheme: dark;
-	}
 	* { box-sizing: border-box; }
-	html, body { margin: 0; background: var(--field); color: var(--ink); }
-	body { font: 16px/1.55 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+	html { background: var(--look-field); color-scheme: dark; }
+	body {
+		margin: 0; color: var(--look-ink); background: var(--look-field);
+		font: 16px/1.55 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased;
+		transition: background-color 240ms ease, color 240ms ease;
+	}
 	a { color: inherit; text-decoration: none; }
-	kbd { font: 500 0.85em 'Rubik', sans-serif; padding: 0.1em 0.45em; border-radius: 6px; background: var(--raised); }
+	kbd {
+		font: 500 0.82em 'Rubik', sans-serif; padding: 0.15em 0.5em; border-radius: 6px;
+		background: var(--look-raised-2); box-shadow: inset 0 -1px 0 var(--look-line);
+	}
+	h1, h2 { margin: 0; letter-spacing: -0.02em; }
+	h2 { font-size: clamp(26px, 3.6vw, 36px); font-weight: 650; }
+
+	/* The old site's field, lit from above in the look's own colour and fading into the page. */
+	.backdrop { position: absolute; inset: 0 0 auto 0; height: min(100vh, 980px); overflow: hidden; z-index: 0; pointer-events: none; }
+	.backdrop img { width: 100%; height: 100%; object-fit: cover; opacity: 0.55; }
+	.backdrop::after {
+		content: ''; position: absolute; inset: 0;
+		background: radial-gradient(38% 30% at 50% 44%, color-mix(in srgb, var(--look-field) 78%, transparent), transparent 100%),
+			radial-gradient(80% 60% at 50% 0%, var(--look-glow), transparent 70%),
+			linear-gradient(to bottom, transparent 35%, var(--look-field) 96%);
+	}
 
 	.bar {
-		position: sticky; top: 12px; z-index: 2; margin: 12px auto 0; width: min(760px, calc(100% - 32px));
-		display: flex; align-items: center; justify-content: space-between; gap: 16px;
-		padding: 10px 12px 10px 18px; border-radius: 999px;
-		background: rgba(18, 18, 20, 0.72); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-		box-shadow: 0 0 0 1px var(--line), 0 12px 32px rgba(0, 0, 0, 0.45);
+		position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 10;
+		width: min(880px, calc(100% - 24px)); display: flex; align-items: center; gap: 12px;
+		padding: 8px 10px 8px 14px;
+		border-radius: max(16px, min(var(--look-r-button), 999px));
+		background: var(--look-glass);
+		backdrop-filter: blur(22px) saturate(170%); -webkit-backdrop-filter: blur(22px) saturate(170%);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 0 0 1px var(--look-line), 0 16px 40px rgba(0, 0, 0, 0.4);
 	}
-	.mark { display: flex; align-items: center; gap: 10px; font-weight: 600; }
-	.bar nav { display: flex; gap: 4px; flex-wrap: wrap; }
-	.bar nav a { padding: 6px 12px; border-radius: 999px; color: var(--quiet); font-size: 14px; font-weight: 500; }
-	.bar nav a:hover { color: var(--ink); background: rgba(255, 255, 255, 0.06); }
+	.mark { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; letter-spacing: -0.01em; }
+	.mark img { border-radius: 8px; }
+	.bar nav { display: flex; gap: 2px; margin-left: auto; }
+	.bar nav a { padding: 7px 12px; border-radius: max(8px, min(var(--look-r-button), 999px)); color: var(--look-quiet); font-size: 14px; font-weight: 500; }
+	.bar nav a:hover { color: var(--look-ink); background: rgba(255, 255, 255, 0.06); }
+	.looks { display: flex; gap: 6px; padding-left: 10px; margin-left: 4px; box-shadow: -1px 0 0 var(--look-line); }
+	.looks button {
+		width: 22px; height: 22px; border-radius: 50%; border: 0; padding: 0; cursor: pointer;
+		background: linear-gradient(135deg, var(--a) 50%, var(--b) 50%);
+		box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14);
+		transition: box-shadow 160ms ease, transform 160ms ease;
+	}
+	.looks button:hover { transform: scale(1.08); }
+	.looks button[aria-checked='true'] { box-shadow: 0 0 0 2px var(--look-field), 0 0 0 3.5px var(--look-accent); }
 
-	main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
-	section { padding: 96px 0 0; }
-	h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
+	main { position: relative; z-index: 1; width: min(1140px, calc(100% - 32px)); margin: 0 auto; }
+	section { padding-top: 120px; }
+	.head { max-width: 640px; }
+	.head p { margin: 12px 0 0; color: var(--look-quiet); }
 
-	.hero { text-align: center; padding-top: 88px; }
-	.hero h1 { font-size: clamp(56px, 9vw, 104px); font-weight: 700; line-height: 1; }
-	.lede { margin: 20px auto 0; max-width: 620px; font-size: clamp(19px, 2.4vw, 24px); font-weight: 500; }
-	.sub { margin: 12px auto 0; max-width: 560px; color: var(--quiet); }
-	.actions { display: flex; justify-content: center; gap: 10px; margin-top: 32px; flex-wrap: wrap; }
-	.primary, .quiet { display: inline-flex; align-items: center; height: 44px; padding: 0 22px; border-radius: 999px; font-weight: 600; }
-	.primary { background: var(--accent); color: #1a0f00; }
+	.hero { min-height: min(86vh, 820px); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding-top: 80px; }
+	.hero h1 { font-size: clamp(72px, 13vw, 156px); font-weight: 750; line-height: 0.9; letter-spacing: -0.045em; }
+	.lede { margin: 26px 0 0; font-size: clamp(18px, 2.3vw, 22px); color: var(--look-quiet); }
+	.actions { display: flex; gap: 10px; margin-top: 36px; flex-wrap: wrap; justify-content: center; }
+	.primary, .secondary {
+		display: inline-flex; align-items: center; height: 46px; padding: 0 24px; font-weight: 600;
+		border-radius: max(6px, min(var(--look-r-button), 999px)); transition: filter 160ms ease, background-color 160ms ease;
+	}
+	.primary { background: var(--look-accent); color: var(--look-accent-ink); }
 	.primary:hover { filter: brightness(1.08); }
-	.quiet { background: var(--raised); color: var(--ink); }
-	.quiet:hover { background: #2c2c2e; }
-	.shot { margin: 64px 0 0; }
-	.shot img, .gallery img { display: block; width: 100%; height: auto; border-radius: 20px; box-shadow: 0 0 0 1px var(--line), 0 30px 80px rgba(0, 0, 0, 0.6); }
+	.secondary { background: var(--look-glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: inset 0 0 0 1px var(--look-line); }
+	.secondary:hover { background: var(--look-raised-2); }
 
-	.families h2, .install h2 { font-size: clamp(28px, 4vw, 40px); }
-	.hint { color: var(--quiet); margin: 12px 0 0; }
-	.families ul { list-style: none; padding: 0; margin: 40px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
-	.families li { padding: 4px 28px 4px 0; }
-	.families li + li { padding-left: 28px; box-shadow: -1px 0 0 var(--line); }
-	.families h3 { font-size: 20px; }
-	.families h3::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 10px; vertical-align: 0.15em; background: var(--quiet); }
-	.families li:first-child h3::before { background: var(--accent); }
-	.families p { color: var(--quiet); margin: 10px 0 0; }
-
-	.gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-	.gallery .wide { grid-column: 1 / -1; }
-
-	.install pre {
-		margin: 28px 0 0; padding: 20px 24px; border-radius: 16px; background: var(--raised); overflow-x: auto;
-		font: 15px/1.7 ui-monospace, 'JetBrains Mono', monospace; color: var(--ink);
+	.tabs {
+		display: inline-flex; gap: 2px; margin-top: 28px; padding: 4px; border-radius: max(8px, min(var(--look-r-button), 999px));
+		background: var(--look-raised); box-shadow: inset 0 0 0 1px var(--look-line);
 	}
-	.install .quiet { margin-top: 24px; }
+	.tabs button {
+		border: 0; background: transparent; color: var(--look-quiet); font: 600 14px 'Inter', sans-serif; cursor: pointer;
+		height: 36px; padding: 0 18px; border-radius: max(6px, min(var(--look-r-button), 999px));
+	}
+	.tabs button[aria-selected='true'] { background: var(--look-raised-2); color: var(--look-ink); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); }
+	.family { margin: 22px 0 0; }
+	.family img, .strip img {
+		display: block; width: 100%; height: auto; border-radius: var(--look-r-card);
+		box-shadow: 0 0 0 1px var(--look-line), 0 30px 70px rgba(0, 0, 0, 0.5);
+	}
+	.family figcaption { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 16px; color: var(--look-quiet); }
+	.family figcaption a { color: var(--look-accent); font-weight: 600; white-space: nowrap; }
+
+	.strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 32px; }
+
+	.terminal { position: relative; margin-top: 30px; max-width: 720px; }
+	.terminal pre {
+		margin: 0; padding: 22px 26px; border-radius: min(var(--look-r-card), 18px); background: var(--look-raised);
+		box-shadow: inset 0 0 0 1px var(--look-line); overflow-x: auto;
+		font: 15px/1.75 ui-monospace, 'JetBrains Mono', monospace; color: var(--look-ink);
+	}
+	.copy {
+		position: absolute; top: 12px; right: 12px; height: 30px; padding: 0 12px; border: 0; cursor: pointer;
+		border-radius: max(6px, min(var(--look-r-button), 999px)); background: var(--look-raised-2); color: var(--look-quiet);
+		font: 500 13px 'Inter', sans-serif;
+	}
+	.copy:hover { color: var(--look-ink); }
+	.distros { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 18px 0 0; }
+	.distros li {
+		display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px; font-size: 14px; color: var(--look-quiet);
+		border-radius: max(6px, min(var(--look-r-button), 999px)); background: var(--look-raised);
+	}
+	.distros img { filter: invert(1); opacity: 0.8; }
+	.after { color: var(--look-quiet); margin: 22px 0 0; }
+	.after a { color: var(--look-accent); font-weight: 600; margin-left: 4px; }
+
+	.kira { display: grid; grid-template-columns: minmax(180px, 280px) 1fr; gap: 40px; align-items: center; }
+	.kira img { width: 100%; height: auto; filter: drop-shadow(0 20px 40px var(--look-glow)); }
+	.kira p { color: var(--look-quiet); max-width: 440px; margin: 12px 0 0; }
 
 	footer {
-		width: min(1120px, calc(100% - 32px)); margin: 120px auto 0; padding: 28px 0 48px;
-		display: flex; gap: 24px; color: var(--quiet); font-size: 14px; box-shadow: 0 -1px 0 var(--line);
+		position: relative; z-index: 1; width: min(1140px, calc(100% - 32px)); margin: 140px auto 0; padding: 28px 0 56px;
+		display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; color: var(--look-quiet); font-size: 14px;
+		box-shadow: 0 -1px 0 var(--look-line);
 	}
-	footer a:hover { color: var(--ink); }
+	footer nav { display: flex; gap: 22px; }
+	footer a:hover { color: var(--look-ink); }
 
 	@media (max-width: 760px) {
-		.families ul { grid-template-columns: 1fr; gap: 28px; }
-		.families li, .families li + li { padding: 0; box-shadow: none; }
-		.gallery { grid-template-columns: 1fr; }
-		.bar { padding-left: 14px; }
-		.bar nav a { padding: 6px 8px; }
+		.backdrop img { opacity: 0.32; }
+		.hero { min-height: 78vh; }
+		.bar nav a { padding: 7px 8px; }
+		.bar nav { gap: 0; }
+		.looks { gap: 4px; padding-left: 8px; }
+		.looks button { width: 18px; height: 18px; }
+		.strip { grid-template-columns: 1fr; }
+		.kira { grid-template-columns: 1fr; text-align: center; }
+		.kira img { max-width: 220px; margin: 0 auto; }
+		.kira p { margin-inline: auto; }
+		section { padding-top: 88px; }
+	}
+	@media (max-width: 460px) {
+		.mark span { display: none; }
 	}
 </style>

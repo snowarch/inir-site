@@ -1,0 +1,63 @@
+/* Site looks, one per family plus iNiR's own. The landing page and the docs both read these; a look is
+   chosen from the palette in the header and kept in localStorage ("inir-look"). */
+:root,
+:root[data-look='inir'] {
+	--look-field: #0c0814;
+	--look-raised: #1a1228;
+	--look-raised-2: #241a36;
+	--look-ink: #f4effb;
+	--look-quiet: #a99fbd;
+	--look-line: rgba(233, 222, 255, 0.09);
+	--look-accent: #e7b75a;
+	--look-accent-ink: #1f1504;
+	--look-accent-soft: rgba(231, 183, 90, 0.16);
+	--look-glow: rgba(139, 92, 246, 0.32);
+	--look-glass: rgba(20, 13, 34, 0.55);
+	--look-r-card: 22px;
+	--look-r-button: 999px;
+}
+:root[data-look='iris'] {
+	--look-field: #000000;
+	--look-raised: #1c1c1e;
+	--look-raised-2: #2c2c2e;
+	--look-ink: #f5f5f7;
+	--look-quiet: #a1a1a6;
+	--look-line: rgba(255, 255, 255, 0.08);
+	--look-accent: #ff9f0a;
+	--look-accent-ink: #1a0f00;
+	--look-accent-soft: rgba(255, 159, 10, 0.15);
+	--look-glow: rgba(255, 159, 10, 0.16);
+	--look-glass: rgba(10, 10, 12, 0.55);
+	--look-r-card: 24px;
+	--look-r-button: 999px;
+}
+:root[data-look='material'] {
+	--look-field: #111318;
+	--look-raised: #1d2027;
+	--look-raised-2: #282a31;
+	--look-ink: #e2e2e9;
+	--look-quiet: #c4c6d0;
+	--look-line: rgba(196, 198, 208, 0.12);
+	--look-accent: #aac7ff;
+	--look-accent-ink: #0a305f;
+	--look-accent-soft: rgba(170, 199, 255, 0.16);
+	--look-glow: rgba(170, 199, 255, 0.22);
+	--look-glass: rgba(29, 32, 39, 0.62);
+	--look-r-card: 28px;
+	--look-r-button: 20px;
+}
+:root[data-look='waffle'] {
+	--look-field: #202020;
+	--look-raised: #2b2b2b;
+	--look-raised-2: #333333;
+	--look-ink: #ffffff;
+	--look-quiet: #c5c5c5;
+	--look-line: rgba(255, 255, 255, 0.08);
+	--look-accent: #60cdff;
+	--look-accent-ink: #003748;
+	--look-accent-soft: rgba(96, 205, 255, 0.14);
+	--look-glow: rgba(96, 205, 255, 0.14);
+	--look-glass: rgba(32, 32, 32, 0.7);
+	--look-r-card: 8px;
+	--look-r-button: 4px;
+}

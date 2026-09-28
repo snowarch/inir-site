@@ -46,10 +46,6 @@ rmSync(media, { recursive: true, force: true });
 for (const folder of ['images', 'assets']) {
 	if (existsSync(join(source, folder))) cpSync(join(source, folder), join(media, folder), { recursive: true });
 }
-if (existsSync(join(source, 'assets', 'logo.svg'))) {
-	mkdirSync(join(root, 'src', 'assets'), { recursive: true });
-	cpSync(join(source, 'assets', 'logo.svg'), join(root, 'src', 'assets', 'logo.svg'));
-}
 
 // Sidebar: `### Group` headings and `- [Label](TARGET)` items, in the order the wiki shows them.
 const sidebar = [];
