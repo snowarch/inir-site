@@ -1,0 +1,466 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-g5ptsecz"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Modules Catalog | iNiR</title><link rel="canonical" href="https://snowarch.github.io/inir-site/docs/modules/"/><link rel="sitemap" href="/inir-site/sitemap-index.xml"/><script>try { const l = localStorage.getItem('inir-look'); if (l) document.documentElement.dataset.look = l } catch {}</script><link rel="shortcut icon" href="/inir-site/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v7.3.5"/><meta name="generator" content="Starlight v0.42.4"/><meta property="og:title" content="Modules Catalog"/><meta property="og:type" content="article"/><meta property="og:url" content="https://snowarch.github.io/inir-site/docs/modules/"/><meta property="og:locale" content="en"/><meta property="og:description" content="A complete desktop shell for Niri, built on Quickshell."/><meta property="og:site_name" content="iNiR"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="A complete desktop shell for Niri, built on Quickshell."/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/inir-site/_astro/print.ehPL0gv-.css" media="print"><link rel="stylesheet" href="/inir-site/_astro/looks.CyxIM_NZ.css"><link rel="stylesheet" href="/inir-site/_astro/common.DXfhS0cR.css"><script type="module" src="/inir-site/_astro/page.Dwipeu-R.js"></script></head><body class="astro-g5ptsecz"><a class="sl-skip-link astro-qb7clj6f" href="#_top">Skip to content</a><div class="page sl-flex astro-yntsjkba"><header class="header astro-yntsjkba"><div class="header astro-by6fddyj"><div class="title-wrapper sl-flex astro-by6fddyj"><a href="/inir-site/" class="site-title sl-flex astro-6rvad3va"><img class="astro-6rvad3va" alt src="/inir-site/_astro/inir-mark.DRGJNZGs.svg" width="64" height="64"><span class="astro-6rvad3va" translate="no">iNiR</span></a></div><div class="sl-flex print:hidden astro-by6fddyj"><site-search class="astro-by6fddyj astro-b5kgnn7o" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"><button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-b5kgnn7o"><svg aria-hidden="true" class="astro-b5kgnn7o astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-b5kgnn7o" aria-hidden="true">Search</span><kbd class="sl-hidden md:sl-flex astro-b5kgnn7o" style="display: none;"><kbd class="astro-b5kgnn7o">Ctrl</kbd><kbd class="astro-b5kgnn7o">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search" class="astro-b5kgnn7o"><div class="dialog-frame sl-flex astro-b5kgnn7o"><button data-close-modal class="sl-flex md:sl-hidden astro-b5kgnn7o">Cancel</button><div class="search-container astro-b5kgnn7o"><div id="starlight__search" class="astro-b5kgnn7o"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/inir-site/_astro/Search.astro_astro_type_script_index_0_lang.BpssPe-T.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-by6fddyj"><div class="sl-flex social-icons astro-by6fddyj"><a href="https://github.com/snowarch/iNiR" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">GitHub</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a><a href="https://discord.gg/pAPTfAhZUJ" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">Discord</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M20.32 4.37a19.8 19.8 0 0 0-4.93-1.51 13.78 13.78 0 0 0-.64 1.28 18.27 18.27 0 0 0-5.5 0 12.64 12.64 0 0 0-.64-1.28h-.05A19.74 19.74 0 0 0 3.64 4.4 20.26 20.26 0 0 0 .11 18.09l.02.02a19.9 19.9 0 0 0 6.04 3.03l.04-.02a14.24 14.24 0 0 0 1.23-2.03.08.08 0 0 0-.05-.07 13.1 13.1 0 0 1-1.9-.92.08.08 0 0 1 .02-.1 10.2 10.2 0 0 0 .41-.31h.04a14.2 14.2 0 0 0 12.1 0l.04.01a9.63 9.63 0 0 0 .4.32.08.08 0 0 1-.03.1 12.29 12.29 0 0 1-1.9.91.08.08 0 0 0-.02.1 15.97 15.97 0 0 0 1.27 2.01h.04a19.84 19.84 0 0 0 6.03-3.05v-.03a20.12 20.12 0 0 0-3.57-13.69ZM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42 0-1.33.96-2.42 2.16-2.42 1.21 0 2.18 1.1 2.16 2.42 0 1.34-.96 2.42-2.16 2.42Zm7.97 0c-1.18 0-2.15-1.08-2.15-2.42 0-1.33.95-2.42 2.15-2.42 1.22 0 2.18 1.1 2.16 2.42 0 1.34-.94 2.42-2.16 2.42Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script><script type="module">var e=`starlight-theme`,t=e=>e===`auto`||e===`dark`||e===`light`?e:`auto`,n=()=>t(typeof localStorage<`u`&&localStorage.getItem(e));function r(t){typeof localStorage<`u`&&localStorage.setItem(e,t===`light`||t===`dark`?t:``)}var i=()=>matchMedia(`(prefers-color-scheme: light)`).matches?`light`:`dark`;function a(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e===`auto`?i():e,r(e)}matchMedia(`(prefers-color-scheme: light)`).addEventListener(`change`,()=>{n()===`auto`&&a(`auto`)});var o=class extends HTMLElement{constructor(){super(),a(n()),this.querySelector(`select`)?.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&a(t(e.currentTarget.value))})}};customElements.define(`starlight-theme-select`,o);</script><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div></header><nav class="sidebar print:hidden astro-yntsjkba" aria-label="Main"><button popovertarget="starlight__sidebar" class="sl-menu-button sl-flex md:sl-hidden print:hidden astro-r2osgdlg"><svg aria-hidden="true" class="open-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg><span class="sr-only astro-r2osgdlg">Menu</span></button><script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script><sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba"><div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="1m6wpob" class="astro-ipdry5cl"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-rmhv4bp6"><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Start</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/inir-site/docs/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Home</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/install/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Install</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Setup and updates</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/keybinds/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Keybinds</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/limitations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Known limitations</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/desktop-items/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Managed desktop items</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Use</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/inir-site/docs/panel-families/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Panel families</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/iris/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">iRiS</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/config-system/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Configuration</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/wallpaper/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Wallpaper</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/notifications/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Notifications</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/calendar/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Calendar</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/autostart/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Autostart</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/audio-media/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Audio and media</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Script and extend</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/inir-site/docs/ipc/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">IPC reference</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/global-actions/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Global actions</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/services/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Services</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/modules/" aria-current="page" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Modules</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/architecture-overview/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Architecture</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/project-map/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Project map</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Theming</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/inir-site/docs/theming-architecture/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Architecture</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/theming-targets/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Targets</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/theming-presets/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Presets</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/theming-modules/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Modules</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">System</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/inir-site/docs/runtime/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Runtime</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/packages/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Packages</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/compositors/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Compositors</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/optimization/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Optimization</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/nixos/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">NixOS</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">More</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/inir-site/docs/editorial-style/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Editorial style</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/japanese-ocr/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Japanese ocr</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/organic-edge/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Organic edge</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/vesktop/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Vesktop</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-p4azlveh"><div class="social-icons astro-p4azlveh"><a href="https://github.com/snowarch/iNiR" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">GitHub</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a><a href="https://discord.gg/pAPTfAhZUJ" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">Discord</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M20.32 4.37a19.8 19.8 0 0 0-4.93-1.51 13.78 13.78 0 0 0-.64 1.28 18.27 18.27 0 0 0-5.5 0 12.64 12.64 0 0 0-.64-1.28h-.05A19.74 19.74 0 0 0 3.64 4.4 20.26 20.26 0 0 0 .11 18.09l.02.02a19.9 19.9 0 0 0 6.04 3.03l.04-.02a14.24 14.24 0 0 0 1.23-2.03.08.08 0 0 0-.05-.07 13.1 13.1 0 0 1-1.9-.92.08.08 0 0 1 .02-.1 10.2 10.2 0 0 0 .41-.31h.04a14.2 14.2 0 0 0 12.1 0l.04.01a9.63 9.63 0 0 0 .4.32.08.08 0 0 1-.03.1 12.29 12.29 0 0 1-1.9.91.08.08 0 0 0-.02.1 15.97 15.97 0 0 0 1.27 2.01h.04a19.84 19.84 0 0 0 6.03-3.05v-.03a20.12 20.12 0 0 0-3.57-13.69ZM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42 0-1.33.96-2.42 2.16-2.42 1.21 0 2.18 1.1 2.16 2.42 0 1.34-.96 2.42-2.16 2.42Zm7.97 0c-1.18 0-2.15-1.08-2.15-2.42 0-1.33.95-2.42 2.15-2.42 1.22 0 2.18 1.1 2.16 2.42 0 1.34-.94 2.42-2.16 2.42Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script></div></div></div></sl-sidebar-pane></nav><div class="main-frame astro-yntsjkba"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-lrzkfocr"><aside class="right-sidebar-container print:hidden astro-lrzkfocr"><div class="right-sidebar astro-lrzkfocr"><div class="lg:sl-hidden astro-qok35upx"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-66cqc7ze"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-66cqc7ze"><details id="starlight__mobile-toc" class="astro-66cqc7ze"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-66cqc7ze"><span class="toggle sl-flex astro-66cqc7ze">On this page<svg aria-hidden="true" class="caret astro-66cqc7ze astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-66cqc7ze"></span></summary><div class="dropdown astro-66cqc7ze"><ul class="isMobile astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#how-modules-load" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">How modules load</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#material-ii-panels" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Material ii Panels</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#core" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Core</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#sidebars" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Sidebars</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#overlays" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Overlays</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#system" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">System</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#waffle-panels" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Waffle Panels</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#core-1" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Core</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#primary-overlays" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Primary Overlays</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#system-1" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">System</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#design-system" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Design System</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#shared-infrastructure" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Shared Infrastructure</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#modulescommon-203-files" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">modules/common/ (~203 files)</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#current-notable-modules" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Current notable modules</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#bar-layout-editor" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Bar layout editor</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#screen-time" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Screen Time</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#world-clock" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">World Clock</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#shared-panels" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Shared panels</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#for-contributors" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">For contributors</span></a></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/inir-site/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C3fM4Kra.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-qok35upx"><div class="sl-container astro-qok35upx"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#how-modules-load" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">How modules load</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#material-ii-panels" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Material ii Panels</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#core" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Core</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#sidebars" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Sidebars</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#overlays" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Overlays</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#system" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">System</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#waffle-panels" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Waffle Panels</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#core-1" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Core</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#primary-overlays" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Primary Overlays</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#system-1" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">System</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#design-system" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Design System</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#shared-infrastructure" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Shared Infrastructure</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#modulescommon-203-files" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">modules/common/ (~203 files)</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#current-notable-modules" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Current notable modules</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#bar-layout-editor" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Bar layout editor</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#screen-time" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Screen Time</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#world-clock" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">World Clock</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#shared-panels" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Shared panels</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#for-contributors" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">For contributors</span></a></li></ul></nav></starlight-toc><script type="module" src="/inir-site/_astro/TableOfContents.astro_astro_type_script_index_0_lang.BpJaGz7G.js"></script></div></div></div></aside><div class="main-pane astro-lrzkfocr"><main data-pagefind-body class="astro-g5ptsecz" lang="en" dir="ltr"><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><h1 id="_top" class="astro-bebwqqxs">Modules Catalog</h1></div></div><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><div class="sl-markdown-content"><p>UI components organized by panel family. Modules handle rendering and interaction. They don’t own global state, they read from services and config singletons.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="how-modules-load">How modules load</h2><a class="sl-anchor-link" href="#how-modules-load"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “How modules load”</span></a></div>
+<p>Panel loading has two stages. <code dir="auto">shell.qml</code> first activates one family-specific critical host:</p>
+<ul>
+<li><code dir="auto">modules/ii/critical/ShellIiCriticalPanels.qml</code></li>
+<li><code dir="auto">modules/waffle/critical/ShellWaffleCriticalPanels.qml</code></li>
+</ul>
+<p>After the first shell frame, <code dir="auto">GlobalStates.deferredPanelsReady</code> enables the thin root wrapper (<code dir="auto">ShellIiPanels.qml</code>, <code dir="auto">ShellWafflePanels.qml</code>, or <code dir="auto">ShellIrisPanels.qml</code>), which loads the corresponding family implementation root.</p>
+<p>Those implementation roots use <code dir="auto">PanelLoader</code>, <code dir="auto">DeferredPanelLoader</code>, and <code dir="auto">OnDemandPanelLoader</code>. Depending on the loader, a panel is gated by some combination of:</p>
+<ol>
+<li><code dir="auto">Config.ready</code></li>
+<li>Its identifier being present in <code dir="auto">enabledPanels</code></li>
+<li>A family/feature-specific <code dir="auto">extraCondition</code></li>
+<li>The shell-entry/deferred phase or the panel’s actual open/resident state</li>
+</ol>
+<p>Users can disable any panel from Settings without touching config files.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="material-ii-panels">Material ii Panels</h2><a class="sl-anchor-link" href="#material-ii-panels"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Material ii Panels”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="core">Core</h3><a class="sl-anchor-link" href="#core"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Core”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Panel ID</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">bar/</code></td>
+<td><code dir="auto">iiBar</code></td>
+<td>Top bar. Workspaces, clock, system indicators, tray, weather. ~35 QML files.</td>
+</tr>
+<tr>
+<td><code dir="auto">verticalBar/</code></td>
+<td><code dir="auto">iiVerticalBar</code></td>
+<td>Vertical bar variant for left/right edge placement.</td>
+</tr>
+<tr>
+<td><code dir="auto">dock/</code></td>
+<td><code dir="auto">iiDock</code></td>
+<td>Application dock. Supports all 4 edges (top/bottom/left/right). Scroll an icon to cycle that app’s windows; <code dir="auto">dock.notificationBadge</code> puts an app’s pending notification count on its icon.</td>
+</tr>
+<tr>
+<td><code dir="auto">background/</code></td>
+<td><code dir="auto">iiBackground</code></td>
+<td>Desktop wallpaper layer. Parallax, blur, desktop widget canvas.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="sidebars">Sidebars</h3><a class="sl-anchor-link" href="#sidebars"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Sidebars”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Panel ID</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">sidebar/</code></td>
+<td>shared host</td>
+<td>Physical left/right layer-shell hosts. They resolve semantic feature/system roles, own focus, masks, animations and live layout resize handles.</td>
+</tr>
+<tr>
+<td><code dir="auto">sidebarLeft/</code></td>
+<td><code dir="auto">iiSidebarLeft</code></td>
+<td>Feature-role content: AI chat (Gemini/OpenAI/Ollama), YT Music player, Wallhaven browser, anime tracker, translator, draggable widgets and World Clock. The role can occupy either physical edge.</td>
+</tr>
+<tr>
+<td><code dir="auto">sidebarRight/</code></td>
+<td><code dir="auto">iiSidebarRight</code></td>
+<td>System-role content: quick toggles, calendar with external sync, notification center, volume mixer, Bluetooth/WiFi management, pomodoro timer, todo, calculator, notepad, system monitor and Screen Time. The role can occupy either physical edge.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="overlays">Overlays</h3><a class="sl-anchor-link" href="#overlays"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Overlays”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Panel ID</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">overview/</code></td>
+<td><code dir="auto">iiOverview</code></td>
+<td>Workspace overview with app search, calculator, and global actions.</td>
+</tr>
+<tr>
+<td><code dir="auto">ii/</code></td>
+<td><code dir="auto">iiOverlay</code></td>
+<td>Notification overlays and ii-specific UI elements.</td>
+</tr>
+<tr>
+<td><code dir="auto">clipboard/</code></td>
+<td><code dir="auto">iiClipboard</code></td>
+<td>Clipboard history browser with search and image preview. <code dir="auto">Ctrl+P</code> pins an entry to the top of the list; pins store their own decoded copy in <code dir="auto">clipboard.pinned</code>, so they outlive the cliphist history.</td>
+</tr>
+<tr>
+<td><code dir="auto">cheatsheet/</code></td>
+<td><code dir="auto">iiCheatsheet</code></td>
+<td>Keybind viewer pulled from compositor config.</td>
+</tr>
+<tr>
+<td><code dir="auto">controlPanel/</code></td>
+<td><code dir="auto">iiControlPanel</code></td>
+<td>Quick settings panel.</td>
+</tr>
+<tr>
+<td><code dir="auto">dashboard/</code></td>
+<td><code dir="auto">iiDashboard</code></td>
+<td>Centered hub panel: welcome, clock, agenda (local events + ICS), notifications, todo, notes, media, weather, calendar, system usage, GitHub heatmap. Modular three-column layout with in-panel edit mode; configured in Settings › Dashboard. IPC target <code dir="auto">dashboard</code>.</td>
+</tr>
+<tr>
+<td><code dir="auto">mediaControls/</code></td>
+<td><code dir="auto">iiMediaControls</code></td>
+<td>MPRIS media player popup with multiple layout presets.</td>
+</tr>
+<tr>
+<td><code dir="auto">wallpaperSelector/</code></td>
+<td><code dir="auto">iiWallpaperSelector</code></td>
+<td>Wallpaper browser with directory navigation.</td>
+</tr>
+<tr>
+<td><code dir="auto">wallpaperLauncher/</code></td>
+<td><code dir="auto">iiWallpaperLauncher</code></td>
+<td>Shared compact wallpaper carousel with search, static and animated libraries, live preview and IPC navigation.</td>
+</tr>
+<tr>
+<td><code dir="auto">sessionScreen/</code></td>
+<td><code dir="auto">iiSessionScreen</code></td>
+<td>Logout, reboot, shutdown, suspend screen.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="system">System</h3><a class="sl-anchor-link" href="#system"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “System”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Panel ID</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">notificationPopup/</code></td>
+<td><code dir="auto">iiNotificationPopup</code></td>
+<td>Notification toast popups.</td>
+</tr>
+<tr>
+<td><code dir="auto">onScreenDisplay/</code></td>
+<td><code dir="auto">iiOnScreenDisplay</code></td>
+<td>Volume and brightness OSD.</td>
+</tr>
+<tr>
+<td><code dir="auto">onScreenKeyboard/</code></td>
+<td><code dir="auto">iiOnScreenKeyboard</code></td>
+<td>Virtual keyboard.</td>
+</tr>
+<tr>
+<td><code dir="auto">lock/</code></td>
+<td><code dir="auto">iiLock</code></td>
+<td>Lock screen with PAM authentication and fingerprint support.</td>
+</tr>
+<tr>
+<td><code dir="auto">polkit/</code></td>
+<td><code dir="auto">iiPolkit</code></td>
+<td>PolicyKit authentication dialog.</td>
+</tr>
+<tr>
+<td><code dir="auto">regionSelector/</code></td>
+<td><code dir="auto">iiRegionSelector</code></td>
+<td>Screenshot and screen recording region selection.</td>
+</tr>
+<tr>
+<td><code dir="auto">screenCorners/</code></td>
+<td><code dir="auto">iiScreenCorners</code></td>
+<td>Hot corners.</td>
+</tr>
+<tr>
+<td><code dir="auto">tilingOverlay/</code></td>
+<td><code dir="auto">iiTilingOverlay</code></td>
+<td>Tiling hints overlay.</td>
+</tr>
+<tr>
+<td><code dir="auto">shellUpdate/</code></td>
+<td><code dir="auto">iiShellUpdate</code></td>
+<td>Shell update notification banner.</td>
+</tr>
+<tr>
+<td><code dir="auto">recordingOsd/</code></td>
+<td><code dir="auto">iiRecordingOsd</code></td>
+<td>Screen recording indicator (disabled by default).</td>
+</tr>
+<tr>
+<td><code dir="auto">workspaceStrip/</code></td>
+<td><code dir="auto">iiWorkspaceStrip</code></td>
+<td>Optional edge navigator with cached workspace previews, selected-card app summaries, window focus and close controls, drag-to-move, scroll navigation, and MPRIS media controls. Hover the configured edge to open it, then hover a card to inspect that workspace. Shared with waffle. IPC target <code dir="auto">workspaceStrip</code>.</td>
+</tr>
+<tr>
+<td><code dir="auto">mascot/</code></td>
+<td><code dir="auto">iiMascotCompanion</code></td>
+<td>Playful full-body mascot companion: peeks from screen edges, reacts to shell events (music, battery, network, updates, notifications, screenshots, gaming, unlock), plays chase/hide-and-seek, and can physically interact with desktop widgets in chaos mode. Curated poses and per-surface overrides live in Settings › Mascot; a desktop widget variant lives in Settings › Widgets. Never over fullscreen, game mode, lock or session screens. Shared with waffle. IPC targets <code dir="auto">mascot</code>, <code dir="auto">mascotMood</code>.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="waffle-panels">Waffle Panels</h2><a class="sl-anchor-link" href="#waffle-panels"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Waffle Panels”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="core-1">Core</h3><a class="sl-anchor-link" href="#core-1"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Core”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Panel ID</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">waffle/bar/</code></td>
+<td><code dir="auto">wBar</code></td>
+<td>Bottom taskbar. Start button, pinned apps, open windows, system tray, clock.</td>
+</tr>
+<tr>
+<td><code dir="auto">waffle/background/</code></td>
+<td><code dir="auto">wBackground</code></td>
+<td>Desktop wallpaper layer (waffle variant).</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="primary-overlays">Primary Overlays</h3><a class="sl-anchor-link" href="#primary-overlays"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Primary Overlays”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Panel ID</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">waffle/startMenu/</code></td>
+<td><code dir="auto">wStartMenu</code></td>
+<td>Start menu with app grid, search, pinned apps, recommendations.</td>
+</tr>
+<tr>
+<td><code dir="auto">waffle/actionCenter/</code></td>
+<td><code dir="auto">wActionCenter</code></td>
+<td>Quick settings. WiFi, Bluetooth, volume, brightness, toggles, Screen Time entry point.</td>
+</tr>
+<tr>
+<td><code dir="auto">waffle/notificationCenter/</code></td>
+<td><code dir="auto">wNotificationCenter</code></td>
+<td>Notification list with calendar and external event integration.</td>
+</tr>
+<tr>
+<td><code dir="auto">waffle/taskview/</code></td>
+<td><code dir="auto">wTaskView</code></td>
+<td>Task view (workspace overview with window previews).</td>
+</tr>
+<tr>
+<td><code dir="auto">waffle/widgets/</code></td>
+<td><code dir="auto">wWidgets</code></td>
+<td>Desktop widgets panel.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="system-1">System</h3><a class="sl-anchor-link" href="#system-1"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “System”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Panel ID</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">waffle/notificationPopup/</code></td>
+<td><code dir="auto">wNotificationPopup</code></td>
+<td>Notification popups (Fluent style).</td>
+</tr>
+<tr>
+<td><code dir="auto">waffle/onScreenDisplay/</code></td>
+<td><code dir="auto">wOnScreenDisplay</code></td>
+<td>Volume/brightness OSD (Fluent style).</td>
+</tr>
+<tr>
+<td><code dir="auto">lock/</code> + <code dir="auto">waffle/lock/</code> presentation</td>
+<td><code dir="auto">wLock</code></td>
+<td>Shared lock owner with Waffle-specific surface presentation.</td>
+</tr>
+<tr>
+<td><code dir="auto">polkit/</code> + Waffle presentation</td>
+<td><code dir="auto">wPolkit</code></td>
+<td>Shared PolicyKit owner rendered for Waffle.</td>
+</tr>
+<tr>
+<td><code dir="auto">sessionScreen/</code> + Waffle presentation</td>
+<td><code dir="auto">wSessionScreen</code></td>
+<td>Shared session owner rendered for Waffle.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="design-system">Design System</h3><a class="sl-anchor-link" href="#design-system"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Design System”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">waffle/looks/</code></td>
+<td><code dir="auto">Looks.qml</code> - complete visual token system. Colors, typography, motion, rounding.</td>
+</tr>
+<tr>
+<td><code dir="auto">waffle/settings/</code></td>
+<td>Waffle-specific settings pages.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="shared-infrastructure">Shared Infrastructure</h2><a class="sl-anchor-link" href="#shared-infrastructure"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Shared Infrastructure”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="modulescommon-203-files">modules/common/ (~203 files)</h3><a class="sl-anchor-link" href="#modulescommon-203-files"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “modules/common/ (~203 files)”</span></a></div>
+<p>The foundation everything else builds on.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Config.qml</strong></td>
+<td>Configuration singleton. ~60 config sections. <a href="/inir-site/docs/config-system/">Details</a></td>
+</tr>
+<tr>
+<td><strong>Appearance.qml</strong></td>
+<td>ii visual tokens. ~500 properties covering colors, rounding, typography, animation.</td>
+</tr>
+<tr>
+<td><strong>Directories.qml</strong></td>
+<td>Centralized path resolution. Config, cache, data, scripts, media directories.</td>
+</tr>
+<tr>
+<td><strong>widgets/</strong></td>
+<td>130+ reusable widgets registered in <code dir="auto">widgets/qmldir</code>. Layout, input, display, media, and specialized components.</td>
+</tr>
+<tr>
+<td><strong>ThemePresets.qml</strong></td>
+<td>46 built-in theme presets.</td>
+</tr>
+<tr>
+<td><strong>StylePresets.qml</strong></td>
+<td>Style variant definitions.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="current-notable-modules">Current notable modules</h2><a class="sl-anchor-link" href="#current-notable-modules"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Current notable modules”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="bar-layout-editor">Bar layout editor</h3><a class="sl-anchor-link" href="#bar-layout-editor"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Bar layout editor”</span></a></div>
+<p>The ii bar is driven by <code dir="auto">Config.options.bar.layout</code>, split into five zones:</p>
+<p><code dir="auto">left</code>, <code dir="auto">centerLeft</code>, <code dir="auto">center</code>, <code dir="auto">centerRight</code>, <code dir="auto">right</code></p>
+<p>The Settings page uses <code dir="auto">BarModuleOrderEditor.qml</code> to reorder modules and drag available modules into zones. <code dir="auto">workspaces</code> stays the centered pivot. The old <code dir="auto">modulesLayout</code>, <code dir="auto">edgeModulesLayout</code>, and <code dir="auto">modulesPlacement</code> keys are deprecated compatibility baggage, not the runtime source of truth.</p>
+<p>Migration <code dir="auto">028-bar-modular-layout</code> exists but is disabled. The bar has a built-in classic fallback, so existing users do not need config rewrites just to update. Good. We learned.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="screen-time">Screen Time</h3><a class="sl-anchor-link" href="#screen-time"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Screen Time”</span></a></div>
+<p><code dir="auto">services/ScreenTime.qml</code> tracks focused app usage when <code dir="auto">sidebar.screenTime.enable</code> is true.</p>
+<p>Visible surfaces:</p>
+<ul>
+<li><code dir="auto">modules/sidebarRight/screenTime/ScreenTimeWidget.qml</code></li>
+<li><code dir="auto">modules/waffle/actionCenter/screenTime/ScreenTimePage.qml</code></li>
+</ul>
+<p>It stores local daily JSON under the iNiR state directory. It has daily totals, app totals, hourly buckets, and per-app hourly drill-down. It is off by default and hidden from sidebar layouts while disabled.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="world-clock">World Clock</h3><a class="sl-anchor-link" href="#world-clock"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “World Clock”</span></a></div>
+<p><code dir="auto">modules/sidebarLeft/widgets/WorldClockWidget.qml</code> is a sidebar-left widget configured through <code dir="auto">sidebar.widgets.worldClock_settings</code>.</p>
+<p>If no timezones are configured, it suggests useful zones from the user’s locale/system timezone. If the user configures timezones, Settings owns the explicit list and order.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="shared-panels">Shared panels</h3><a class="sl-anchor-link" href="#shared-panels"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Shared panels”</span></a></div>
+<p>Some panels work under both families. They keep their <code dir="auto">ii</code> prefix but load in waffle mode too:</p>
+<p><code dir="auto">iiBootGreeting</code>, <code dir="auto">iiCheatsheet</code>, <code dir="auto">iiOnScreenKeyboard</code>, <code dir="auto">iiOverlay</code>, <code dir="auto">iiOverview</code>, <code dir="auto">iiRegionSelector</code>, <code dir="auto">iiScreenCorners</code>, <code dir="auto">iiWallpaperSelector</code>, <code dir="auto">iiWallpaperLauncher</code>, <code dir="auto">iiRecordingOsd</code>, <code dir="auto">iiWorkspaceStrip</code>, <code dir="auto">iiMascotCompanion</code></p>
+<p>Waffle owns its clipboard implementation separately (<code dir="auto">modules/waffle/clipboard/</code>); the legacy <code dir="auto">iiClipboard</code> identifier can still appear in family/config compatibility lists, but the ii clipboard component is not the active Waffle clipboard surface.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="for-contributors">For contributors</h2><a class="sl-anchor-link" href="#for-contributors"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “For contributors”</span></a></div>
+<ol>
+<li>Read <a href="/inir-site/docs/architecture-overview/">Architecture Overview</a> to locate the module’s place in the tree and its owning family</li>
+<li>Identify which family owns the module before making visual changes</li>
+<li>Use the correct token system: <code dir="auto">Appearance.*</code> for ii, <code dir="auto">Looks.*</code> for waffle</li>
+<li>Register new panels in the correct composition owner: a <code dir="auto">critical/</code> host only for first-frame surfaces, otherwise the family’s <code dir="auto">Shell*PanelsImpl.qml</code>; keep shell-wide IPC routers in <code dir="auto">shell.qml</code> when the command must exist before heavy panels load</li>
+<li>Register new shared widgets in <code dir="auto">modules/common/widgets/qmldir</code></li>
+<li>If touching shared modules, test every family that consumes the changed contract</li>
+</ol>
+</div><footer class="sl-flex astro-ddtxxk7k"><div class="meta sl-flex astro-ddtxxk7k"><a href="https://github.com/snowarch/iNiR/edit/main/docs/MODULES.md" class="sl-flex print:hidden astro-qlekgd3o"><svg aria-hidden="true" class="astro-qlekgd3o astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.2em;"><path d="M22 7.24a1 1 0 0 0-.29-.71l-4.24-4.24a1 1 0 0 0-1.1-.22 1 1 0 0 0-.32.22l-2.83 2.83L2.29 16.05a1 1 0 0 0-.29.71V21a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .76-.29l10.87-10.93L21.71 8c.1-.1.17-.2.22-.33a1 1 0 0 0 0-.24v-.14l.07-.05ZM6.83 20H4v-2.83l9.93-9.93 2.83 2.83L6.83 20ZM18.17 8.66l-2.83-2.83 1.42-1.41 2.82 2.82-1.41 1.42Z"/></svg>Edit page</a></div><div class="pagination-links print:hidden astro-b5raizh3" dir="ltr"><a href="/inir-site/docs/services/" rel="prev" class="astro-b5raizh3"><svg aria-hidden="true" class="astro-b5raizh3 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg><span class="astro-b5raizh3">Previous<br class="astro-b5raizh3"><span class="link-title astro-b5raizh3">Services</span></span></a><a href="/inir-site/docs/architecture-overview/" rel="next" class="astro-b5raizh3"><svg aria-hidden="true" class="astro-b5raizh3 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg><span class="astro-b5raizh3">Next<br class="astro-b5raizh3"><span class="link-title astro-b5raizh3">Architecture</span></span></a></div></footer></div></div></main></div></div></div></div></body></html>
