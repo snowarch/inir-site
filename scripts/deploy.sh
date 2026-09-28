@@ -6,12 +6,13 @@ cd "$(dirname "$0")/.."
 SITE_BASE="${SITE_BASE:-/inir-site/}" npm run build
 touch dist/.nojekyll
 remote="$(git remote get-url origin)"
+name="$(git config user.name)"; email="$(git config user.email)"
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
 cp -r dist/. "$work"
 cd "$work"
 git init -q -b gh-pages
 git add -A
-git commit -q -m "build: publish site"
+git -c user.name="$name" -c user.email="$email" commit -q -m "build: publish site"
 git push -q -f "$remote" gh-pages
 echo "Published to gh-pages."
