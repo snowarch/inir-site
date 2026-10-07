@@ -1,23 +1,29 @@
 /* Site looks, one per family plus iNiR's own. The landing page and the docs both read these; a look is
-   chosen from the palette in the header and kept in localStorage ("inir-look"). */
+   chosen from the Island on the landing page and kept in localStorage ("inir-look").
+   --look-chassis is the frame around the screen and the Island that hangs from it; --look-edge is the light
+   its cut edge catches. iNiR's own look takes both from the 2.32 desktop: a plum chassis around a dusk wallpaper. */
 :root,
 :root[data-look='inir'] {
-	--look-field: #0c0814;
-	--look-raised: #1a1228;
-	--look-raised-2: #241a36;
-	--look-ink: #f4effb;
-	--look-quiet: #a99fbd;
-	--look-line: rgba(233, 222, 255, 0.09);
-	--look-accent: #e7b75a;
-	--look-accent-ink: #1f1504;
-	--look-accent-soft: rgba(231, 183, 90, 0.16);
-	--look-glow: rgba(139, 92, 246, 0.32);
-	--look-glass: rgba(20, 13, 34, 0.55);
+	--look-chassis: #09060c;
+	--look-edge: rgba(206, 182, 226, 0.2);
+	--look-field: #1b1523;
+	--look-raised: #261e30;
+	--look-raised-2: #32283d;
+	--look-ink: #f3eef6;
+	--look-quiet: #b3a8bb;
+	--look-line: rgba(233, 222, 245, 0.1);
+	--look-accent: #f0b65e;
+	--look-accent-ink: #241603;
+	--look-accent-soft: rgba(240, 182, 94, 0.16);
+	--look-glow: rgba(167, 153, 166, 0.2);
+	--look-glass: rgba(27, 21, 35, 0.6);
 	--look-r-card: 22px;
 	--look-r-button: 999px;
 }
 :root[data-look='iris'] {
-	--look-field: #000000;
+	--look-chassis: #000000;
+	--look-edge: rgba(255, 255, 255, 0.14);
+	--look-field: #0e0e10;
 	--look-raised: #1c1c1e;
 	--look-raised-2: #2c2c2e;
 	--look-ink: #f5f5f7;
@@ -32,6 +38,8 @@
 	--look-r-button: 999px;
 }
 :root[data-look='material'] {
+	--look-chassis: #0c0e13;
+	--look-edge: rgba(170, 199, 255, 0.14);
 	--look-field: #111318;
 	--look-raised: #1d2027;
 	--look-raised-2: #282a31;
@@ -47,6 +55,8 @@
 	--look-r-button: 20px;
 }
 :root[data-look='waffle'] {
+	--look-chassis: #1a1a1a;
+	--look-edge: rgba(255, 255, 255, 0.1);
 	--look-field: #202020;
 	--look-raised: #2b2b2b;
 	--look-raised-2: #333333;

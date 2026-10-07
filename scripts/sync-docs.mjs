@@ -64,4 +64,39 @@ const rest = files.map((file) => basename(file, '.md')).filter((name) => slugOf(
 if (rest.length) sidebar.push({ label: 'More', collapsed: true, items: rest.sort().map((name) => ({ label: name.replace(/_/g, ' ').toLowerCase().replace(/^\w/, (c) => c.toUpperCase()), link: `/docs/${slugOf(name)}/` })) });
 writeFileSync(join(root, 'src', 'sidebar.generated.json'), JSON.stringify(sidebar, null, 2) + '\n');
 
-console.log(`sync-docs: ${files.length} pages, ${sidebar.length} sidebar groups from ${source}`);
+// The landing page names the current release and what it added, from VERSION and the newest section of
+// CHANGELOG.md beside docs/. Without them the page leaves the release out.
+const release = { version: null, date: null, title: null, summary: null, added: [] };
+const versionFile = join(source, '..', 'VERSION');
+const changelogFile = join(source, '..', 'CHANGELOG.md');
+if (existsSync(versionFile)) release.version = readFileSync(versionFile, 'utf8').trim();
+if (existsSync(changelogFile)) {
+	const log = readFileSync(changelogFile, 'utf8').replace(/\r\n/g, '\n');
+	const head = log.match(/^## \[(\d+\.\d+\.\d+)\] - (\d{4}-\d{2}-\d{2})$/m);
+	if (head) {
+		const after = log.slice(head.index + head[0].length);
+		const next = after.search(/^## \[/m);
+		const section = next < 0 ? after : after.slice(0, next);
+		const plain = (text) => text.replace(/\*\*?([^*]+)\*\*?/g, '$1').replace(/`([^`]+)`/g, '$1').trim();
+		release.version ??= head[1];
+		release.date = head[2];
+		release.title = section.match(/^\*\*(.+)\*\*$/m)?.[1] ?? null;
+		release.summary = section.split('\n\n').map((part) => part.trim())
+			.find((part) => part && !/^[#>*-]/.test(part)) ?? null;
+		const added = (section.split(/^### /m).find((part) => part.startsWith('Added\n')) ?? '');
+		for (const item of added.split('\n').filter((line) => line.startsWith('- **'))) {
+			const [, name, text] = item.match(/^- \*\*(.+?)\*\*:?\s*(.*)$/) ?? [];
+			if (!name) continue;
+			const command = text.match(/`(inir [^`]+)`/)?.[1] ?? null;
+			const first = plain(text.replace(/\s*\(`inir [^)]*\)/g, '')).split(/(?<=\.)\s/)[0];
+			// Sentence case, unless the line opens on a name with its own casing (iRiS) or a command.
+			const upper = /^[a-z]+\b/.test(first) && !text.startsWith('`');
+			release.added.push({ name: plain(name), text: upper ? first.charAt(0).toUpperCase() + first.slice(1) : first, command });
+		}
+		if (release.summary) release.summary = plain(release.summary);
+	}
+}
+writeFileSync(join(root, 'src', 'release.generated.json'), JSON.stringify(release, null, 2) + '\n');
+
+console.log(`sync-docs: ${files.length} pages, ${sidebar.length} sidebar groups from ${source}` +
+	(release.version ? `, release ${release.version}` : ', no release notes'));
