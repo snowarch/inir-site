@@ -1,0 +1,648 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-g5ptsecz"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Setup & Updates | iNiR</title><link rel="canonical" href="https://snowarch.github.io/inir-site/docs/setup/"/><link rel="sitemap" href="/inir-site/sitemap-index.xml"/><script>try { const l = localStorage.getItem('inir-look'); if (l) document.documentElement.dataset.look = l } catch {}</script><link rel="shortcut icon" href="/inir-site/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v7.3.5"/><meta name="generator" content="Starlight v0.42.4"/><meta property="og:title" content="Setup &amp; Updates"/><meta property="og:type" content="article"/><meta property="og:url" content="https://snowarch.github.io/inir-site/docs/setup/"/><meta property="og:locale" content="en"/><meta property="og:description" content="A complete desktop shell for Niri, built on Quickshell."/><meta property="og:site_name" content="iNiR"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="A complete desktop shell for Niri, built on Quickshell."/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/inir-site/_astro/print.ehPL0gv-.css" media="print"><link rel="stylesheet" href="/inir-site/_astro/looks.DhVyTyMl.css"><link rel="stylesheet" href="/inir-site/_astro/common.ltVziwcZ.css"><script type="module" src="/inir-site/_astro/page.Dwipeu-R.js"></script></head><body class="astro-g5ptsecz"><a class="sl-skip-link astro-qb7clj6f" href="#_top">Skip to content</a><div class="page sl-flex astro-yntsjkba"><header class="header astro-yntsjkba"><div class="header astro-by6fddyj"><div class="title-wrapper sl-flex astro-by6fddyj"><a href="/inir-site/" class="site-title sl-flex astro-6rvad3va"><img class="astro-6rvad3va" alt src="/inir-site/_astro/inir-mark.DRGJNZGs.svg" width="64" height="64"><span class="astro-6rvad3va" translate="no">iNiR</span></a></div><div class="sl-flex print:hidden astro-by6fddyj"><site-search class="astro-by6fddyj astro-b5kgnn7o" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"><button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-b5kgnn7o"><svg aria-hidden="true" class="astro-b5kgnn7o astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-b5kgnn7o" aria-hidden="true">Search</span><kbd class="sl-hidden md:sl-flex astro-b5kgnn7o" style="display: none;"><kbd class="astro-b5kgnn7o">Ctrl</kbd><kbd class="astro-b5kgnn7o">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search" class="astro-b5kgnn7o"><div class="dialog-frame sl-flex astro-b5kgnn7o"><button data-close-modal class="sl-flex md:sl-hidden astro-b5kgnn7o">Cancel</button><div class="search-container astro-b5kgnn7o"><div id="starlight__search" class="astro-b5kgnn7o"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/inir-site/_astro/Search.astro_astro_type_script_index_0_lang.BpssPe-T.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-by6fddyj"><div class="sl-flex social-icons astro-by6fddyj"><a href="https://github.com/snowarch/iNiR" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">GitHub</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a><a href="https://discord.gg/pAPTfAhZUJ" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">Discord</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M20.32 4.37a19.8 19.8 0 0 0-4.93-1.51 13.78 13.78 0 0 0-.64 1.28 18.27 18.27 0 0 0-5.5 0 12.64 12.64 0 0 0-.64-1.28h-.05A19.74 19.74 0 0 0 3.64 4.4 20.26 20.26 0 0 0 .11 18.09l.02.02a19.9 19.9 0 0 0 6.04 3.03l.04-.02a14.24 14.24 0 0 0 1.23-2.03.08.08 0 0 0-.05-.07 13.1 13.1 0 0 1-1.9-.92.08.08 0 0 1 .02-.1 10.2 10.2 0 0 0 .41-.31h.04a14.2 14.2 0 0 0 12.1 0l.04.01a9.63 9.63 0 0 0 .4.32.08.08 0 0 1-.03.1 12.29 12.29 0 0 1-1.9.91.08.08 0 0 0-.02.1 15.97 15.97 0 0 0 1.27 2.01h.04a19.84 19.84 0 0 0 6.03-3.05v-.03a20.12 20.12 0 0 0-3.57-13.69ZM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42 0-1.33.96-2.42 2.16-2.42 1.21 0 2.18 1.1 2.16 2.42 0 1.34-.96 2.42-2.16 2.42Zm7.97 0c-1.18 0-2.15-1.08-2.15-2.42 0-1.33.95-2.42 2.15-2.42 1.22 0 2.18 1.1 2.16 2.42 0 1.34-.94 2.42-2.16 2.42Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script><script type="module">var e=`starlight-theme`,t=e=>e===`auto`||e===`dark`||e===`light`?e:`auto`,n=()=>t(typeof localStorage<`u`&&localStorage.getItem(e));function r(t){typeof localStorage<`u`&&localStorage.setItem(e,t===`light`||t===`dark`?t:``)}var i=()=>matchMedia(`(prefers-color-scheme: light)`).matches?`light`:`dark`;function a(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e===`auto`?i():e,r(e)}matchMedia(`(prefers-color-scheme: light)`).addEventListener(`change`,()=>{n()===`auto`&&a(`auto`)});var o=class extends HTMLElement{constructor(){super(),a(n()),this.querySelector(`select`)?.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&a(t(e.currentTarget.value))})}};customElements.define(`starlight-theme-select`,o);</script><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div></header><nav class="sidebar print:hidden astro-yntsjkba" aria-label="Main"><button popovertarget="starlight__sidebar" class="sl-menu-button sl-flex md:sl-hidden print:hidden astro-r2osgdlg"><svg aria-hidden="true" class="open-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg><span class="sr-only astro-r2osgdlg">Menu</span></button><script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script><sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba"><div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="1m6wpob" class="astro-ipdry5cl"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-rmhv4bp6"><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Start</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/inir-site/docs/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Home</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/install/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Install</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/setup/" aria-current="page" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Setup and updates</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/keybinds/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Keybinds</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/limitations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Known limitations</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/desktop-items/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Managed desktop items</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Use</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/inir-site/docs/panel-families/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Panel families</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/iris/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">iRiS</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/config-system/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Configuration</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/wallpaper/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Wallpaper</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/notifications/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Notifications</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/calendar/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Calendar</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/autostart/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Autostart</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/audio-media/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Audio and media</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Script and extend</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/inir-site/docs/ipc/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">IPC reference</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/global-actions/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Global actions</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/services/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Services</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/modules/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Modules</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/architecture-overview/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Architecture</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/project-map/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Project map</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Theming</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/inir-site/docs/theming-architecture/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Architecture</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/theming-targets/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Targets</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/theming-presets/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Presets</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/theming-modules/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Modules</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">System</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/inir-site/docs/runtime/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Runtime</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/packages/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Packages</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/compositors/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Compositors</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/optimization/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Optimization</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/nixos/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">NixOS</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">More</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/inir-site/docs/editorial-style/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Editorial style</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/japanese-ocr/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Japanese ocr</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/organic-edge/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Organic edge</span></a></li><li class="astro-rmhv4bp6"><a href="/inir-site/docs/vesktop/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Vesktop</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-p4azlveh"><div class="social-icons astro-p4azlveh"><a href="https://github.com/snowarch/iNiR" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">GitHub</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a><a href="https://discord.gg/pAPTfAhZUJ" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">Discord</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M20.32 4.37a19.8 19.8 0 0 0-4.93-1.51 13.78 13.78 0 0 0-.64 1.28 18.27 18.27 0 0 0-5.5 0 12.64 12.64 0 0 0-.64-1.28h-.05A19.74 19.74 0 0 0 3.64 4.4 20.26 20.26 0 0 0 .11 18.09l.02.02a19.9 19.9 0 0 0 6.04 3.03l.04-.02a14.24 14.24 0 0 0 1.23-2.03.08.08 0 0 0-.05-.07 13.1 13.1 0 0 1-1.9-.92.08.08 0 0 1 .02-.1 10.2 10.2 0 0 0 .41-.31h.04a14.2 14.2 0 0 0 12.1 0l.04.01a9.63 9.63 0 0 0 .4.32.08.08 0 0 1-.03.1 12.29 12.29 0 0 1-1.9.91.08.08 0 0 0-.02.1 15.97 15.97 0 0 0 1.27 2.01h.04a19.84 19.84 0 0 0 6.03-3.05v-.03a20.12 20.12 0 0 0-3.57-13.69ZM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42 0-1.33.96-2.42 2.16-2.42 1.21 0 2.18 1.1 2.16 2.42 0 1.34-.96 2.42-2.16 2.42Zm7.97 0c-1.18 0-2.15-1.08-2.15-2.42 0-1.33.95-2.42 2.15-2.42 1.22 0 2.18 1.1 2.16 2.42 0 1.34-.94 2.42-2.16 2.42Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script></div></div></div></sl-sidebar-pane></nav><div class="main-frame astro-yntsjkba"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-lrzkfocr"><aside class="right-sidebar-container print:hidden astro-lrzkfocr"><div class="right-sidebar astro-lrzkfocr"><div class="lg:sl-hidden astro-qok35upx"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-66cqc7ze"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-66cqc7ze"><details id="starlight__mobile-toc" class="astro-66cqc7ze"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-66cqc7ze"><span class="toggle sl-flex astro-66cqc7ze">On this page<svg aria-hidden="true" class="caret astro-66cqc7ze astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-66cqc7ze"></span></summary><div class="dropdown astro-66cqc7ze"><ul class="isMobile astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#interactive-menu" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Interactive Menu</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#how-the-pieces-fit-together" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">How the pieces fit together</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#install" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Install</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#update" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Update</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#doctor" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Doctor</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#rollback" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Rollback</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#migrate" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Migrate</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#modular-niri-config-at-a-glance" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Modular Niri config at a glance</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#my-changes" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">My Changes</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#commands" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Commands</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#status" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Status</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#local-validation" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Local validation</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#what-gets-installed" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">What Gets Installed</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#core-files" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Core Files</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#compositor--themes" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Compositor &amp; Themes</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#behavior" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Behavior</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#migrations" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Migrations</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#backups" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Backups</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#uninstall" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Uninstall</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#automated-uninstall-recommended" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Automated Uninstall (Recommended)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#files-removed-automatically" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Files Removed Automatically</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#shared-configs-asked-before-removal" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Shared Configs (Asked Before Removal)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#installed-packages" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Installed Packages</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#system-changes-not-reverted" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">System Changes Not Reverted</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#backup-location" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Backup Location</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#manual-uninstall-fallback" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Manual Uninstall (Fallback)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#reinstalling" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Reinstalling</span></a></li></ul></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/inir-site/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C3fM4Kra.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-qok35upx"><div class="sl-container astro-qok35upx"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#interactive-menu" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Interactive Menu</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#how-the-pieces-fit-together" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">How the pieces fit together</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#install" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Install</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#update" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Update</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#doctor" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Doctor</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#rollback" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Rollback</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#migrate" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Migrate</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#modular-niri-config-at-a-glance" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Modular Niri config at a glance</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#my-changes" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">My Changes</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#commands" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Commands</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#status" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Status</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#local-validation" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Local validation</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#what-gets-installed" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">What Gets Installed</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#core-files" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Core Files</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#compositor--themes" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Compositor &amp; Themes</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#behavior" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Behavior</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#migrations" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Migrations</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#backups" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Backups</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#uninstall" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Uninstall</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#automated-uninstall-recommended" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Automated Uninstall (Recommended)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#files-removed-automatically" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Files Removed Automatically</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#shared-configs-asked-before-removal" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Shared Configs (Asked Before Removal)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#installed-packages" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Installed Packages</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#system-changes-not-reverted" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">System Changes Not Reverted</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#backup-location" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Backup Location</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#manual-uninstall-fallback" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Manual Uninstall (Fallback)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#reinstalling" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Reinstalling</span></a></li></ul></li></ul></nav></starlight-toc><script type="module" src="/inir-site/_astro/TableOfContents.astro_astro_type_script_index_0_lang.BpJaGz7G.js"></script></div></div></div></aside><div class="main-pane astro-lrzkfocr"><main data-pagefind-body class="astro-g5ptsecz" lang="en" dir="ltr"><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><h1 id="_top" class="astro-bebwqqxs">Setup &amp; Updates</h1></div></div><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><div class="sl-markdown-content"><div class="sl-heading-wrapper level-h2"><h2 id="interactive-menu">Interactive Menu</h2><a class="sl-anchor-link" href="#interactive-menu"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Interactive Menu”</span></a></div>
+<div class="expressive-code"><link rel="stylesheet" href="/inir-site/_astro/ec.w36nc.css"><script type="module" src="/inir-site/_astro/ec.0vx5m.js"></script><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">./setup</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="./setup"><div></div></button></div></figure></div>
+<p>Running <code dir="auto">./setup</code> without arguments launches an interactive menu with all available commands. The menu provides:</p>
+<ul>
+<li>Visual command selection</li>
+<li>Current version, install mode, and update status</li>
+<li>Pending migrations indicator</li>
+<li>Health checks (shell running, Niri detected)</li>
+<li>Snapshot availability</li>
+</ul>
+<p>This is the recommended way to use the setup script if you’re unsure which command to run.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="how-the-pieces-fit-together">How the pieces fit together</h2><a class="sl-anchor-link" href="#how-the-pieces-fit-together"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “How the pieces fit together”</span></a></div>
+<p>There are now three complementary entry points:</p>
+<ul>
+<li><code dir="auto">./setup</code>
+<ul>
+<li>authoritative installer and maintenance entry point</li>
+<li>owns install, update, doctor, status, migrate, rollback, my-changes, uninstall</li>
+</ul>
+</li>
+<li><code dir="auto">inir</code>
+<ul>
+<li>daily launcher and operator CLI</li>
+<li>owns runtime actions like <code dir="auto">run</code>, <code dir="auto">start</code>, <code dir="auto">restart</code>, <code dir="auto">settings</code>, <code dir="auto">logs</code>, <code dir="auto">repair</code>, <code dir="auto">terminal</code>, and IPC calls</li>
+<li>forwards maintenance commands like <code dir="auto">install</code>, <code dir="auto">update</code>, <code dir="auto">doctor</code>, <code dir="auto">status</code>, <code dir="auto">migrate</code>, <code dir="auto">rollback</code>, <code dir="auto">my-changes</code>, and <code dir="auto">uninstall</code> back to <code dir="auto">setup</code></li>
+</ul>
+</li>
+<li><code dir="auto">make install</code>
+<ul>
+<li>packaging-style local install for packagers, testers, or source installs that should behave like a packaged shell payload</li>
+</ul>
+</li>
+</ul>
+<p>Use them like this:</p>
+<ul>
+<li>install once:
+<ul>
+<li><code dir="auto">./setup install</code></li>
+</ul>
+</li>
+<li>maintenance via launcher wrapper:
+<ul>
+<li><code dir="auto">inir update</code></li>
+<li><code dir="auto">inir doctor</code></li>
+<li><code dir="auto">inir status</code></li>
+</ul>
+</li>
+<li>runtime operation:
+<ul>
+<li><code dir="auto">inir run</code></li>
+<li><code dir="auto">inir settings</code></li>
+<li><code dir="auto">inir logs</code></li>
+<li><code dir="auto">inir repair</code></li>
+</ul>
+</li>
+<li>local distribution validation:
+<ul>
+<li><code dir="auto">make test-local</code></li>
+<li><code dir="auto">inir test-local</code></li>
+<li><code dir="auto">inir test-local --with-runtime</code></li>
+</ul>
+</li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="install">Install</h2><a class="sl-anchor-link" href="#install"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Install”</span></a></div>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">git</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">clone</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">https://github.com/snowarch/inir.git</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C5E478;--1:#3B61B0">cd</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">inir</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">./setup</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">install</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">inir</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">run</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="git clone https://github.com/snowarch/inir.gitcd inir./setup installinir run"><div></div></button></div></figure></div>
+<p>Add <code dir="auto">-y</code> for non-interactive mode.</p>
+<p>On a fresh CachyOS install, setup also enables <code dir="auto">niri-focused-booster</code> when the package is available and the kernel exposes the required DMEM cgroup interface. Existing installs are not rewritten by this release path.</p>
+<p>If you want a packaging-style local install surface instead of the normal setup-managed <code dir="auto">repo-copy</code> installer:</p>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">sudo</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">make</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">install</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="sudo make install"><div></div></button></div></figure></div>
+<p>That installs:</p>
+<ul>
+<li><code dir="auto">inir</code> launcher into your install prefix <code dir="auto">bin/</code></li>
+<li>shell payload into <code dir="auto">/usr/local/share/quickshell/inir</code> by default</li>
+<li>user service asset</li>
+<li>desktop entry</li>
+<li>runtime metadata so <code dir="auto">status</code> / <code dir="auto">doctor</code> can detect package-managed style installs</li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="update">Update</h2><a class="sl-anchor-link" href="#update"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Update”</span></a></div>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">inir</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">update</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="inir update"><div></div></button></div></figure></div>
+<p><code dir="auto">inir update</code> and <code dir="auto">./setup update</code> run the same update engine. <code dir="auto">inir update</code> is the convenient launcher-facing entry point; <code dir="auto">./setup update</code> is the underlying maintenance command and the better choice when you also want the interactive TUI nearby.</p>
+<p>What happens:</p>
+<ol>
+<li>Checks remote for new commits</li>
+<li>Creates snapshot (for rollback)</li>
+<li>Pulls changes</li>
+<li>Syncs QML code, scripts, assets</li>
+<li>Syncs Vesktop themes (if present)</li>
+<li>Applies required migrations automatically</li>
+<li>Offers optional migrations</li>
+<li>Restarts shell</li>
+<li>Checks for missing system packages</li>
+<li>Updates Python venv packages</li>
+</ol>
+<p>The runtime sync does not overwrite your user configs directly. If a release needs config changes, required or optional migrations may update <code dir="auto">config.json</code> or <code dir="auto">config.kdl</code> with backup/rollback coverage.</p>
+<p>For legacy monolithic Niri configs, required migrations can now convert <code dir="auto">~/.config/niri/config.kdl</code> into the modular <code dir="auto">config.d/</code> layout automatically during update. The current config is preserved section-by-section, unknown top-level blocks are kept in <code dir="auto">config.d/90-user-extra.kdl</code>, and the normal migration backup/rollback flow still applies.</p>
+<p>If <code dir="auto">setup</code> detects that the active iNiR installation is externally managed, <code dir="auto">inir update</code> does <strong>not</strong> pull or sync repo files into the runtime. In that case it:</p>
+<ul>
+<li>Shows the detected install mode</li>
+<li>Shows the package update command when metadata provides one</li>
+<li>Leaves the shell payload unchanged</li>
+<li>Still applies required migrations if any are pending</li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="doctor">Doctor</h2><a class="sl-anchor-link" href="#doctor"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Doctor”</span></a></div>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">inir</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">doctor</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="inir doctor"><div></div></button></div></figure></div>
+<p><code dir="auto">inir doctor</code> is a wrapper around <code dir="auto">./setup doctor</code>.</p>
+<p>Diagnoses and <strong>automatically fixes</strong> common issues:</p>
+<ul>
+<li>Missing directories</li>
+<li>Script permissions</li>
+<li>Python packages (via uv)</li>
+<li>Version tracking</li>
+<li>File manifest</li>
+</ul>
+<p>For externally managed installs, <code dir="auto">doctor</code> can rebuild the canonical <code dir="auto">~/.config/inir/version.json</code> from runtime metadata already present in the installed shell payload. It also skips setup-managed runtime-manifest requirements when the install is package-managed.</p>
+<p>If you want the same repair flow plus restart and filtered logs:</p>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">inir</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">repair</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="inir repair"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="rollback">Rollback</h2><a class="sl-anchor-link" href="#rollback"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Rollback”</span></a></div>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">./setup</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">rollback</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="./setup rollback"><div></div></button></div></figure></div>
+<p>Restore a previous snapshot if something breaks after an update. Shows available snapshots with dates and lets you choose which one to restore.</p>
+<p>For externally managed installs, <code dir="auto">rollback</code> does not try to restore repo-managed snapshots or reset the checkout. It stops early and points you back to the package manager for shell payload changes.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="migrate">Migrate</h2><a class="sl-anchor-link" href="#migrate"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Migrate”</span></a></div>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">./setup</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">migrate</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="./setup migrate"><div></div></button></div></figure></div>
+<p>Review and apply pending config migrations. Migrations are changes to user configs (keybinds, layer rules, etc.) required by new features.</p>
+<p>What happens:</p>
+<ul>
+<li>Shows list of pending migrations</li>
+<li>Displays exactly what each migration will change</li>
+<li>Creates automatic backup before applying</li>
+<li>Lets you choose which migrations to apply</li>
+<li>Required migrations are applied automatically during <code dir="auto">update</code></li>
+<li>Optional migrations can be applied manually</li>
+</ul>
+<p>When the installer detects an older unified Niri config, the required migration path can split it into:</p>
+<ul>
+<li><code dir="auto">config.kdl</code> include root</li>
+<li><code dir="auto">config.d/10-80-*.kdl</code> standard sections</li>
+<li><code dir="auto">config.d/90-user-extra.kdl</code> for preserved non-standard top-level content</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="modular-niri-config-at-a-glance">Modular Niri config at a glance</h3><a class="sl-anchor-link" href="#modular-niri-config-at-a-glance"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Modular Niri config at a glance”</span></a></div>
+<p>For new installs and migrated setups, <code dir="auto">~/.config/niri/config.kdl</code> becomes a small include root and the real sections live in <code dir="auto">config.d/</code>:</p>
+<ul>
+<li><code dir="auto">10-input-and-cursor.kdl</code>
+<ul>
+<li>keyboard, mouse, touchpad, cursor basics</li>
+</ul>
+</li>
+<li><code dir="auto">20-layout-and-overview.kdl</code>
+<ul>
+<li>column layout, overview-related compositor behavior</li>
+</ul>
+</li>
+<li><code dir="auto">30-window-rules.kdl</code>
+<ul>
+<li>per-app window rules and matching</li>
+</ul>
+</li>
+<li><code dir="auto">40-environment.kdl</code>
+<ul>
+<li>environment variables exported into the session</li>
+</ul>
+</li>
+<li><code dir="auto">50-startup.kdl</code>
+<ul>
+<li>startup programs and session bootstrap</li>
+</ul>
+</li>
+<li><code dir="auto">60-animations.kdl</code>
+<ul>
+<li>compositor animation tuning</li>
+</ul>
+</li>
+<li><code dir="auto">70-binds.kdl</code>
+<ul>
+<li>keybinds and launcher shortcuts</li>
+</ul>
+</li>
+<li><code dir="auto">80-layer-rules.kdl</code>
+<ul>
+<li>layer-shell and overlay rules</li>
+</ul>
+</li>
+<li><code dir="auto">90-user-extra.kdl</code>
+<ul>
+<li>preserved custom blocks that do not map to the standard split</li>
+</ul>
+</li>
+</ul>
+<p>If you want to change which apps iNiR launches, use Settings or edit <code dir="auto">~/.config/inir/config.json</code> instead of hardcoding new executables into the distributed binds:</p>
+<ul>
+<li><code dir="auto">apps.terminal</code>
+<ul>
+<li>used by <code dir="auto">inir terminal</code></li>
+</ul>
+</li>
+<li><code dir="auto">apps.browser</code>
+<ul>
+<li>used by <code dir="auto">inir browser</code> and the default <code dir="auto">Super+W</code> bind</li>
+</ul>
+</li>
+<li><code dir="auto">sidebar.quickLaunch</code>
+<ul>
+<li>custom quick-launch entries shown by the shell UI</li>
+</ul>
+</li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="my-changes">My Changes</h2><a class="sl-anchor-link" href="#my-changes"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “My Changes”</span></a></div>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">./setup</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">my-changes</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="./setup my-changes"><div></div></button></div></figure></div>
+<p>View and manage your modifications to distributed files. The setup script tracks which files you’ve customized.</p>
+<p>What it shows:</p>
+<ul>
+<li>List of files you’ve modified from defaults</li>
+<li>Option to view differences</li>
+<li>Option to restore original versions</li>
+<li>Option to keep your modifications</li>
+</ul>
+<p>Useful when you want to see what you’ve changed or restore defaults after customization.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="commands">Commands</h2><a class="sl-anchor-link" href="#commands"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Commands”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">./setup</code></td>
+<td>Interactive menu</td>
+</tr>
+<tr>
+<td><code dir="auto">./setup install</code></td>
+<td>Full installation</td>
+</tr>
+<tr>
+<td><code dir="auto">inir update</code></td>
+<td>Wrapper around <code dir="auto">./setup update</code></td>
+</tr>
+<tr>
+<td><code dir="auto">./setup status</code></td>
+<td>Show install mode, update strategy, and health</td>
+</tr>
+<tr>
+<td><code dir="auto">./setup migrate</code></td>
+<td>Review and apply config migrations</td>
+</tr>
+<tr>
+<td><code dir="auto">./setup doctor</code></td>
+<td>Diagnose and auto-fix</td>
+</tr>
+<tr>
+<td><code dir="auto">./setup rollback</code></td>
+<td>Restore previous snapshot</td>
+</tr>
+<tr>
+<td><code dir="auto">./setup my-changes</code></td>
+<td>View and restore user modifications</td>
+</tr>
+<tr>
+<td><code dir="auto">./setup uninstall</code></td>
+<td>Remove iNiR from system</td>
+</tr>
+<tr>
+<td><code dir="auto">inir install</code></td>
+<td>Wrapper around <code dir="auto">./setup install</code> from the repo/runtime root</td>
+</tr>
+<tr>
+<td><code dir="auto">inir start</code></td>
+<td>Start iNiR (uses inir.service when enabled)</td>
+</tr>
+<tr>
+<td><code dir="auto">inir stop</code></td>
+<td>Stop the active runtime</td>
+</tr>
+<tr>
+<td><code dir="auto">inir run</code></td>
+<td>Launch iNiR from the active runtime</td>
+</tr>
+<tr>
+<td><code dir="auto">inir restart</code></td>
+<td>Restart the active runtime</td>
+</tr>
+<tr>
+<td><code dir="auto">inir settings</code></td>
+<td>Toggle settings via IPC</td>
+</tr>
+<tr>
+<td><code dir="auto">inir terminal</code></td>
+<td>Launch the configured terminal from <code dir="auto">apps.terminal</code></td>
+</tr>
+<tr>
+<td><code dir="auto">inir browser</code></td>
+<td>Launch the configured browser from <code dir="auto">apps.browser</code></td>
+</tr>
+<tr>
+<td><code dir="auto">inir doctor</code></td>
+<td>Wrapper around <code dir="auto">./setup doctor</code></td>
+</tr>
+<tr>
+<td><code dir="auto">inir logs</code></td>
+<td>Show recent runtime logs</td>
+</tr>
+<tr>
+<td><code dir="auto">inir repair</code></td>
+<td>Doctor + restart + filtered log check</td>
+</tr>
+<tr>
+<td><code dir="auto">inir status</code></td>
+<td>Wrapper around <code dir="auto">./setup status</code></td>
+</tr>
+<tr>
+<td><code dir="auto">inir test-local</code></td>
+<td>Run local distribution checks</td>
+</tr>
+</tbody>
+</table>
+<p>Options: <code dir="auto">-y</code> (skip prompts), <code dir="auto">-q</code> (quiet), <code dir="auto">-h</code> (help)</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="status">Status</h2><a class="sl-anchor-link" href="#status"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Status”</span></a></div>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">./setup</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">status</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="./setup status"><div></div></button></div></figure></div>
+<p>Shows:</p>
+<ul>
+<li>Installed version and commit</li>
+<li>Install mode</li>
+<li>Update strategy</li>
+<li>Repo path when relevant</li>
+<li>Health checks and snapshot availability</li>
+</ul>
+<p>For externally managed installs, <code dir="auto">status</code> also shows the detected package update command and makes it explicit that repo/setup payload updates are disabled for that installation mode.</p>
+<p>It also reports:</p>
+<ul>
+<li>resolved runtime path</li>
+<li>launcher availability</li>
+<li>runtime metadata availability</li>
+</ul>
+<p>You can reach the same status through:</p>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">inir</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">status</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="inir status"><div></div></button></div></figure></div>
+<p><code dir="auto">inir status</code> is a wrapper around <code dir="auto">./setup status</code>.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="local-validation">Local validation</h2><a class="sl-anchor-link" href="#local-validation"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Local validation”</span></a></div>
+<p>For distribution, launcher, or install-flow changes, test locally with:</p>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">make</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">test-local</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">inir</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">test-local</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">inir</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">test-local</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">--with-runtime</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="make test-localinir test-localinir test-local --with-runtime"><div></div></button></div></figure></div>
+<p>These checks cover:</p>
+<ul>
+<li>shell syntax for <code dir="auto">setup</code>, <code dir="auto">doctor</code>, <code dir="auto">versioning</code>, <code dir="auto">package-installers</code>, and <code dir="auto">scripts/inir</code></li>
+<li>PKGBUILD syntax for the new Arch package roots</li>
+<li>local <code dir="auto">make install</code> dry-run</li>
+<li>launcher path and status resolution</li>
+<li>optional runtime restart and filtered log/error smoke test</li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="what-gets-installed">What Gets Installed</h2><a class="sl-anchor-link" href="#what-gets-installed"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “What Gets Installed”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="core-files">Core Files</h3><a class="sl-anchor-link" href="#core-files"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Core Files”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Destination</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QML code (<code dir="auto">./setup install</code>)</td>
+<td><code dir="auto">~/.config/quickshell/inir/</code></td>
+</tr>
+<tr>
+<td>QML code (<code dir="auto">make install</code> / package style)</td>
+<td><code dir="auto">/usr/share/quickshell/inir/</code> or <code dir="auto">/usr/local/share/quickshell/inir/</code></td>
+</tr>
+<tr>
+<td>User config</td>
+<td><code dir="auto">~/.config/inir/config.json</code></td>
+</tr>
+<tr>
+<td>State files</td>
+<td><code dir="auto">~/.local/state/quickshell/user/</code></td>
+</tr>
+<tr>
+<td>Cache</td>
+<td><code dir="auto">~/.cache/inir/</code></td>
+</tr>
+<tr>
+<td>Launcher</td>
+<td><code dir="auto">inir</code> in the install prefix</td>
+</tr>
+<tr>
+<td>Super daemon</td>
+<td><code dir="auto">~/.local/bin/inir_super_overview_daemon.py</code></td>
+</tr>
+<tr>
+<td>Daemon service</td>
+<td><code dir="auto">~/.config/systemd/user/inir-super-overview.service</code></td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="compositor--themes">Compositor &amp; Themes</h3><a class="sl-anchor-link" href="#compositor--themes"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Compositor &amp; Themes”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Destination</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Niri config</td>
+<td><code dir="auto">~/.config/niri/config.kdl</code></td>
+</tr>
+<tr>
+<td>GTK themes</td>
+<td><code dir="auto">~/.config/gtk-3.0/</code>, <code dir="auto">~/.config/gtk-4.0/</code></td>
+</tr>
+<tr>
+<td>Qt themes</td>
+<td><code dir="auto">~/.config/kdeglobals</code>, <code dir="auto">~/.config/Kvantum/</code></td>
+</tr>
+<tr>
+<td>Color schemes</td>
+<td><code dir="auto">~/.local/share/color-schemes/</code></td>
+</tr>
+<tr>
+<td>Color templates</td>
+<td><code dir="auto">~/.config/matugen/</code> <em>(legacy directory name, matugen binary no longer required)</em></td>
+</tr>
+<tr>
+<td>Fuzzel config</td>
+<td><code dir="auto">~/.config/fuzzel/</code></td>
+</tr>
+<tr>
+<td>Vesktop themes</td>
+<td><code dir="auto">~/.config/vesktop/themes/</code></td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="behavior">Behavior</h3><a class="sl-anchor-link" href="#behavior"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Behavior”</span></a></div>
+<ul>
+<li>First install: Existing configs are backed up to <code dir="auto">~/inir-backup/</code></li>
+<li>Updates: Your configs are never touched, only QML code is synced</li>
+<li>Shell ownership: <code dir="auto">inir.service</code> is the canonical startup path; do not also add <code dir="auto">spawn-at-startup "inir" "start"</code> in Niri</li>
+<li>Package-managed installs: <code dir="auto">inir update</code> defers shell payload updates to the package manager instead of syncing from the current repo checkout</li>
+<li>Shared configs: Only installed if they don’t exist or you approve overwrite</li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="migrations">Migrations</h2><a class="sl-anchor-link" href="#migrations"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Migrations”</span></a></div>
+<p>Some features need config changes (new keybinds, layer rules, etc). After <code dir="auto">update</code>, you’re asked if you want to apply pending migrations. Each shows exactly what will change, with automatic backup.</p>
+<p>Migration scripts are append-only. Old migration numbers are not renamed or deleted, even when a migration is later disabled.</p>
+<p>Current example: <code dir="auto">028-bar-modular-layout</code> exists but never runs. The modular bar can fall back to the classic layout at runtime, so existing users do not need their config rewritten during update. That is intentional, not a missing step.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="backups">Backups</h2><a class="sl-anchor-link" href="#backups"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Backups”</span></a></div>
+<ul>
+<li>Install backups: <code dir="auto">~/inir-backup/</code></li>
+<li>Update backups: <code dir="auto">~/.local/state/quickshell/backups/</code></li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="uninstall">Uninstall</h2><a class="sl-anchor-link" href="#uninstall"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Uninstall”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="automated-uninstall-recommended">Automated Uninstall (Recommended)</h3><a class="sl-anchor-link" href="#automated-uninstall-recommended"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Automated Uninstall (Recommended)”</span></a></div>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">./setup</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">uninstall</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="./setup uninstall"><div></div></button></div></figure></div>
+<p>The uninstall script intelligently removes iNiR while preserving shared resources and user data:</p>
+<p><strong>What it does:</strong></p>
+<ul>
+<li>Creates automatic backup before removal</li>
+<li>Removes iNiR-exclusive files and directories</li>
+<li>Asks before removing shared configs (Niri, GTK, themes)</li>
+<li>Detects if you’re in a Niri session (preserves compositor config)</li>
+<li>Detects other Quickshell configs (preserves shared resources)</li>
+<li>Detects externally managed shell payloads and warns that package removal is separate</li>
+<li>Lists installed packages with removal recommendations</li>
+<li>Shows commands to revert system changes (groups, modules)</li>
+</ul>
+<p><strong>Interactive mode:</strong></p>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">./setup</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">uninstall</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="./setup uninstall"><div></div></button></div></figure></div>
+<p>Asks before removing each shared config. Recommended for most users.</p>
+<p><strong>Quick mode:</strong></p>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">./setup</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">uninstall</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-y</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="./setup uninstall -y"><div></div></button></div></figure></div>
+<p>Removes only iNiR-exclusive files, keeps all shared configs and packages.</p>
+<p>If the shell payload is externally managed, <code dir="auto">uninstall</code> removes the user-side iNiR config/data it owns but does <strong>not</strong> remove the package-managed payload itself. The command warns about that explicitly.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="files-removed-automatically">Files Removed Automatically</h3><a class="sl-anchor-link" href="#files-removed-automatically"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Files Removed Automatically”</span></a></div>
+<p>The following are removed without prompting (iNiR-exclusive):</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">~/.config/quickshell/inir/                       # Shell configuration</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">~/.config/inir/                                  # Canonical user preferences</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">~/.local/state/quickshell/user/                  # Notifications, todo</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">~/.cache/inir/                                   # Cache</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">~/.local/bin/inir_super_overview_daemon.py       # Super daemon</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">~/.config/systemd/user/inir-super-overview.service # Daemon service</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">~/.config/vesktop/themes/system24.theme.css      # Vesktop Material theme</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">~/.config/vesktop/themes/inir-tui.theme.css      # Vesktop TUI theme</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">~/.config/vesktop/themes/inir-midnight.theme.css # Vesktop Midnight theme</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">~/.config/vesktop/themes/ii-colors.css           # Vesktop colors</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="~/.config/quickshell/inir/                       # Shell configuration~/.config/inir/                                  # Canonical user preferences~/.local/state/quickshell/user/                  # Notifications, todo~/.cache/inir/                                   # Cache~/.local/bin/inir_super_overview_daemon.py       # Super daemon~/.config/systemd/user/inir-super-overview.service # Daemon service~/.config/vesktop/themes/system24.theme.css      # Vesktop Material theme~/.config/vesktop/themes/inir-tui.theme.css      # Vesktop TUI theme~/.config/vesktop/themes/inir-midnight.theme.css # Vesktop Midnight theme~/.config/vesktop/themes/ii-colors.css           # Vesktop colors"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="shared-configs-asked-before-removal">Shared Configs (Asked Before Removal)</h3><a class="sl-anchor-link" href="#shared-configs-asked-before-removal"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Shared Configs (Asked Before Removal)”</span></a></div>
+<p>These may be used by other applications. The script asks before removing:</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Type</th>
+<th>Default Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">~/.config/niri/config.kdl</code></td>
+<td>Essential</td>
+<td>Keep (especially if in Niri session)</td>
+</tr>
+<tr>
+<td><code dir="auto">~/.config/matugen/</code></td>
+<td>Optional</td>
+<td>Ask (remove if you do not want to keep iNiR color templates; legacy path, matugen binary not required)</td>
+</tr>
+<tr>
+<td><code dir="auto">~/.config/fuzzel/</code></td>
+<td>Optional</td>
+<td>Ask (remove if fuzzel not installed)</td>
+</tr>
+<tr>
+<td><code dir="auto">~/.config/Kvantum/</code></td>
+<td>Optional</td>
+<td>Ask (remove if Kvantum not installed)</td>
+</tr>
+<tr>
+<td><code dir="auto">~/.config/kdeglobals</code></td>
+<td>Optional</td>
+<td>Ask</td>
+</tr>
+<tr>
+<td><code dir="auto">~/.config/dolphinrc</code></td>
+<td>Optional</td>
+<td>Ask (remove if not using Dolphin)</td>
+</tr>
+<tr>
+<td><code dir="auto">~/.config/gtk-3.0/gtk.css</code></td>
+<td>Optional</td>
+<td>Ask</td>
+</tr>
+<tr>
+<td><code dir="auto">~/.config/gtk-4.0/gtk.css</code></td>
+<td>Optional</td>
+<td>Ask</td>
+</tr>
+<tr>
+<td><code dir="auto">~/.config/fontconfig/conf.d/90-inir-shell.conf</code></td>
+<td>iNiR default</td>
+<td>Remove</td>
+</tr>
+<tr>
+<td><code dir="auto">${XDG_DATA_HOME:-~/.local/share}/color-schemes/Darkly.colors</code></td>
+<td>iNiR default</td>
+<td>Remove</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="installed-packages">Installed Packages</h3><a class="sl-anchor-link" href="#installed-packages"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Installed Packages”</span></a></div>
+<p>The script lists packages installed by iNiR but does not remove them automatically. Review the output and remove manually if not needed by other applications.</p>
+<p><strong>Core packages:</strong></p>
+<ul>
+<li><code dir="auto">quickshell</code> - Shell framework (safe to remove if no other QS configs)</li>
+<li><code dir="auto">niri</code> - Wayland compositor (keep if using Niri)</li>
+</ul>
+<p><strong>System tools:</strong></p>
+<ul>
+<li><code dir="auto">cliphist</code>, <code dir="auto">fuzzel</code>, <code dir="auto">swaylock</code>, <code dir="auto">grim</code>, <code dir="auto">slurp</code></li>
+<li><code dir="auto">wl-clipboard</code>, <code dir="auto">brightnessctl</code>, <code dir="auto">playerctl</code>, <code dir="auto">dunst</code></li>
+</ul>
+<p><strong>Optional tools:</strong></p>
+<ul>
+<li><code dir="auto">cava</code>, <code dir="auto">easyeffects</code></li>
+</ul>
+<p>The script provides distro-specific removal commands (pacman, dnf, apt) with safety recommendations.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="system-changes-not-reverted">System Changes Not Reverted</h3><a class="sl-anchor-link" href="#system-changes-not-reverted"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “System Changes Not Reverted”</span></a></div>
+<p>The following system changes are not automatically reverted. The script shows commands to revert them manually if desired:</p>
+<ul>
+<li>User groups: <code dir="auto">video</code>, <code dir="auto">i2c</code>, <code dir="auto">input</code></li>
+<li>i2c-dev module: <code dir="auto">/etc/modules-load.d/i2c-dev.conf</code></li>
+<li>ydotool service</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="backup-location">Backup Location</h3><a class="sl-anchor-link" href="#backup-location"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Backup Location”</span></a></div>
+<p>Backups are saved to:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">~/.local/share/inir-uninstall-backup-YYYYMMDD-HHMMSS/</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="~/.local/share/inir-uninstall-backup-YYYYMMDD-HHMMSS/"><div></div></button></div></figure></div>
+<p>To restore from backup:</p>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">cp</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-r</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">~/.local/share/inir-uninstall-backup-</span><span style="--0:#7FDBCA;--1:#096E72">*</span><span style="--0:#ECC48D;--1:#3B61B0">/quickshell-inir</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">~/.config/quickshell/inir</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">cp</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-r</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">~/.local/share/inir-uninstall-backup-</span><span style="--0:#7FDBCA;--1:#096E72">*</span><span style="--0:#ECC48D;--1:#3B61B0">/inir</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">~/.config/inir</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="cp -r ~/.local/share/inir-uninstall-backup-*/quickshell-inir ~/.config/quickshell/inircp -r ~/.local/share/inir-uninstall-backup-*/inir ~/.config/inir"><div></div></button></div></figure></div>
+<p>Backups made from an older unmigrated installation can use the legacy directory name instead.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="manual-uninstall-fallback">Manual Uninstall (Fallback)</h3><a class="sl-anchor-link" href="#manual-uninstall-fallback"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Manual Uninstall (Fallback)”</span></a></div>
+<p>If the automated script fails or is unavailable:</p>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Stop the shell through the iNiR control path</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">inir</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">stop</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">inir</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">service</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">disable</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">systemctl</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">--user</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">disable</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">--now</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">inir-super-overview.service</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#7FDBCA;--1:#096E72">2&gt;</span><span style="--0:#ECC48D;--1:#3B61B0">/dev/null</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Remove iNiR-exclusive files</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">rm</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-rf</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">~/.config/quickshell/inir</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">rm</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-rf</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">~/.config/inir</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">rm</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-rf</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">~/.config/illogical-impulse</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">rm</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-rf</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">~/.local/state/quickshell/user</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">rm</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-rf</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">~/.cache/inir</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">rm</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-f</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">~/.local/bin/inir_super_overview_daemon.py</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">rm</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-f</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">~/.config/systemd/user/inir-super-overview.service</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">rm</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-f</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">~/.config/vesktop/themes/system24.theme.css</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">rm</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-f</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">~/.config/vesktop/themes/inir-tui.theme.css</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">rm</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-f</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">~/.config/vesktop/themes/inir-midnight.theme.css</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">rm</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-f</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">~/.config/vesktop/themes/ii-colors.css</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">rm</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-f</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">~/.config/Vesktop/themes/system24.theme.css</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">rm</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-f</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">~/.config/Vesktop/themes/inir-tui.theme.css</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">rm</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-f</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">~/.config/Vesktop/themes/inir-midnight.theme.css</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">rm</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-f</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">~/.config/Vesktop/themes/ii-colors.css</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Remove shared configs (review before running)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># rm -rf ~/.config/niri/config.kdl  # Only if not using Niri</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># rm -rf ~/.config/matugen          # Optional: iNiR color templates (legacy path, matugen binary not required)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># rm -rf ~/.config/fuzzel</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># rm -rf ~/.config/Kvantum</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># rm -f ~/.config/kdeglobals</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># rm -f ~/.config/dolphinrc</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># rm -f ~/.config/gtk-3.0/gtk.css</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># rm -f ~/.config/gtk-4.0/gtk.css</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># rm -f ${XDG_DATA_HOME:-~/.local/share}/color-schemes/Darkly.colors</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Remove Quickshell shared resources (only if no other QS configs)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># rm -rf ~/.local/state/quickshell/.venv</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># rm -rf ~/.local/state/quickshell/themes</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Comment out spawn-at-startup in ~/.config/niri/config.kdl:</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># spawn-at-startup "inir" "start"</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="inir stopinir service disablesystemctl --user disable --now inir-super-overview.service 2>/dev/nullrm -rf ~/.config/quickshell/inirrm -rf ~/.config/inirrm -rf ~/.config/illogical-impulserm -rf ~/.local/state/quickshell/userrm -rf ~/.cache/inirrm -f ~/.local/bin/inir_super_overview_daemon.pyrm -f ~/.config/systemd/user/inir-super-overview.servicerm -f ~/.config/vesktop/themes/system24.theme.cssrm -f ~/.config/vesktop/themes/inir-tui.theme.cssrm -f ~/.config/vesktop/themes/inir-midnight.theme.cssrm -f ~/.config/vesktop/themes/ii-colors.cssrm -f ~/.config/Vesktop/themes/system24.theme.cssrm -f ~/.config/Vesktop/themes/inir-tui.theme.cssrm -f ~/.config/Vesktop/themes/inir-midnight.theme.cssrm -f ~/.config/Vesktop/themes/ii-colors.css"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="reinstalling">Reinstalling</h3><a class="sl-anchor-link" href="#reinstalling"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Reinstalling”</span></a></div>
+<p>To reinstall iNiR after uninstalling:</p>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">git</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">clone</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">https://github.com/snowarch/inir.git</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C5E478;--1:#3B61B0">cd</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">inir</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">./setup</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">install</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">inir</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">run</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="git clone https://github.com/snowarch/inir.gitcd inir./setup installinir run"><div></div></button></div></figure></div>
+</div><footer class="sl-flex astro-ddtxxk7k"><div class="meta sl-flex astro-ddtxxk7k"><a href="https://github.com/snowarch/iNiR/edit/main/docs/SETUP.md" class="sl-flex print:hidden astro-qlekgd3o"><svg aria-hidden="true" class="astro-qlekgd3o astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.2em;"><path d="M22 7.24a1 1 0 0 0-.29-.71l-4.24-4.24a1 1 0 0 0-1.1-.22 1 1 0 0 0-.32.22l-2.83 2.83L2.29 16.05a1 1 0 0 0-.29.71V21a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .76-.29l10.87-10.93L21.71 8c.1-.1.17-.2.22-.33a1 1 0 0 0 0-.24v-.14l.07-.05ZM6.83 20H4v-2.83l9.93-9.93 2.83 2.83L6.83 20ZM18.17 8.66l-2.83-2.83 1.42-1.41 2.82 2.82-1.41 1.42Z"/></svg>Edit page</a></div><div class="pagination-links print:hidden astro-b5raizh3" dir="ltr"><a href="/inir-site/docs/install/" rel="prev" class="astro-b5raizh3"><svg aria-hidden="true" class="astro-b5raizh3 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg><span class="astro-b5raizh3">Previous<br class="astro-b5raizh3"><span class="link-title astro-b5raizh3">Install</span></span></a><a href="/inir-site/docs/keybinds/" rel="next" class="astro-b5raizh3"><svg aria-hidden="true" class="astro-b5raizh3 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg><span class="astro-b5raizh3">Next<br class="astro-b5raizh3"><span class="link-title astro-b5raizh3">Keybinds</span></span></a></div></footer></div></div></main></div></div></div></div></body></html>
