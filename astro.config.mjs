@@ -23,7 +23,7 @@ export default defineConfig({
 				{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/pAPTfAhZUJ' },
 			],
 			customCss: ['@fontsource/inter/400.css', '@fontsource/inter/500.css', '@fontsource/inter/600.css',
-				'@fontsource/rubik/500.css', './src/styles/looks.css', './src/styles/theme.css'],
+				'@fontsource/rubik/500.css', '@fontsource/jetbrains-mono/400.css', './src/styles/looks.css', './src/styles/theme.css'],
 			sidebar,
 			lastUpdated: false,
 			pagination: true,

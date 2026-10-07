@@ -5,3 +5,4 @@ dist/
 src/content/docs/docs/
 src/sidebar.generated.json
 public/docs-media/
+src/release.generated.json
