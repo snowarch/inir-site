@@ -233,7 +233,6 @@ section { padding-top: clamp(104px, 13vw, 176px); }
 .update-head p { margin-top: 4px; color: var(--look-quiet); }
 .update-act { display: flex; flex-direction: column; align-items: flex-end; font-size: 14px; color: var(--look-quiet); }
 .update-act .cmd { margin-top: 8px; }
-.update-summary { margin-top: clamp(24px, 3vw, 36px); max-width: 68ch; font-size: 18px; line-height: 1.6; color: color-mix(in srgb, var(--look-ink) 82%, var(--look-quiet)); }
 .update-list { list-style: none; margin: clamp(28px, 3.4vw, 44px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; }
 .update-list li { padding: 24px 0 28px; box-shadow: 0 -1px 0 var(--look-line); }
 .update-list p { margin-top: 8px; color: var(--look-quiet); font-size: 16px; }
@@ -513,7 +512,6 @@ footer {
 	.update-head img { width: 46px; height: 46px; }
 	.update-list, .iris-list, .iris-shots, .colour-more, .daily { grid-template-columns: minmax(0, 1fr); }
 	.update-more { columns: 1; }
-	.update-summary { font-size: 16px; }
 	.targets div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
 	.island-panel nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 	.looks { max-width: 300px; }
