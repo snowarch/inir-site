@@ -8,7 +8,8 @@ https://inir.space.
 ## Where things live
 
 - **The landing page** is `src/pages/index.astro`, styled in `src/styles/home.css` on the shared palette in
-  `src/styles/tokens.css`: black and white, Archivo, JetBrains Mono for the install commands. Every picture is a
+  `src/styles/tokens.css`: black and white with one lime accent, Archivo (its width and weight axes do the motion),
+  JetBrains Mono for the install commands. The mark is `src/assets/inir-mark.svg`. Every picture is a
   real screenshot of the shell in `public/shots/` (each with a 960 wide copy); distro logos are in `public/distros/`.
 - **What's new** comes from iNiR itself: `npm run sync` reads `VERSION` and the newest section of `CHANGELOG.md`
   beside `docs/` and writes `src/release.generated.json`, so a release shows up on the next build.

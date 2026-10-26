@@ -15,11 +15,12 @@ export default defineConfig({
 			title: 'iNiR',
 			description: 'A complete desktop shell for Niri, built on Quickshell.',
 			favicon: '/favicon.svg',
+			logo: { src: './src/assets/inir-mark.svg' },
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/snowarch/iNiR' },
 				{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/pAPTfAhZUJ' },
 			],
-			customCss: ['@fontsource-variable/archivo/wdth.css', '@fontsource/jetbrains-mono/400.css',
+			customCss: ['@fontsource-variable/archivo/wdth.css', '@fontsource-variable/archivo/wdth-italic.css', '@fontsource/jetbrains-mono/400.css',
 				'./src/styles/tokens.css', './src/styles/theme.css'],
 			// Vitesse keeps code in muted greens and oranges; blocks take the page's colours and no fake window chrome.
 			expressiveCode: {

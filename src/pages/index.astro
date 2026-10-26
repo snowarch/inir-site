@@ -1,5 +1,6 @@
 ---
 import '@fontsource-variable/archivo/wdth.css';
+import '@fontsource-variable/archivo/wdth-italic.css';
 import '@fontsource/jetbrains-mono/400.css';
 import '../styles/tokens.css';
 import '../styles/home.css';
@@ -24,23 +25,25 @@ const families = [
 ];
 
 const distros = [
-	{ id: 'archlinux', name: 'Arch' },
-	{ id: 'voidlinux', name: 'Void' },
-	{ id: 'fedora', name: 'Fedora' },
-	{ id: 'debian', name: 'Debian' },
-	{ id: 'ubuntu', name: 'Ubuntu' },
-	{ id: 'nixos', name: 'NixOS' },
+	{ id: 'archlinux', name: 'Arch', doc: 'install/' },
+	{ id: 'voidlinux', name: 'Void', doc: 'void/' },
+	{ id: 'fedora', name: 'Fedora', doc: 'install/' },
+	{ id: 'debian', name: 'Debian', doc: 'install/' },
+	{ id: 'ubuntu', name: 'Ubuntu', doc: 'install/' },
+	{ id: 'nixos', name: 'NixOS', doc: 'nixos/' },
 ];
 
-const tiles = [
-	{ shot: 'iris-card', size: 'wide', title: 'Colour from your wallpaper', line: 'The shell, terminals, GTK and Qt apps follow it.' },
-	{ shot: 'material-2', size: 'tall', title: 'Settings for everything', line: 'No config files to edit.' },
-	{ shot: 'waffle-2', size: '', title: 'Quick settings', line: 'Wi-Fi, Bluetooth, sound and brightness.' },
-	{ shot: 'material-4', size: '', title: 'Desktop widgets', line: 'Clock, media and weather on the wallpaper.' },
-	{ shot: 'iris-light', size: 'full', title: 'Light and dark', line: 'Switch any time in Settings.' },
+// Whole screenshots, never cropped: the stage swaps them as each title takes focus.
+const features = [
+	{ shot: 'material-2', title: 'Settings app', doc: 'config-system/' },
+	{ shot: 'iris-card', title: 'Wallpaper colour', doc: 'theming-presets/' },
+	{ shot: 'waffle-2', title: 'Quick settings', doc: 'panel-families/' },
+	{ shot: 'material-3', title: 'Sidebars', doc: 'panel-families/' },
+	{ shot: 'material-4', title: 'Desktop widgets', doc: 'desktop-items/' },
+	{ shot: 'iris-light', title: 'Light and dark', doc: 'theming-presets/' },
 ];
 
-const description = 'A complete desktop shell for Niri: bar, dock, notifications, lock screen, wallpapers and Settings. Built on Quickshell.';
+const description = 'iNiR is a complete desktop shell for the Niri compositor, built on Quickshell.';
 ---
 
 <!doctype html>
@@ -60,13 +63,14 @@ const description = 'A complete desktop shell for Niri: bar, dock, notifications
 	</head>
 	<body>
 		<header class="nav">
-			<a class="brand" href={base}><img src={asset('favicon.svg')} alt="" width="26" height="26" />iNiR</a>
+			<a class="brand" href={base}><img class="mark" src={asset('favicon.svg')} alt="" width="28" height="28" />iNiR</a>
 			<nav aria-label="Site">
+				<a href="#look">Families</a>
 				<a href="#features">Features</a>
 				<a href="#install">Install</a>
 				<a href={docs()}>Docs</a>
 			</nav>
-			<div class="nav-icons">
+			<div class="nav-end">
 				<a href={repo} aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a>
 				<a href={discord} aria-label="Discord"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.3 18.3 0 0 0-5.5 0L8.6 3a19.7 19.7 0 0 0-4.9 1.5C.6 9.1-.3 13.6.1 18.1a19.9 19.9 0 0 0 6 3l1.3-2.1c-.7-.3-1.4-.6-2-1l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4c-.6.4-1.3.7-2 1l1.3 2.1a19.8 19.8 0 0 0 6-3c.5-5.2-.9-9.7-3.6-13.7ZM8 15.3c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.5 8 10.5s2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z"/></svg></a>
 				<a class="nav-cta" href="#install">Install</a>
@@ -75,101 +79,232 @@ const description = 'A complete desktop shell for Niri: bar, dock, notifications
 
 		<main>
 			<section class="hero">
-				{release.version && <a class="pill" href={`${repo}/releases`}>{release.title ?? 'Release'} <span>{release.version}</span></a>}
-				<h1>The desktop shell<br />for Niri.</h1>
-				<p class="lede">Bar, dock, notifications, lock screen, wallpapers and Settings. One shell, three families.</p>
+				{release.version && <a class="pill" href={`${repo}/releases`}><i aria-hidden="true"></i>{release.title ?? 'Latest'}<span>{release.version}</span></a>}
+				<h1 data-morph>The desktop Niri<br />was <em>missing.</em></h1>
+				<p class="lede">A complete shell for the Niri compositor.</p>
 				<div class="actions">
 					<a class="btn btn-primary" href="#install">Install iNiR</a>
 					<a class="btn" href={docs()}>Documentation</a>
 				</div>
+			</section>
 
-				<div class="showcase">
-					<div class="tabs" role="tablist" aria-label="Families">
-						{families.map((family, index) => (
-							<button type="button" role="tab" aria-selected={index === 0 ? 'true' : 'false'} data-family={family.id}>{family.name}</button>
-						))}
-					</div>
-					<div class="screen">
-						{families.map((family, index) => (
-							<img {...shot(family.shot)} sizes="(max-width: 1240px) 94vw, 1200px" width="1920" height="1080"
-								alt={`iNiR with the ${family.name} family`} data-family={family.id} class={index === 0 ? 'on' : ''}
-								loading={index === 0 ? 'eager' : 'lazy'} fetchpriority={index === 0 ? 'high' : 'auto'} />
-						))}
-					</div>
+			<section class="look" id="look" aria-label="Families">
+				<div class="tabs" role="tablist">
+					{families.map((family, index) => (
+						<button type="button" role="tab" aria-selected={index === 0 ? 'true' : 'false'} data-family={family.id}>{family.name}</button>
+					))}
 				</div>
-
-				<ul class="distros" aria-label="Supported distributions">
+				<div class="screen">
+					{families.map((family, index) => (
+						<img {...shot(family.shot)} sizes="(max-width: 1272px) 94vw, 1240px" width="1920" height="1080"
+							alt={`iNiR, ${family.name} family`} data-family={family.id} class={index === 0 ? 'on' : ''}
+							loading={index === 0 ? 'eager' : 'lazy'} fetchpriority={index === 0 ? 'high' : 'auto'} />
+					))}
+				</div>
+				<ul class="distros" aria-label="Distributions">
 					{distros.map((distro) => (
-						<li><i style={`--icon: url(${asset(`distros/${distro.id}.svg`)})`} aria-hidden="true"></i>{distro.name}</li>
+						<li><a href={docs(distro.doc)}><i style={`--icon: url(${asset(`distros/${distro.id}.svg`)})`} aria-hidden="true"></i>{distro.name}</a></li>
 					))}
 				</ul>
 			</section>
 
-			<section class="features" id="features">
-				<h2>Everything around your windows.</h2>
-				<div class="bento">
-					{tiles.map((tile) => (
-						<figure class={`tile ${tile.size}`}>
-							<img {...shot(tile.shot)} sizes="(max-width: 900px) 94vw, 50vw" width="1920" height="1080" alt="" loading="lazy" />
-							<figcaption><strong>{tile.title}</strong><span>{tile.line}</span></figcaption>
-						</figure>
-					))}
+			<section class="features" id="features" style={`--n: ${features.length}`} aria-label="Features">
+				<div class="feat-pin">
+					<ol class="feat-list">
+						{features.map((feature, index) => (
+							<li class={index === 0 ? 'on' : ''}>
+								<a href={docs(feature.doc)}>{feature.title}</a>
+								<img {...shot(feature.shot)} sizes="94vw" width="1920" height="1080" alt="" loading="lazy" />
+							</li>
+						))}
+					</ol>
+					<div class="feat-stage">
+						<div class="frame">
+							{features.map((feature, index) => (
+								<img {...shot(feature.shot)} sizes="62vw" width="1920" height="1080" alt={feature.title}
+									class={index === 0 ? 'on' : ''} loading="lazy" />
+							))}
+						</div>
+						<span class="feat-bar"><i></i></span>
+					</div>
 				</div>
 			</section>
 
-			<section class="install" id="install">
-				<h2>Install</h2>
-				<p>The installer checks your system and asks before each step.</p>
+			<section class="install" id="install" aria-labelledby="install-title">
+				<h2 id="install-title" data-morph>Install iNiR</h2>
 				<div class="term">
-					<pre><code>{install.join('\n')}</code></pre>
+					<pre><code data-type={install.join('\n')}>{install.join('\n')}</code></pre>
 					<button type="button" class="copy" data-copy={install.join('\n')} aria-label="Copy the commands">Copy</button>
 				</div>
-				<ul class="distros big" aria-label="Supported distributions">
-					{distros.map((distro) => (
-						<li><a href={docs(distro.id === 'voidlinux' ? 'void/' : distro.id === 'nixos' ? 'nixos/' : 'install/')}><i style={`--icon: url(${asset(`distros/${distro.id}.svg`)})`} aria-hidden="true"></i>{distro.name}</a></li>
-					))}
-				</ul>
+				<p class="after">Restart and pick Niri at the login screen. <a href={docs('install/')}>Install guide</a></p>
 			</section>
 		</main>
 
 		<footer class="foot">
-			<a class="brand" href={base}><img src={asset('favicon.svg')} alt="" width="22" height="22" />iNiR</a>
-			<nav aria-label="More">
-				<a href={docs()}>Docs</a>
-				<a href={`${repo}/blob/main/CHANGELOG.md`}>Changelog</a>
-				<a href={repo}>GitHub</a>
-				<a href={discord}>Discord</a>
-			</nav>
-			<p>GPL-3.0. Built on <a href="https://github.com/YaLTeR/niri">Niri</a> and <a href="https://quickshell.outfoxxed.me/">Quickshell</a>.</p>
+			<div class="foot-row">
+				<a class="brand" href={base}><img class="mark" src={asset('favicon.svg')} alt="" width="24" height="24" />iNiR</a>
+				<nav aria-label="More">
+					<a href={docs()}>Docs</a>
+					<a href={`${repo}/blob/main/CHANGELOG.md`}>Changelog</a>
+					<a href={repo}>GitHub</a>
+					<a href={discord}>Discord</a>
+				</nav>
+				<p>GPL-3.0. Built on <a href="https://github.com/YaLTeR/niri">Niri</a> and <a href="https://quickshell.outfoxxed.me/">Quickshell</a>.</p>
+			</div>
+			<p class="wordmark" aria-hidden="true">iNiR</p>
 		</footer>
 
 		<script>
+			const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+			const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+			const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v));
+			const axes = (el: HTMLElement, wdth: number, wght: number) => {
+				el.style.fontVariationSettings = `'wdth' ${wdth.toFixed(1)}, 'wght' ${wght.toFixed(0)}`;
+			};
+
+			// Headlines go letter by letter: they arrive condensed and thin, settle, and swell wide and heavy under the
+			// pointer. Archivo's two axes do the whole effect.
+			document.querySelectorAll<HTMLElement>('[data-morph]').forEach((head) => {
+				const letters: HTMLElement[] = [];
+				const split = (node: Node) => {
+					for (const child of [...node.childNodes]) {
+						if (child.nodeType !== Node.TEXT_NODE) { split(child); continue; }
+						const frag = document.createDocumentFragment();
+						for (const part of (child.textContent ?? '').split(/(\s+)/)) {
+							if (!part) continue;
+							if (/^\s+$/.test(part)) { frag.append(part); continue; }
+							const word = document.createElement('span');
+							word.className = 'word';
+							for (const ch of part) {
+								const letter = document.createElement('span');
+								letter.className = 'ch';
+								letter.textContent = ch;
+								word.append(letter);
+								letters.push(letter);
+							}
+							frag.append(word);
+						}
+						child.replaceWith(frag);
+					}
+				};
+				head.setAttribute('aria-label', head.textContent ?? '');
+				split(head);
+				head.classList.add('split');
+				if (reduce) return;
+				head.classList.add('enter');
+				new IntersectionObserver((entries, seen) => {
+					if (!entries.some((e) => e.isIntersecting)) return;
+					seen.disconnect();
+					letters.forEach((letter, i) => (letter.style.transitionDelay = `${i * 24}ms`));
+					requestAnimationFrame(() => requestAnimationFrame(() => head.classList.remove('enter')));
+					setTimeout(() => {
+						letters.forEach((letter) => (letter.style.transitionDelay = ''));
+						head.classList.add('live');
+					}, 900 + letters.length * 24);
+				}).observe(head);
+				if (!fine) return;
+				let px = 0, py = 0, near = false, queued = false;
+				const swell = () => {
+					queued = false;
+					for (const letter of letters) {
+						if (!near) { letter.style.fontVariationSettings = ''; continue; }
+						const r = letter.getBoundingClientRect();
+						const k = clamp(1 - Math.hypot(r.left + r.width / 2 - px, r.top + r.height / 2 - py) / 240, 0, 1) ** 2;
+						if (k === 0) letter.style.fontVariationSettings = '';
+						else axes(letter, 100 + 25 * k, 640 + 260 * k);
+					}
+				};
+				const request = () => { if (!queued) { queued = true; requestAnimationFrame(swell); } };
+				head.addEventListener('pointermove', (e) => { px = e.clientX; py = e.clientY; near = head.classList.contains('live'); request(); });
+				head.addEventListener('pointerleave', () => { near = false; request(); });
+			});
+
+			// Families: one screenshot, swapped by the tabs, leaning back until it scrolls into place.
+			const tabs = [...document.querySelectorAll<HTMLElement>('.tabs [data-family]')];
+			const looks = [...document.querySelectorAll<HTMLElement>('.screen [data-family]')];
+			tabs.forEach((tab) => tab.addEventListener('click', () => {
+				tabs.forEach((other) => other.setAttribute('aria-selected', String(other === tab)));
+				looks.forEach((img) => img.classList.toggle('on', img.dataset.family === tab.dataset.family));
+			}));
+			const screen = document.querySelector<HTMLElement>('.screen')!;
+
+			// Features: the section pins, scrolling walks the titles and the stage shows the focused one whole.
+			const feats = document.querySelector<HTMLElement>('.features')!;
+			const titles = [...feats.querySelectorAll<HTMLElement>('.feat-list li')];
+			const stage = [...feats.querySelectorAll<HTMLElement>('.frame img')];
+			const bar = feats.querySelector<HTMLElement>('.feat-bar i')!;
+			const wide = matchMedia('(min-width: 900px)');
+			let active = 0;
+			const focus = (index: number) => {
+				if (index === active) return;
+				titles[active].classList.remove('on');
+				stage[active].classList.remove('on');
+				titles[index].classList.add('on');
+				stage[index].classList.add('on');
+				active = index;
+			};
+			// The first stage picture loads eagerly once the section is near, the rest follow it.
+			new IntersectionObserver((entries, seen) => {
+				if (!entries.some((e) => e.isIntersecting) || !wide.matches) return;
+				seen.disconnect();
+				stage.forEach((img) => ((img as HTMLImageElement).loading = 'eager'));
+			}, { rootMargin: '100% 0px' }).observe(feats);
+
+			let queued = false;
+			const frame = () => {
+				queued = false;
+				if (!reduce) {
+					const box = screen.getBoundingClientRect();
+					const p = clamp(1 - (box.top - innerHeight * 0.15) / (innerHeight * 0.55), 0, 1);
+					screen.style.transform = `perspective(1800px) rotateX(${(14 * (1 - p)).toFixed(2)}deg) scale(${(0.95 + 0.05 * p).toFixed(3)})`;
+				}
+				if (wide.matches) {
+					const box = feats.getBoundingClientRect();
+					const p = clamp(-box.top / Math.max(1, box.height - innerHeight), 0, 0.9999);
+					focus(Math.floor(p * titles.length));
+					bar.style.transform = `scaleX(${((active + 1) / titles.length).toFixed(3)})`;
+				}
+			};
+			const request = () => { if (!queued) { queued = true; requestAnimationFrame(frame); } };
+			addEventListener('scroll', request, { passive: true });
+			addEventListener('resize', request);
+			frame();
+
+			// Install: the commands type themselves once, then the copy button takes over.
+			const code = document.querySelector<HTMLElement>('[data-type]');
+			if (code && !reduce) {
+				const text = code.dataset.type ?? '';
+				code.textContent = '';
+				code.classList.add('typing');
+				new IntersectionObserver((entries, seen) => {
+					if (!entries.some((e) => e.isIntersecting)) return;
+					seen.disconnect();
+					let i = 0;
+					const tick = () => {
+						code.textContent = text.slice(0, ++i);
+						if (i < text.length) setTimeout(tick, text[i] === '\n' ? 280 : 18);
+						else code.classList.remove('typing');
+					};
+					setTimeout(tick, 300);
+				}, { threshold: 0.6 }).observe(code);
+			}
 			document.querySelectorAll<HTMLElement>('[data-copy]').forEach((button) => button.addEventListener('click', () => {
 				navigator.clipboard?.writeText(button.dataset.copy ?? '').then(() => {
 					button.textContent = 'Copied';
-					setTimeout(() => (button.textContent = 'Copy'), 1500);
+					button.classList.add('done');
+					setTimeout(() => { button.textContent = 'Copy'; button.classList.remove('done'); }, 1500);
 				});
 			}));
 
-			const tabs = [...document.querySelectorAll<HTMLElement>('.tabs [data-family]')];
-			const shots = [...document.querySelectorAll<HTMLElement>('.screen [data-family]')];
-			tabs.forEach((tab) => tab.addEventListener('click', () => {
-				tabs.forEach((other) => other.setAttribute('aria-selected', String(other === tab)));
-				shots.forEach((img) => img.classList.toggle('on', img.dataset.family === tab.dataset.family));
-			}));
-
-			// The screenshot leans back at first and settles flat as the page scrolls.
-			const screen = document.querySelector<HTMLElement>('.screen');
-			if (screen && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-				let queued = false;
-				const tilt = () => {
-					queued = false;
-					const box = screen.getBoundingClientRect();
-					const p = Math.min(1, Math.max(0, 1 - (box.top - innerHeight * 0.2) / (innerHeight * 0.6)));
-					screen.style.transform = `perspective(1800px) rotateX(${(16 * (1 - p)).toFixed(2)}deg) scale(${(0.94 + 0.06 * p).toFixed(3)})`;
-				};
-				addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(tilt); } }, { passive: true });
-				tilt();
+			// The footer wordmark follows the pointer: left to right is width, top to bottom is weight.
+			const word = document.querySelector<HTMLElement>('.wordmark');
+			if (word && fine && !reduce) {
+				const foot = word.parentElement!;
+				foot.addEventListener('pointermove', (e) => {
+					const r = foot.getBoundingClientRect();
+					axes(word, 62 + 63 * clamp((e.clientX - r.left) / r.width, 0, 1), 200 + 700 * clamp((e.clientY - r.top) / r.height, 0, 1));
+				});
+				foot.addEventListener('pointerleave', () => (word.style.fontVariationSettings = ''));
 			}
 		</script>
 	</body>

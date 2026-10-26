@@ -1,4 +1,5 @@
-/* Starlight on the site's palette (tokens.css): black and white, Archivo, the screenshots bring the colour. */
+/* Starlight on the site's palette (tokens.css): black and white, Archivo, the lime accent only where something has
+   focus. Light mode takes a dark olive for it, lime is unreadable on white. */
 :root {
 	--sl-font: var(--sans);
 	--sl-font-system-mono: var(--mono);
@@ -9,9 +10,9 @@
 .sidebar-pane { scrollbar-width: thin; }
 :root[data-theme='dark'], :root:not([data-theme]) {
 	color-scheme: dark;
-	--sl-color-accent-low: #262626;
-	--sl-color-accent: #f5f5f5;
-	--sl-color-accent-high: #ffffff;
+	--sl-color-accent-low: #1f2610;
+	--sl-color-accent: #d7ff3a;
+	--sl-color-accent-high: #ecffa6;
 	--sl-color-white: #f5f5f5;
 	--sl-color-gray-1: #e5e5e5;
 	--sl-color-gray-2: #c4c4c4;
@@ -22,12 +23,13 @@
 	--sl-color-black: var(--bg);
 	--sl-color-bg-nav: var(--bg);
 	--sl-color-bg-sidebar: var(--bg);
+	--sl-color-text-accent: var(--sl-color-accent);
 }
 :root[data-theme='light'] {
 	color-scheme: light;
-	--sl-color-accent-low: #ececec;
-	--sl-color-accent: #0a0a0a;
-	--sl-color-accent-high: #000000;
+	--sl-color-accent-low: #effccb;
+	--sl-color-accent: #4a5f00;
+	--sl-color-accent-high: #2c3900;
 	--sl-color-white: #0a0a0a;
 	--sl-color-gray-1: #171717;
 	--sl-color-gray-2: #333333;
@@ -39,31 +41,33 @@
 	--sl-color-black: #ffffff;
 	--sl-color-bg-nav: #ffffff;
 	--sl-color-bg-sidebar: #ffffff;
+	--sl-color-text-accent: var(--sl-color-accent);
 }
-::selection { background: var(--sl-color-white); color: var(--sl-color-black); }
+::selection { background: var(--sl-color-accent); color: var(--sl-color-black); }
 
 header.header { border-bottom: 1px solid var(--sl-color-hairline) !important; }
-.site-title { font-weight: 650 !important; font-stretch: 112%; font-size: 1.15rem !important; letter-spacing: -0.02em; color: var(--sl-color-white) !important; }
+.site-title { gap: 10px; font-size: 1.15rem !important; letter-spacing: -0.02em; font-variation-settings: 'wdth' 118, 'wght' 760; color: var(--sl-color-white) !important; }
+.site-title img { height: 28px; width: 28px; }
 site-search button[data-open-modal] { border-radius: 8px; }
 
-.sidebar-content .group-label .large { font-size: 0.8rem; font-weight: 600; color: var(--sl-color-white); }
-.sidebar-content a { border-radius: 6px; color: var(--sl-color-gray-3); font-size: 0.92rem; }
+.sidebar-content .group-label .large { font-size: 0.8rem; font-variation-settings: 'wdth' 112, 'wght' 650; color: var(--sl-color-white); }
+.sidebar-content a { border-radius: 6px; color: var(--sl-color-gray-3); font-size: 0.92rem; transition: color 0.2s; }
 .sidebar-content a:hover { color: var(--sl-color-white); }
 .sidebar-content a[aria-current='page'],
 .sidebar-content a[aria-current='page']:hover,
 .sidebar-content a[aria-current='page']:focus {
-	background: var(--sl-color-gray-6);
-	color: var(--sl-color-white);
-	font-weight: 500;
+	background: var(--sl-color-accent-low);
+	color: var(--sl-color-accent-high);
+	font-variation-settings: 'wdth' 106, 'wght' 600;
 }
 
-h1#_top { font-weight: 650; font-stretch: 112%; letter-spacing: -0.035em; line-height: 1.05; }
-.sl-markdown-content :is(h2, h3, h4) { font-weight: 600; font-stretch: 108%; letter-spacing: -0.02em; }
-.sl-markdown-content a { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; text-decoration-color: var(--sl-color-gray-4); }
-.sl-markdown-content a:hover { text-decoration-color: currentColor; }
+h1#_top { letter-spacing: -0.035em; line-height: 1.05; font-variation-settings: 'wdth' 112, 'wght' 680; }
+.sl-markdown-content :is(h2, h3, h4) { letter-spacing: -0.02em; font-variation-settings: 'wdth' 108, 'wght' 620; }
+.sl-markdown-content a { color: var(--sl-color-white); text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; text-decoration-color: var(--sl-color-gray-4); }
+.sl-markdown-content a:hover { text-decoration-color: var(--sl-color-accent); }
 .sl-markdown-content code:not(pre code) { padding: 0.1em 0.35em; border-radius: 4px; background: var(--sl-color-gray-6); font-size: 0.86em; }
 .sl-markdown-content img { border-radius: 12px; }
 .sl-markdown-content th { font-weight: 600; border-bottom: 1px solid var(--sl-color-gray-5); }
 .sl-markdown-content tr { background: transparent !important; }
 .pagination-links a { border-radius: 12px; box-shadow: none; border-color: var(--sl-color-gray-5); }
-.pagination-links a:hover { border-color: var(--sl-color-gray-3); }
+.pagination-links a:hover { border-color: var(--sl-color-accent); }
