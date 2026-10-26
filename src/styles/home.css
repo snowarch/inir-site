@@ -139,10 +139,15 @@ kbd {
 }
 
 /* Layout */
-main, footer { width: min(var(--wide), 100% - 2 * var(--gutter)); margin-inline: auto; }
+main, body > footer { width: min(var(--wide), 100% - 2 * var(--gutter)); margin-inline: auto; }
 section { padding-top: clamp(104px, 13vw, 176px); }
 .section-head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 20px 64px; align-items: end; }
 .section-head p { color: var(--look-quiet); max-width: 46ch; padding-bottom: 6px; }
+.section-head .kicker { grid-column: 1 / -1; max-width: none; display: flex; align-items: center; gap: 14px; padding: 0 0 clamp(20px, 3vw, 40px);
+	font: 400 12px/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--look-ink); }
+.kicker::before { content: '+'; color: var(--look-accent); font-size: 16px; }
+.kicker::after { content: ''; flex: 1; height: 1px; background: var(--look-line); }
+h1 em { font-style: italic; font-weight: 400; color: var(--look-accent); font-family: 'Inter', var(--display); letter-spacing: -0.035em; }
 .text-link {
 	display: inline-block; color: var(--look-accent); font-weight: 600; text-decoration: underline;
 	text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); text-underline-offset: 4px; text-decoration-thickness: 1.5px;
@@ -233,9 +238,12 @@ section { padding-top: clamp(104px, 13vw, 176px); }
 .update-head p { margin-top: 4px; color: var(--look-quiet); }
 .update-act { display: flex; flex-direction: column; align-items: flex-end; font-size: 14px; color: var(--look-quiet); }
 .update-act .cmd { margin-top: 8px; }
-.update-list { list-style: none; margin: clamp(28px, 3.4vw, 44px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; }
-.update-list li { padding: 24px 0 28px; box-shadow: 0 -1px 0 var(--look-line); }
-.update-list p { margin-top: 8px; color: var(--look-quiet); font-size: 16px; }
+.update-list { list-style: none; margin: clamp(28px, 3.4vw, 44px) 0 0; padding: 0; }
+.update-list li { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 10px 56px; align-items: start; padding: 28px 0 32px; box-shadow: 0 -1px 0 var(--look-line); }
+.update-list li > * { grid-column: 2; }
+.update-list h3 { grid-column: 1; grid-row: 1 / span 2; font-size: clamp(22px, 2.4vw, 30px); letter-spacing: -0.02em; line-height: 1.1; }
+.update-list .cmd { justify-self: start; margin-top: 4px; }
+.update-list p { margin-top: 0; color: var(--look-quiet); font-size: 16px; }
 .update-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 18px 40px; padding-top: 24px; box-shadow: 0 -1px 0 var(--look-line); }
 .update details { flex: 1 1 520px; }
 .update summary { display: inline-flex; align-items: center; gap: 12px; cursor: pointer; list-style: none; font: 500 18px/1.4 var(--display); }
@@ -478,7 +486,7 @@ section { padding-top: clamp(104px, 13vw, 176px); }
 .daily dd { margin: 8px 0 0 4px; color: var(--look-quiet); font-size: 15px; }
 
 /* Footer */
-footer {
+body > footer {
 	display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 40px 72px;
 	margin-top: clamp(140px, 16vw, 220px); padding: 48px 0 calc(var(--frame) + 44px); box-shadow: 0 -1px 0 var(--look-line);
 }
@@ -492,7 +500,7 @@ footer {
 .footer-links a:hover { color: var(--look-accent); }
 
 @media (max-width: 1100px) {
-	.families-body, .edges, .schemes, .install, footer { grid-template-columns: minmax(0, 1fr); }
+	.families-body, .edges, .schemes, .install, body > footer { grid-template-columns: minmax(0, 1fr); }
 	.iris-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 	.colour-body { grid-template-columns: minmax(0, 1fr); }
 	.colour-side { padding: 4px 6px 8px; }
@@ -510,7 +518,8 @@ footer {
 	.update-head { grid-template-columns: auto 1fr; }
 	.update-act { grid-column: 1 / -1; align-items: flex-start; }
 	.update-head img { width: 46px; height: 46px; }
-	.update-list, .iris-list, .iris-shots, .colour-more, .daily { grid-template-columns: minmax(0, 1fr); }
+	.update-list, .iris-list, .iris-shots, .colour-more, .daily, .update-list li { grid-template-columns: minmax(0, 1fr); }
+	.update-list li > *, .update-list h3 { grid-column: 1; grid-row: auto; }
 	.update-more { columns: 1; }
 	.targets div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
 	.island-panel nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
