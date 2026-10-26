@@ -19,10 +19,8 @@ export default defineConfig({
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/snowarch/iNiR' },
 				{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/pAPTfAhZUJ' },
 			],
-			customCss: ['@fontsource/inter/400.css', '@fontsource/inter/500.css', '@fontsource/inter/600.css',
-				'@fontsource/instrument-serif/latin-400.css', '@fontsource/jetbrains-mono/400.css',
+			customCss: ['@fontsource-variable/archivo/wdth.css', '@fontsource/jetbrains-mono/400.css',
 				'./src/styles/tokens.css', './src/styles/theme.css'],
-			components: { PageTitle: './src/components/PageTitle.astro' },
 			// Vitesse keeps code in muted greens and oranges; blocks take the page's colours and no fake window chrome.
 			expressiveCode: {
 				themes: ['vitesse-dark', 'vitesse-light'],

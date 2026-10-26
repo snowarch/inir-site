@@ -1,120 +1,69 @@
-/* Starlight in the site's palette (tokens.css): ink in dark mode, paper in light mode, one signal orange.
-   Titles in the serif, small print in mono, like the landing page. */
+/* Starlight on the site's palette (tokens.css): black and white, Archivo, the screenshots bring the colour. */
 :root {
 	--sl-font: var(--sans);
 	--sl-font-system-mono: var(--mono);
-	--sl-nav-height: 3.75rem;
+	--sl-nav-height: 4rem;
 	--sl-content-width: 46rem;
-	--sl-text-h1: clamp(2.6rem, 4.6vw, 4.1rem);
-	--sl-text-h2: 2.2rem;
-	--sl-text-h3: 1.55rem;
-	--sl-text-h4: 0.78rem;
 	scrollbar-color: var(--sl-color-gray-5) transparent;
 }
 .sidebar-pane { scrollbar-width: thin; }
 :root[data-theme='dark'], :root:not([data-theme]) {
 	color-scheme: dark;
-	--sl-color-accent-low: #3d1a0b;
-	--sl-color-accent: var(--signal);
-	--sl-color-accent-high: #ffb899;
-	--sl-color-white: #f4f1ea;
-	--sl-color-gray-1: #e6e2d8;
-	--sl-color-gray-2: #c4c0b5;
-	--sl-color-gray-3: #9d998f;
-	--sl-color-gray-4: #5f5c55;
-	--sl-color-gray-5: #34332f;
-	--sl-color-gray-6: #1f1f1c;
-	--sl-color-black: var(--ink);
-	--sl-color-bg-nav: var(--ink);
-	--sl-color-bg-sidebar: var(--ink);
+	--sl-color-accent-low: #262626;
+	--sl-color-accent: #f5f5f5;
+	--sl-color-accent-high: #ffffff;
+	--sl-color-white: #f5f5f5;
+	--sl-color-gray-1: #e5e5e5;
+	--sl-color-gray-2: #c4c4c4;
+	--sl-color-gray-3: #a3a3a3;
+	--sl-color-gray-4: #6b6b6b;
+	--sl-color-gray-5: #2e2e2e;
+	--sl-color-gray-6: #171717;
+	--sl-color-black: var(--bg);
+	--sl-color-bg-nav: var(--bg);
+	--sl-color-bg-sidebar: var(--bg);
 }
 :root[data-theme='light'] {
 	color-scheme: light;
-	--sl-color-accent-low: #fbd6c4;
-	--sl-color-accent: #b83a06;
-	--sl-color-accent-high: #6e2200;
-	--sl-color-white: var(--ink);
-	--sl-color-gray-1: #23221f;
-	--sl-color-gray-2: #3b3a35;
-	--sl-color-gray-3: #5e5b53;
-	--sl-color-gray-4: #8c887e;
-	--sl-color-gray-5: #cfcabd;
-	--sl-color-gray-6: #e4dfd3;
-	--sl-color-gray-7: #e9e5db;
-	--sl-color-black: var(--paper);
-	--sl-color-bg-nav: var(--paper);
-	--sl-color-bg-sidebar: var(--paper);
+	--sl-color-accent-low: #ececec;
+	--sl-color-accent: #0a0a0a;
+	--sl-color-accent-high: #000000;
+	--sl-color-white: #0a0a0a;
+	--sl-color-gray-1: #171717;
+	--sl-color-gray-2: #333333;
+	--sl-color-gray-3: #555555;
+	--sl-color-gray-4: #8a8a8a;
+	--sl-color-gray-5: #d4d4d4;
+	--sl-color-gray-6: #ededed;
+	--sl-color-gray-7: #f5f5f5;
+	--sl-color-black: #ffffff;
+	--sl-color-bg-nav: #ffffff;
+	--sl-color-bg-sidebar: #ffffff;
 }
-::selection { background: var(--signal); color: var(--ink); }
+::selection { background: var(--sl-color-white); color: var(--sl-color-black); }
 
-/* Header: the serif wordmark, a mono "docs" tag, hairline below. */
 header.header { border-bottom: 1px solid var(--sl-color-hairline) !important; }
-.site-title { gap: 0.6rem; font: 400 1.9rem/1 var(--serif) !important; letter-spacing: -0.01em; color: var(--sl-color-white) !important; }
-.site-title::after {
-	content: 'Docs';
-	padding: 0.35rem 0.5rem;
-	border: 1px solid var(--sl-color-gray-5);
-	font: 400 0.66rem/1 var(--mono);
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
-	color: var(--sl-color-gray-3);
-}
-site-search button[data-open-modal] { border-radius: 0; border-color: var(--sl-color-gray-5); background: transparent; }
-site-search button[data-open-modal] kbd { border-radius: 0; font-family: var(--mono); }
+.site-title { font-weight: 650 !important; font-stretch: 112%; font-size: 1.15rem !important; letter-spacing: -0.02em; color: var(--sl-color-white) !important; }
+site-search button[data-open-modal] { border-radius: 8px; }
 
-/* Sidebar: mono group labels, quiet links, the current page marked with a signal square. */
-.sidebar-content .group-label .large {
-	font: 400 0.7rem/1 var(--mono);
-	letter-spacing: 0.09em;
-	text-transform: uppercase;
-	color: var(--sl-color-gray-3);
-}
-.sidebar-content details { margin-top: 0.5rem; }
-.sidebar-content a { border-radius: 0; color: var(--sl-color-gray-2); font-size: 0.92rem; }
+.sidebar-content .group-label .large { font-size: 0.8rem; font-weight: 600; color: var(--sl-color-white); }
+.sidebar-content a { border-radius: 6px; color: var(--sl-color-gray-3); font-size: 0.92rem; }
 .sidebar-content a:hover { color: var(--sl-color-white); }
 .sidebar-content a[aria-current='page'],
 .sidebar-content a[aria-current='page']:hover,
 .sidebar-content a[aria-current='page']:focus {
-	background: transparent;
+	background: var(--sl-color-gray-6);
 	color: var(--sl-color-white);
 	font-weight: 500;
 }
-.sidebar-content a[aria-current='page']::before {
-	content: '';
-	flex: none;
-	width: 0.45rem;
-	height: 0.45rem;
-	margin-inline-end: 0.55rem;
-	background: var(--sl-color-accent);
-	align-self: center;
-}
-.sidebar-content a[aria-current='page'] { display: flex; }
 
-/* Page title and content. */
-h1#_top { font: 400 var(--sl-text-h1)/0.98 var(--serif); letter-spacing: -0.02em; margin-top: 0.4rem; text-wrap: balance; }
-.sl-markdown-content :is(h2, h3) { font-family: var(--serif); font-weight: 400; letter-spacing: -0.012em; line-height: 1.05; }
-.sl-markdown-content h2 { margin-top: 3.2rem; padding-top: 1.1rem; border-top: 1px solid var(--sl-color-hairline); }
-.sl-markdown-content h4 { font-family: var(--mono); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sl-color-gray-3); }
-.sl-markdown-content a { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
-.sl-markdown-content code:not(pre code) { padding: 0.1em 0.35em; border-radius: 3px; background: var(--sl-color-gray-6); font-size: 0.86em; }
-.sl-markdown-content img { border-radius: 10px; }
-.sl-markdown-content blockquote { border-inline-start: 2px solid var(--sl-color-accent); color: var(--sl-color-gray-2); }
-.sl-markdown-content table { font-size: 0.92rem; }
-.sl-markdown-content th {
-	font: 400 0.7rem/1.3 var(--mono);
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
-	color: var(--sl-color-gray-3);
-	border-bottom: 1px solid var(--sl-color-gray-4);
-}
-.sl-markdown-content :is(th, td) { padding-inline: 0 1.2rem; }
+h1#_top { font-weight: 650; font-stretch: 112%; letter-spacing: -0.035em; line-height: 1.05; }
+.sl-markdown-content :is(h2, h3, h4) { font-weight: 600; font-stretch: 108%; letter-spacing: -0.02em; }
+.sl-markdown-content a { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; text-decoration-color: var(--sl-color-gray-4); }
+.sl-markdown-content a:hover { text-decoration-color: currentColor; }
+.sl-markdown-content code:not(pre code) { padding: 0.1em 0.35em; border-radius: 4px; background: var(--sl-color-gray-6); font-size: 0.86em; }
+.sl-markdown-content img { border-radius: 12px; }
+.sl-markdown-content th { font-weight: 600; border-bottom: 1px solid var(--sl-color-gray-5); }
 .sl-markdown-content tr { background: transparent !important; }
-kbd { font-family: var(--mono); border-radius: 3px; }
-.starlight-aside { border-radius: 0; }
-
-/* Previous and next, and the edit link, in the same small print. */
-.pagination-links a { border-radius: 0; box-shadow: none; border-color: var(--sl-color-gray-5); }
-.pagination-links a:hover { border-color: var(--sl-color-accent); }
-.pagination-links .link-title { font: 400 1.6rem/1.1 var(--serif); }
-.pagination-links span { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
-.meta a { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.pagination-links a { border-radius: 12px; box-shadow: none; border-color: var(--sl-color-gray-5); }
+.pagination-links a:hover { border-color: var(--sl-color-gray-3); }

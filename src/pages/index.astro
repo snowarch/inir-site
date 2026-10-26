@@ -1,8 +1,5 @@
 ---
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/500.css';
-import '@fontsource/instrument-serif/latin-400.css';
-import '@fontsource/instrument-serif/latin-400-italic.css';
+import '@fontsource-variable/archivo/wdth.css';
 import '@fontsource/jetbrains-mono/400.css';
 import '../styles/tokens.css';
 import '../styles/home.css';
@@ -18,46 +15,32 @@ const shot = (name) => ({
 });
 const repo = 'https://github.com/snowarch/iNiR';
 const discord = 'https://discord.gg/pAPTfAhZUJ';
-const changelog = `${repo}/blob/main/CHANGELOG.md`;
 const install = ['git clone https://github.com/snowarch/inir.git', 'cd inir', './setup install'];
 
-// The strip works like Niri: columns of a third, a half or two thirds of the screen, side by side.
-const columns = [
-	{ shot: 'material-2', w: 0.66, at: '50%', caption: 'Material ii, with Settings open' },
-	{ shot: 'iris-card', w: 0.5, at: '40%', caption: 'iRiS' },
-	{ shot: 'waffle-2', w: 0.5, at: '92%', caption: 'Waffle, quick settings' },
-	{ shot: 'material-1', w: 0.66, at: '70%', caption: 'Material ii, sidebar and calendar' },
-	{ shot: 'iris-desktop', w: 0.33, at: '50%', caption: 'iRiS, desktop' },
-	{ shot: 'material-3', w: 0.5, at: '0%', caption: 'Material ii, left sidebar' },
-	{ shot: 'waffle-1', w: 0.66, at: '45%', caption: 'Waffle, start menu' },
-	{ shot: 'material-4', w: 0.5, at: '35%', caption: 'Material ii, desktop widgets' },
-];
-
 const families = [
-	{ id: 'material', name: 'Material', tail: 'ii', shot: 'material-1', doc: 'panel-families/',
-		line: 'The default. A floating bar, sidebars and a dock.' },
-	{ id: 'waffle', name: 'Waffle', tail: '', shot: 'waffle-1', doc: 'panel-families/',
-		line: 'A taskbar, a start menu and an action centre, after Windows 11.' },
-	{ id: 'iris', name: 'iRiS', tail: '', shot: 'iris-desktop', doc: 'iris/',
-		line: 'One Island on a screen edge that becomes whatever you open.' },
+	{ id: 'material', name: 'Material ii', shot: 'material-1' },
+	{ id: 'waffle', name: 'Waffle', shot: 'waffle-1' },
+	{ id: 'iris', name: 'iRiS', shot: 'iris-dock' },
 ];
 
 const distros = [
-	{ label: 'Arch', support: 'The primary target' },
-	{ label: 'Void', support: 'glibc and runit, through XBPS' },
-	{ label: 'Fedora', support: '43 or newer' },
-	{ label: 'Debian', support: 'testing or newer' },
-	{ label: 'Ubuntu', support: '25.10 or newer' },
-	{ label: 'NixOS', support: 'An experimental flake' },
+	{ id: 'archlinux', name: 'Arch' },
+	{ id: 'voidlinux', name: 'Void' },
+	{ id: 'fedora', name: 'Fedora' },
+	{ id: 'debian', name: 'Debian' },
+	{ id: 'ubuntu', name: 'Ubuntu' },
+	{ id: 'nixos', name: 'NixOS' },
 ];
 
-// The changelog sometimes adds the command for a feature; the page sends people to Settings instead.
-const settingsOnly = (text = '') => text.replace(/,?\s+or (?:with|run) `?inir .*?(?=\.(?:\s|$))/, '');
-const latest = release.added.slice(0, 6).map((item) => ({ ...item, text: settingsOnly(item.text) }));
-const minor = release.version?.split('.').slice(0, 2).join('.');
-const released = release.date?.split('-').reverse().join('.');
-const pad = (n) => String(n).padStart(2, '0');
-const description = 'Niri tiles your windows, iNiR does everything else: bar, dock, notifications, lock screen, wallpapers and one Settings app for all of it.';
+const tiles = [
+	{ shot: 'iris-card', size: 'wide', title: 'Colour from your wallpaper', line: 'The shell, terminals, GTK and Qt apps follow it.' },
+	{ shot: 'material-2', size: 'tall', title: 'Settings for everything', line: 'No config files to edit.' },
+	{ shot: 'waffle-2', size: '', title: 'Quick settings', line: 'Wi-Fi, Bluetooth, sound and brightness.' },
+	{ shot: 'material-4', size: '', title: 'Desktop widgets', line: 'Clock, media and weather on the wallpaper.' },
+	{ shot: 'iris-light', size: 'full', title: 'Light and dark', line: 'Switch any time in Settings.' },
+];
+
+const description = 'A complete desktop shell for Niri: bar, dock, notifications, lock screen, wallpapers and Settings. Built on Quickshell.';
 ---
 
 <!doctype html>
@@ -65,262 +48,128 @@ const description = 'Niri tiles your windows, iNiR does everything else: bar, do
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>iNiR, a desktop shell for Niri</title>
+		<title>iNiR, the desktop shell for Niri</title>
 		<meta name="description" content={description} />
-		<meta name="theme-color" content="#eeeae1" />
+		<meta name="theme-color" content="#0a0a0a" />
 		<link rel="icon" href={asset('favicon.svg')} type="image/svg+xml" />
 		<meta property="og:title" content="iNiR" />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content={asset('shots/iris-dock.webp')} />
+		<meta property="og:image" content={asset('shots/material-1.webp')} />
 		<meta name="twitter:card" content="summary_large_image" />
 		<script is:inline>document.documentElement.classList.add('js');</script>
 	</head>
 	<body>
-		<a class="skip" href="#top">Skip to the page</a>
-
-		<header class="top">
-			<a class="logo" href={base} aria-label="iNiR home">iNiR</a>
+		<header class="nav">
+			<a class="brand" href={base}><img src={asset('favicon.svg')} alt="" width="26" height="26" />iNiR</a>
 			<nav aria-label="Site">
-				<a href="#strip" class="wide-only"><i>01</i>Gallery</a>
-				<a href="#families" class="wide-only"><i>02</i>Families</a>
-				<a href="#install"><i>03</i>Install</a>
-				<a href={docs()}><i>04</i>Docs</a>
-				<a href={repo} class="wide-only">GitHub&nbsp;↗</a>
+				<a href="#features">Features</a>
+				<a href="#install">Install</a>
+				<a href={docs()}>Docs</a>
 			</nav>
+			<div class="nav-icons">
+				<a href={repo} aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a>
+				<a href={discord} aria-label="Discord"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.3 18.3 0 0 0-5.5 0L8.6 3a19.7 19.7 0 0 0-4.9 1.5C.6 9.1-.3 13.6.1 18.1a19.9 19.9 0 0 0 6 3l1.3-2.1c-.7-.3-1.4-.6-2-1l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4c-.6.4-1.3.7-2 1l1.3 2.1a19.8 19.8 0 0 0 6-3c.5-5.2-.9-9.7-3.6-13.7ZM8 15.3c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.5 8 10.5s2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z"/></svg></a>
+				<a class="nav-cta" href="#install">Install</a>
+			</div>
 		</header>
 
-		<main id="top">
+		<main>
 			<section class="hero">
-				<dl class="meta">
-					<div><dt>(Shell for)</dt><dd>Niri</dd></div>
-					<div><dt>(Built on)</dt><dd>Quickshell</dd></div>
-					<div><dt>(Licence)</dt><dd>GPL-3.0, free</dd></div>
-					{release.version && <div><dt>(Latest)</dt><dd>{release.version}{released && <span>, {released}</span>}</dd></div>}
-				</dl>
-				<div class="hero-copy">
-					<h1>
-						<span class="line"><span>Niri tiles your windows.</span></span>
-						<span class="line"><span>iNiR does <em>everything</em></span></span>
-						<span class="line"><span><em>else.</em></span></span>
-					</h1>
-					<p class="lede">The bar, the dock, notifications, the lock screen, wallpapers and one Settings app for all of it, coloured by your wallpaper.</p>
-					<div class="actions">
-						<a class="button" href="#install"><i aria-hidden="true"></i>Install iNiR</a>
-						<a class="link" href={docs()}>Read the docs</a>
+				{release.version && <a class="pill" href={`${repo}/releases`}>{release.title ?? 'Release'} <span>{release.version}</span></a>}
+				<h1>The desktop shell<br />for Niri.</h1>
+				<p class="lede">Bar, dock, notifications, lock screen, wallpapers and Settings. One shell, three families.</p>
+				<div class="actions">
+					<a class="btn btn-primary" href="#install">Install iNiR</a>
+					<a class="btn" href={docs()}>Documentation</a>
+				</div>
+
+				<div class="showcase">
+					<div class="tabs" role="tablist" aria-label="Families">
+						{families.map((family, index) => (
+							<button type="button" role="tab" aria-selected={index === 0 ? 'true' : 'false'} data-family={family.id}>{family.name}</button>
+						))}
+					</div>
+					<div class="screen">
+						{families.map((family, index) => (
+							<img {...shot(family.shot)} sizes="(max-width: 1240px) 94vw, 1200px" width="1920" height="1080"
+								alt={`iNiR with the ${family.name} family`} data-family={family.id} class={index === 0 ? 'on' : ''}
+								loading={index === 0 ? 'eager' : 'lazy'} fetchpriority={index === 0 ? 'high' : 'auto'} />
+						))}
 					</div>
 				</div>
-				<figure class="plate">
-					<img {...shot('iris-dock')} sizes="(max-width: 900px) 92vw, 42vw" width="1920" height="1080" alt="iRiS on a desktop at night, the Island docked at the bottom" fetchpriority="high" />
-					<figcaption><span>Fig. 01</span>iRiS, dark</figcaption>
-				</figure>
-				<p class="mast" aria-hidden="true">iNiR</p>
-			</section>
 
-			<section class="strip" id="strip" aria-labelledby="strip-title">
-				<div class="strip-pin">
-					<header class="strip-head">
-						<p class="label">(01) Gallery</p>
-						<h2 id="strip-title">One strip, scrolled <em>sideways.</em></h2>
-						<p>Real desktops running iNiR, laid out the way Niri lays out windows. The one in the middle gets the focus ring.</p>
-					</header>
-					<div class="strip-window" tabindex="0" aria-label="Gallery of iNiR desktops, scrolls sideways">
-						<ol class="strip-track">
-							{columns.map((column, index) => (
-								<li class="col" style={`--w:${column.w}; --at:${column.at}`}>
-									<figure>
-										<img {...shot(column.shot)} sizes="(max-width: 900px) 86vw, 66vw" width="1920" height="1080" alt="" loading="lazy" />
-										<figcaption><span>{pad(index + 1)}</span>{column.caption}</figcaption>
-									</figure>
-								</li>
-							))}
-						</ol>
-					</div>
-					<div class="strip-foot" aria-hidden="true">
-						<span class="strip-count"><b>01</b> / {pad(columns.length)}</span>
-						<span class="strip-bar"><i></i></span>
-						<span class="strip-hint">Scroll</span>
-					</div>
-				</div>
-			</section>
-
-			<section class="families" id="families" aria-labelledby="families-title">
-				<header class="head">
-					<p class="label">(02) Families</p>
-					<h2 id="families-title">Three ways to wear it. <em>Swap any time.</em></h2>
-					<p>Super+Shift+W cycles them, or pick one in Settings. Same settings underneath, so nothing gets lost on the way.</p>
-				</header>
-				<ol class="fam-list">
-					{families.map((family, index) => (
-						<li>
-							<a class="fam" href={docs(family.doc)} data-peek={family.id}>
-								<span class="fam-i">{pad(index + 1)}</span>
-								<span class="fam-name">{family.name}{family.tail && <em> {family.tail}</em>}</span>
-								<span class="fam-line">{family.line}</span>
-								<span class="fam-go" aria-hidden="true">↗</span>
-								<img class="fam-thumb" {...shot(family.shot)} sizes="90vw" width="1920" height="1080" alt="" loading="lazy" />
-							</a>
-						</li>
-					))}
-				</ol>
-				<figure class="peek" aria-hidden="true">
-					{families.map((family) => <img data-peek={family.id} src={asset(`shots/${family.shot}-960.webp`)} width="960" height="540" alt="" />)}
-				</figure>
-			</section>
-
-			<section class="settings" id="new" aria-labelledby="settings-title">
-				<header class="head">
-					<p class="label">(03) Settings</p>
-					<h2 id="settings-title" class="statement">Settings, not <s>dotfiles</s>. <em>Every option has a switch.</em></h2>
-					<p>A switch, a slider or a picker for each thing the shell does, and the colours follow your wallpaper into your terminals, GTK and Qt apps and Discord. Config files still exist. You just never have to meet them.</p>
-				</header>
-				{latest.length > 0 && (
-					<div class="new">
-						<div class="new-head">
-							<p class="label">New in {minor}</p>
-							<a class="link" href={changelog}>Every release</a>
-						</div>
-						<ol class="rows">
-							{latest.map((item, index) => (
-								<li class="row">
-									<span class="row-i">{pad(index + 1)}</span>
-									<h3>{item.name}</h3>
-									<p>{item.text}</p>
-								</li>
-							))}
-						</ol>
-					</div>
-				)}
-			</section>
-
-			<section class="install" id="install" aria-labelledby="install-title">
-				<header class="head">
-					<p class="label">(04) Install</p>
-					<h2 id="install-title">Three lines, <em>then log in.</em></h2>
-					<p>The installer asks before each step and checks your Qt first.</p>
-				</header>
-				<div class="term">
-					<div class="term-top">
-						<span>Terminal</span>
-						<button type="button" class="copy" data-copy={install.join('\n')}>Copy</button>
-					</div>
-					<ol>
-						{install.map((line) => <li><code>{line}</code></li>)}
-					</ol>
-				</div>
-				<dl class="distros">
+				<ul class="distros" aria-label="Supported distributions">
 					{distros.map((distro) => (
-						<div><dt>{distro.label}</dt><dd>{distro.support}</dd></div>
+						<li><i style={`--icon: url(${asset(`distros/${distro.id}.svg`)})`} aria-hidden="true"></i>{distro.name}</li>
 					))}
-				</dl>
-				<a class="link more" href={docs('install/')}>The whole install guide</a>
+				</ul>
+			</section>
+
+			<section class="features" id="features">
+				<h2>Everything around your windows.</h2>
+				<div class="bento">
+					{tiles.map((tile) => (
+						<figure class={`tile ${tile.size}`}>
+							<img {...shot(tile.shot)} sizes="(max-width: 900px) 94vw, 50vw" width="1920" height="1080" alt="" loading="lazy" />
+							<figcaption><strong>{tile.title}</strong><span>{tile.line}</span></figcaption>
+						</figure>
+					))}
+				</div>
+			</section>
+
+			<section class="install" id="install">
+				<h2>Install</h2>
+				<p>The installer checks your system and asks before each step.</p>
+				<div class="term">
+					<pre><code>{install.join('\n')}</code></pre>
+					<button type="button" class="copy" data-copy={install.join('\n')} aria-label="Copy the commands">Copy</button>
+				</div>
+				<ul class="distros big" aria-label="Supported distributions">
+					{distros.map((distro) => (
+						<li><a href={docs(distro.id === 'voidlinux' ? 'void/' : distro.id === 'nixos' ? 'nixos/' : 'install/')}><i style={`--icon: url(${asset(`distros/${distro.id}.svg`)})`} aria-hidden="true"></i>{distro.name}</a></li>
+					))}
+				</ul>
 			</section>
 		</main>
 
 		<footer class="foot">
-			<img class="kira" src={asset('kira/inir-mascot-cheer-wink.png')} width="235" height="640" alt="Kira, the iNiR mascot, winking" loading="lazy" />
-			<a class="ask" href={discord}>Stuck on something? <em>Ask the Discord.</em></a>
-			<nav class="foot-links" aria-label="More">
+			<a class="brand" href={base}><img src={asset('favicon.svg')} alt="" width="22" height="22" />iNiR</a>
+			<nav aria-label="More">
 				<a href={docs()}>Docs</a>
-				<a href={docs('keybinds/')}>Keybinds</a>
-				<a href={changelog}>Changelog</a>
+				<a href={`${repo}/blob/main/CHANGELOG.md`}>Changelog</a>
 				<a href={repo}>GitHub</a>
 				<a href={discord}>Discord</a>
 			</nav>
-			<p class="credit">iNiR{release.version && ` ${release.version}`}, made by snowarch and the people in the Discord. Built on <a href="https://github.com/YaLTeR/niri">Niri</a> and <a href="https://quickshell.outfoxxed.me/">Quickshell</a>.</p>
+			<p>GPL-3.0. Built on <a href="https://github.com/YaLTeR/niri">Niri</a> and <a href="https://quickshell.outfoxxed.me/">Quickshell</a>.</p>
 		</footer>
 
 		<script>
-			const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
 			document.querySelectorAll<HTMLElement>('[data-copy]').forEach((button) => button.addEventListener('click', () => {
 				navigator.clipboard?.writeText(button.dataset.copy ?? '').then(() => {
 					button.textContent = 'Copied';
-					setTimeout(() => (button.textContent = 'Copy'), 1600);
+					setTimeout(() => (button.textContent = 'Copy'), 1500);
 				});
 			}));
 
-			if (!reduce) {
-				const seen = new IntersectionObserver((entries) => {
-					for (const entry of entries) if (entry.isIntersecting) { entry.target.classList.add('in'); seen.unobserve(entry.target); }
-				}, { rootMargin: '0px 0px -10% 0px' });
-				document.querySelectorAll('.head, .row, .fam, .term, .distros, .ask').forEach((node) => { node.classList.add('rise'); seen.observe(node); });
-			}
+			const tabs = [...document.querySelectorAll<HTMLElement>('.tabs [data-family]')];
+			const shots = [...document.querySelectorAll<HTMLElement>('.screen [data-family]')];
+			tabs.forEach((tab) => tab.addEventListener('click', () => {
+				tabs.forEach((other) => other.setAttribute('aria-selected', String(other === tab)));
+				shots.forEach((img) => img.classList.toggle('on', img.dataset.family === tab.dataset.family));
+			}));
 
-			// The gallery: on a wide screen it pins and vertical scroll walks the strip sideways, like Niri.
-			// Elsewhere it is a plain horizontal scroller. The column nearest the middle wears the focus ring.
-			const strip = document.querySelector<HTMLElement>('.strip')!;
-			const view = strip.querySelector<HTMLElement>('.strip-window')!;
-			const track = strip.querySelector<HTMLElement>('.strip-track')!;
-			const cols = [...track.children] as HTMLElement[];
-			const count = strip.querySelector('.strip-count b')!;
-			const bar = strip.querySelector<HTMLElement>('.strip-bar i')!;
-			const plate = document.querySelector<HTMLElement>('.plate');
-			const wide = matchMedia('(min-width: 900px)');
-			let travel = 0;
-			let focused = -1;
-
-			const frame = () => {
-				let progress;
-				if (strip.classList.contains('pinned')) {
-					progress = Math.min(1, Math.max(0, -strip.getBoundingClientRect().top / (travel || 1)));
-					track.style.transform = `translate3d(${(-progress * travel).toFixed(1)}px, 0, 0)`;
-				} else {
-					progress = view.scrollLeft / Math.max(1, view.scrollWidth - view.clientWidth);
-				}
-				bar.style.transform = `scaleX(${progress.toFixed(3)})`;
-				const middle = innerWidth / 2;
-				let best = 0;
-				let distance = Infinity;
-				cols.forEach((col, index) => {
-					const box = col.getBoundingClientRect();
-					const off = Math.abs(box.left + box.width / 2 - middle);
-					if (off < distance) { distance = off; best = index; }
-				});
-				if (best !== focused) {
-					cols[focused]?.classList.remove('focus');
-					cols[best].classList.add('focus');
-					count.textContent = String(best + 1).padStart(2, '0');
-					focused = best;
-				}
-				if (plate && !reduce) plate.style.transform = `translate3d(0, ${(-Math.min(scrollY, innerHeight) * 0.12).toFixed(1)}px, 0)`;
-			};
-			const layout = () => {
-				const pin = wide.matches && !reduce;
-				strip.classList.toggle('pinned', pin);
-				track.style.transform = '';
-				travel = pin ? Math.max(0, track.offsetWidth - view.clientWidth) : 0;
-				strip.style.height = pin ? `${innerHeight + travel}px` : '';
-				frame();
-			};
-			let queued = false;
-			const request = () => { if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; frame(); }); } };
-			addEventListener('scroll', request, { passive: true });
-			view.addEventListener('scroll', request, { passive: true });
-			addEventListener('resize', layout);
-			layout();
-
-			// Families: the screenshot of the row under the pointer trails it.
-			const peek = document.querySelector<HTMLElement>('.peek');
-			if (peek && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-				let x = 0, y = 0, tx = 0, ty = 0, moving = 0;
-				const step = () => {
-					x += (tx - x) * (reduce ? 1 : 0.16);
-					y += (ty - y) * (reduce ? 1 : 0.16);
-					peek.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0)`;
-					moving = Math.abs(tx - x) + Math.abs(ty - y) > 0.5 ? requestAnimationFrame(step) : 0;
+			// The screenshot leans back at first and settles flat as the page scrolls.
+			const screen = document.querySelector<HTMLElement>('.screen');
+			if (screen && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				let queued = false;
+				const tilt = () => {
+					queued = false;
+					const box = screen.getBoundingClientRect();
+					const p = Math.min(1, Math.max(0, 1 - (box.top - innerHeight * 0.2) / (innerHeight * 0.6)));
+					screen.style.transform = `perspective(1800px) rotateX(${(16 * (1 - p)).toFixed(2)}deg) scale(${(0.94 + 0.06 * p).toFixed(3)})`;
 				};
-				document.querySelectorAll<HTMLElement>('.fam').forEach((row) => {
-					row.addEventListener('pointerenter', (event) => {
-						if (!peek.classList.contains('on')) { cancelAnimationFrame(moving); x = tx = event.clientX; y = ty = event.clientY; step(); }
-						peek.querySelectorAll<HTMLElement>('img').forEach((img) => img.classList.toggle('on', img.dataset.peek === row.dataset.peek));
-						peek.classList.add('on');
-					});
-					row.addEventListener('pointerleave', () => peek.classList.remove('on'));
-					row.addEventListener('pointermove', (event) => {
-						tx = event.clientX; ty = event.clientY;
-						if (!moving) moving = requestAnimationFrame(step);
-					});
-				});
+				addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(tilt); } }, { passive: true });
+				tilt();
 			}
 		</script>
 	</body>
