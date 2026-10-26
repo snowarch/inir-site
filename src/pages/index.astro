@@ -97,7 +97,7 @@ const description = 'iNiR is a complete desktop shell for the Niri compositor, b
 				<div class="screen">
 					{families.map((family, index) => (
 						<img {...shot(family.shot)} sizes="(max-width: 1272px) 94vw, 1240px" width="1920" height="1080"
-							alt={`iNiR, ${family.name} family`} data-family={family.id} class={index === 0 ? 'on' : ''}
+							alt={`iNiR, ${family.name} family`} data-family={family.id} class={index === 0 ? 'on' : ''} aria-hidden={index === 0 ? undefined : 'true'}
 							loading={index === 0 ? 'eager' : 'lazy'} fetchpriority={index === 0 ? 'high' : 'auto'} />
 					))}
 				</div>
@@ -122,7 +122,7 @@ const description = 'iNiR is a complete desktop shell for the Niri compositor, b
 						<div class="frame">
 							{features.map((feature, index) => (
 								<img {...shot(feature.shot)} sizes="62vw" width="1920" height="1080" alt={feature.title}
-									class={index === 0 ? 'on' : ''} loading="lazy" />
+									class={index === 0 ? 'on' : ''} aria-hidden={index === 0 ? undefined : 'true'} loading="lazy" />
 							))}
 						</div>
 						<span class="feat-bar"><i></i></span>
@@ -224,7 +224,11 @@ const description = 'iNiR is a complete desktop shell for the Niri compositor, b
 			const looks = [...document.querySelectorAll<HTMLElement>('.screen [data-family]')];
 			tabs.forEach((tab) => tab.addEventListener('click', () => {
 				tabs.forEach((other) => other.setAttribute('aria-selected', String(other === tab)));
-				looks.forEach((img) => img.classList.toggle('on', img.dataset.family === tab.dataset.family));
+				looks.forEach((img) => {
+					const on = img.dataset.family === tab.dataset.family;
+					img.classList.toggle('on', on);
+					img.toggleAttribute('aria-hidden', !on);
+				});
 			}));
 			const screen = document.querySelector<HTMLElement>('.screen')!;
 
@@ -239,10 +243,14 @@ const description = 'iNiR is a complete desktop shell for the Niri compositor, b
 				if (index === active) return;
 				titles[active].classList.remove('on');
 				stage[active].classList.remove('on');
+				stage[active].setAttribute('aria-hidden', 'true');
 				titles[index].classList.add('on');
 				stage[index].classList.add('on');
+				stage[index].removeAttribute('aria-hidden');
 				active = index;
 			};
+			// Tabbing through the titles moves the stage too, scrolling would only catch up later.
+			titles.forEach((li, index) => li.addEventListener('focusin', () => { if (wide.matches) focus(index); }));
 			// The first stage picture loads eagerly once the section is near, the rest follow it.
 			new IntersectionObserver((entries, seen) => {
 				if (!entries.some((e) => e.isIntersecting) || !wide.matches) return;
