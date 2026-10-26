@@ -112,8 +112,8 @@ const daily = [
 	{ command: './setup rollback', text: 'Undoes the last update.' },
 ];
 
-const featured = release.added.slice(0, 8);
-const more = release.added.slice(8);
+const featured = release.added.slice(0, 4);
+const more = release.added.slice(4);
 const minor = release.version?.split('.').slice(0, 2).join('.');
 const released = release.date
 	? new Date(`${release.date}T12:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
@@ -208,50 +208,10 @@ const description = 'Your entire desktop for Niri: the bar, the dock, notificati
 				</figure>
 			</section>
 
-			{release.version && (
-				<section class="release" id="new" data-island={`New in ${minor}`} aria-labelledby="new-title">
-					<article class="update chassis">
-						<header class="update-head">
-							<img src={asset('favicon.svg')} alt="" width="52" height="52" />
-							<div>
-								<h2 id="new-title">iNiR {release.version}</h2>
-								<p>{[release.title, released && `released ${released}`].filter(Boolean).join(', ')}</p>
-							</div>
-							<div class="update-act">
-								<span>Already on iNiR?</span>
-								<button type="button" class="cmd" data-copy="inir update"><code>inir update</code></button>
-							</div>
-						</header>
-						{release.summary && <p class="update-summary">{release.summary}</p>}
-						<ul class="update-list">
-							{featured.map((item) => (
-								<li>
-									<h3>{item.name}</h3>
-									<p>{item.text}</p>
-									{item.command && <button type="button" class="cmd" data-copy={item.command}><code>{item.command}</code></button>}
-								</li>
-							))}
-						</ul>
-						<footer class="update-foot">
-							{more.length > 0 && (
-								<details>
-									<summary>{more.length} more in {release.version}</summary>
-									<ul class="update-more">
-										{more.map((item) => <li><strong>{item.name}.</strong> {item.text}</li>)}
-									</ul>
-								</details>
-							)}
-							<a class="text-link" href={changelog}>The whole changelog</a>
-						</footer>
-					</article>
-				</section>
-			)}
-
 			<section class="families" id="families" data-island="Families" aria-labelledby="families-title">
 				<div class="section-head">
 					<h2 id="families-title">Three families, one shell.</h2>
-					<p>Each family is a whole desktop with its own bar, panels and settings. Your apps, wallpaper, colours and
-						keybinds come along when you switch.</p>
+					<p>Each one is a whole desktop. Your apps, wallpaper and keybinds come along when you switch.</p>
 				</div>
 
 				<div class="families-body">
@@ -290,8 +250,7 @@ const description = 'Your entire desktop for Niri: the bar, the dock, notificati
 			<section class="iris" id="iris" data-island="iRiS" aria-labelledby="iris-title">
 				<div class="section-head">
 					<h2 id="iris-title">iRiS, the Island family.</h2>
-					<p>The newest family and the one moving fastest. One shape on a screen edge answers what is happening and
-						becomes whatever you open. Every part of it has a command, so you can bind it or script it.</p>
+					<p>One shape on a screen edge that becomes whatever you open. Every part has a command you can bind or script.</p>
 				</div>
 
 				<div class="edges">
@@ -360,8 +319,7 @@ const description = 'Your entire desktop for Niri: the bar, the dock, notificati
 			<section class="colour" id="colour" data-island="Colour" aria-labelledby="colour-title" style={paperStyle(wallpapers[0])}>
 				<div class="section-head">
 					<h2 id="colour-title">Colours from your wallpaper.</h2>
-					<p>Change the wallpaper and the shell takes its colours, then hands them to everything else. Pick one here and
-						this part of the page does the same.</p>
+					<p>Change the wallpaper and the shell, your terminals and your apps follow. Pick one here and this page does too.</p>
 				</div>
 
 				<div class="colour-body">
@@ -402,6 +360,44 @@ const description = 'Your entire desktop for Niri: the bar, the dock, notificati
 					<a class="text-link" href={docs('theming-presets/')}>Theming in detail</a>
 				</div>
 			</section>
+
+			{release.version && (
+				<section class="release" id="new" data-island={`New in ${minor}`} aria-labelledby="new-title">
+					<article class="update chassis">
+						<header class="update-head">
+							<img src={asset('favicon.svg')} alt="" width="52" height="52" />
+							<div>
+								<h2 id="new-title">iNiR {release.version}</h2>
+								<p>{[release.title, released && `released ${released}`].filter(Boolean).join(', ')}</p>
+							</div>
+							<div class="update-act">
+								<span>Already on iNiR?</span>
+								<button type="button" class="cmd" data-copy="inir update"><code>inir update</code></button>
+							</div>
+						</header>
+						<ul class="update-list">
+							{featured.map((item) => (
+								<li>
+									<h3>{item.name}</h3>
+									<p>{item.text}</p>
+									{item.command && <button type="button" class="cmd" data-copy={item.command}><code>{item.command}</code></button>}
+								</li>
+							))}
+						</ul>
+						<footer class="update-foot">
+							{more.length > 0 && (
+								<details>
+									<summary>{more.length} more in {release.version}</summary>
+									<ul class="update-more">
+										{more.map((item) => <li><strong>{item.name}.</strong> {item.text}</li>)}
+									</ul>
+								</details>
+							)}
+							<a class="text-link" href={changelog}>The whole changelog</a>
+						</footer>
+					</article>
+				</section>
+			)}
 
 			<section class="install" id="install" data-island="Install" aria-labelledby="install-title" style={`--ascii: url(${asset('shots/background.webp')})`}>
 				<div class="install-copy">

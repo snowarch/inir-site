@@ -38,7 +38,7 @@ jobs:
       - run: npm run build
         env:
           INIR_DOCS: inir/docs
-          SITE_BASE: /inir-site/
+          SITE_BASE: /
       - name: Publish to gh-pages
         if: github.event_name != 'pull_request'
         run: |

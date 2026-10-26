@@ -3,9 +3,8 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import sidebar from './src/sidebar.generated.json' with { type: 'json' };
 
-// SITE and SITE_BASE come from the deploy: GitHub Pages serves the project under /inir-site/ until a
-// custom domain takes over, then the base is /.
-const site = process.env.SITE ?? 'https://snowarch.github.io';
+// SITE and SITE_BASE come from the deploy; inir.space serves the site at the root.
+const site = process.env.SITE ?? 'https://inir.space';
 const base = process.env.SITE_BASE ?? '/';
 
 export default defineConfig({

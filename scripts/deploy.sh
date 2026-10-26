@@ -3,7 +3,7 @@
 # CI does the same on every push; this is for publishing from a local checkout.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-SITE_BASE="${SITE_BASE:-/inir-site/}" npm run build
+SITE_BASE="${SITE_BASE:-/}" npm run build
 touch dist/.nojekyll
 remote="$(git remote get-url origin)"
 name="$(git config user.name)"; email="$(git config user.email)"

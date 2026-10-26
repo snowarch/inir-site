@@ -3,7 +3,7 @@
 The website and documentation for [iNiR](https://github.com/snowarch/iNiR), a desktop shell for Niri.
 
 Built with [Astro](https://astro.build) and [Starlight](https://starlight.astro.build). Published at
-https://snowarch.github.io/inir-site/.
+https://inir.space.
 
 ## Where things live
 
