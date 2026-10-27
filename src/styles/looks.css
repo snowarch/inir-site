@@ -1,0 +1,73 @@
+/* Site looks, one per family plus iNiR's own. The landing page and the docs both read these; a look is
+   chosen from the Island on the landing page and kept in localStorage ("inir-look").
+   --look-chassis is the frame around the screen and the Island that hangs from it; --look-edge is the light
+   its cut edge catches. iNiR's own look takes both from the 2.32 desktop: a plum chassis around a dusk wallpaper. */
+:root,
+:root[data-look='inir'] {
+	--look-chassis: #09060c;
+	--look-edge: rgba(206, 182, 226, 0.2);
+	--look-field: #1b1523;
+	--look-raised: #261e30;
+	--look-raised-2: #32283d;
+	--look-ink: #f3eef6;
+	--look-quiet: #b3a8bb;
+	--look-line: rgba(233, 222, 245, 0.1);
+	--look-accent: #f0b65e;
+	--look-accent-ink: #241603;
+	--look-accent-soft: rgba(240, 182, 94, 0.16);
+	--look-glow: rgba(167, 153, 166, 0.2);
+	--look-glass: rgba(27, 21, 35, 0.6);
+	--look-r-card: 22px;
+	--look-r-button: 999px;
+}
+:root[data-look='iris'] {
+	--look-chassis: #000000;
+	--look-edge: rgba(255, 255, 255, 0.14);
+	--look-field: #0e0e10;
+	--look-raised: #1c1c1e;
+	--look-raised-2: #2c2c2e;
+	--look-ink: #f5f5f7;
+	--look-quiet: #a1a1a6;
+	--look-line: rgba(255, 255, 255, 0.08);
+	--look-accent: #ff9f0a;
+	--look-accent-ink: #1a0f00;
+	--look-accent-soft: rgba(255, 159, 10, 0.15);
+	--look-glow: rgba(255, 159, 10, 0.16);
+	--look-glass: rgba(10, 10, 12, 0.55);
+	--look-r-card: 24px;
+	--look-r-button: 999px;
+}
+:root[data-look='material'] {
+	--look-chassis: #0c0e13;
+	--look-edge: rgba(170, 199, 255, 0.14);
+	--look-field: #111318;
+	--look-raised: #1d2027;
+	--look-raised-2: #282a31;
+	--look-ink: #e2e2e9;
+	--look-quiet: #c4c6d0;
+	--look-line: rgba(196, 198, 208, 0.12);
+	--look-accent: #aac7ff;
+	--look-accent-ink: #0a305f;
+	--look-accent-soft: rgba(170, 199, 255, 0.16);
+	--look-glow: rgba(170, 199, 255, 0.22);
+	--look-glass: rgba(29, 32, 39, 0.62);
+	--look-r-card: 28px;
+	--look-r-button: 20px;
+}
+:root[data-look='waffle'] {
+	--look-chassis: #1a1a1a;
+	--look-edge: rgba(255, 255, 255, 0.1);
+	--look-field: #202020;
+	--look-raised: #2b2b2b;
+	--look-raised-2: #333333;
+	--look-ink: #ffffff;
+	--look-quiet: #c5c5c5;
+	--look-line: rgba(255, 255, 255, 0.08);
+	--look-accent: #60cdff;
+	--look-accent-ink: #003748;
+	--look-accent-soft: rgba(96, 205, 255, 0.14);
+	--look-glow: rgba(96, 205, 255, 0.14);
+	--look-glass: rgba(32, 32, 32, 0.7);
+	--look-r-card: 8px;
+	--look-r-button: 4px;
+}

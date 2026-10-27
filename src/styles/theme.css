@@ -1,73 +1,54 @@
-/* Starlight on the site's palette (tokens.css): black and white, Archivo, the lime accent only where something has
-   focus. Light mode takes a dark olive for it, lime is unreadable on white. */
+/* Starlight wears the site's look (looks.css) in dark mode; light mode keeps a neutral paper with the look's accent. */
 :root {
-	--sl-font: var(--sans);
-	--sl-font-system-mono: var(--mono);
-	--sl-nav-height: 4rem;
-	--sl-content-width: 46rem;
+	--sl-font: 'Inter', system-ui, sans-serif;
+	--sl-font-system-mono: 'JetBrains Mono', ui-monospace, monospace;
+	--sl-nav-height: 3.75rem;
+	color-scheme: dark;
 	scrollbar-color: var(--sl-color-gray-5) transparent;
 }
-.sidebar-pane { scrollbar-width: thin; }
 :root[data-theme='dark'], :root:not([data-theme]) {
-	color-scheme: dark;
-	--sl-color-accent-low: #1f2610;
-	--sl-color-accent: #d7ff3a;
-	--sl-color-accent-high: #ecffa6;
-	--sl-color-white: #f5f5f5;
-	--sl-color-gray-1: #e5e5e5;
-	--sl-color-gray-2: #c4c4c4;
-	--sl-color-gray-3: #a3a3a3;
-	--sl-color-gray-4: #6b6b6b;
-	--sl-color-gray-5: #2e2e2e;
-	--sl-color-gray-6: #171717;
-	--sl-color-black: var(--bg);
-	--sl-color-bg-nav: var(--bg);
-	--sl-color-bg-sidebar: var(--bg);
-	--sl-color-text-accent: var(--sl-color-accent);
+	--sl-color-accent-low: var(--look-accent-soft);
+	--sl-color-accent: var(--look-accent);
+	--sl-color-accent-high: var(--look-accent);
+	--sl-color-white: var(--look-ink);
+	--sl-color-gray-1: var(--look-ink);
+	--sl-color-gray-2: var(--look-quiet);
+	--sl-color-gray-3: var(--look-quiet);
+	--sl-color-gray-4: #4a4458;
+	--sl-color-gray-5: var(--look-raised-2);
+	--sl-color-gray-6: var(--look-raised);
+	--sl-color-black: var(--look-field);
+	--sl-color-bg-nav: var(--look-glass);
 }
 :root[data-theme='light'] {
 	color-scheme: light;
-	--sl-color-accent-low: #effccb;
-	--sl-color-accent: #4a5f00;
-	--sl-color-accent-high: #2c3900;
-	--sl-color-white: #0a0a0a;
-	--sl-color-gray-1: #171717;
-	--sl-color-gray-2: #333333;
-	--sl-color-gray-3: #555555;
-	--sl-color-gray-4: #8a8a8a;
-	--sl-color-gray-5: #d4d4d4;
-	--sl-color-gray-6: #ededed;
-	--sl-color-gray-7: #f5f5f5;
-	--sl-color-black: #ffffff;
-	--sl-color-bg-nav: #ffffff;
-	--sl-color-bg-sidebar: #ffffff;
-	--sl-color-text-accent: var(--sl-color-accent);
+	--sl-color-accent-low: color-mix(in srgb, var(--look-accent) 18%, white);
+	--sl-color-accent: color-mix(in srgb, var(--look-accent) 70%, black);
+	--sl-color-accent-high: color-mix(in srgb, var(--look-accent) 35%, black);
 }
-::selection { background: var(--sl-color-accent); color: var(--sl-color-black); }
-
-header.header { border-bottom: 1px solid var(--sl-color-hairline) !important; }
-.site-title { gap: 10px; font-size: 1.15rem !important; letter-spacing: -0.02em; font-variation-settings: 'wdth' 118, 'wght' 760; color: var(--sl-color-white) !important; }
-.site-title img { height: 28px; width: 28px; }
-site-search button[data-open-modal] { border-radius: 8px; }
-
-.sidebar-content .group-label .large { font-size: 0.8rem; font-variation-settings: 'wdth' 112, 'wght' 650; color: var(--sl-color-white); }
-.sidebar-content a { border-radius: 6px; color: var(--sl-color-gray-3); font-size: 0.92rem; transition: color 0.2s; }
-.sidebar-content a:hover { color: var(--sl-color-white); }
+header.header {
+	backdrop-filter: blur(22px) saturate(170%);
+	-webkit-backdrop-filter: blur(22px) saturate(170%);
+	border-bottom-color: var(--look-line) !important;
+}
+:root[data-theme='light'] header.header { background: rgba(255, 255, 255, 0.72); }
+/* Headings in Rubik, as on the landing page and in iRiS. */
+h1#_top, .sl-markdown-content :is(h1, h2, h3), .site-title {
+	font-family: 'Rubik', var(--sl-font);
+	font-weight: 500;
+	letter-spacing: -0.015em;
+}
+h1#_top { letter-spacing: -0.025em; }
+.sl-markdown-content code:not(pre code) { border-radius: 6px; padding: 0.1em 0.35em; }
+.sl-markdown-content img { border-radius: var(--look-r-card, 14px); }
+kbd { font-family: 'Rubik', var(--sl-font); }
+/* The current page is a quiet fill with its label in the accent, never a solid block. */
 .sidebar-content a[aria-current='page'],
 .sidebar-content a[aria-current='page']:hover,
 .sidebar-content a[aria-current='page']:focus {
 	background: var(--sl-color-accent-low);
 	color: var(--sl-color-accent-high);
-	font-variation-settings: 'wdth' 106, 'wght' 600;
+	font-weight: 600;
+	border-radius: 8px;
 }
-
-h1#_top { letter-spacing: -0.035em; line-height: 1.05; font-variation-settings: 'wdth' 112, 'wght' 680; }
-.sl-markdown-content :is(h2, h3, h4) { letter-spacing: -0.02em; font-variation-settings: 'wdth' 108, 'wght' 620; }
-.sl-markdown-content a { color: var(--sl-color-white); text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; text-decoration-color: var(--sl-color-gray-4); }
-.sl-markdown-content a:hover { text-decoration-color: var(--sl-color-accent); }
-.sl-markdown-content code:not(pre code) { padding: 0.1em 0.35em; border-radius: 4px; background: var(--sl-color-gray-6); font-size: 0.86em; }
-.sl-markdown-content img { border-radius: 12px; }
-.sl-markdown-content th { font-weight: 600; border-bottom: 1px solid var(--sl-color-gray-5); }
-.sl-markdown-content tr { background: transparent !important; }
-.pagination-links a { border-radius: 12px; box-shadow: none; border-color: var(--sl-color-gray-5); }
-.pagination-links a:hover { border-color: var(--sl-color-accent); }
+.sidebar-content a { border-radius: 8px; }

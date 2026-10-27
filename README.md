@@ -7,16 +7,17 @@ https://inir.space.
 
 ## Where things live
 
-- **The landing page** is `src/pages/index.astro`, styled in `src/styles/home.css` on the shared palette in
-  `src/styles/tokens.css`: black and white with one lime accent, Archivo (its width and weight axes do the motion),
-  JetBrains Mono for the install commands. The mark is `src/assets/inir-mark.svg`. Every picture is a
-  real screenshot of the shell in `public/shots/` (each with a 960 wide copy); distro logos are in `public/distros/`.
+- **The landing page** is `src/pages/index.astro`, styled in `src/styles/home.css`. The browser window wears
+  iRiS: a chassis frames the page and the Island hangs from its top edge, naming where you are and growing into the
+  menu with iRiS's own springs. Rubik for headings and figures, Inter for words, JetBrains Mono only for commands
+  you can copy, and real screenshots of the shell in `public/shots/` (each with a 960 wide copy).
 - **What's new** comes from iNiR itself: `npm run sync` reads `VERSION` and the newest section of `CHANGELOG.md`
   beside `docs/` and writes `src/release.generated.json`, so a release shows up on the next build.
 - **The docs are not in this repository.** They live in [`docs/`](https://github.com/snowarch/iNiR/tree/main/docs)
   in iNiR and change with the shell. `npm run sync` copies them in, turns wiki links into site links and builds
   the sidebar from `docs/_Sidebar.md`. To fix a doc, edit it in iNiR; every page has an Edit link that goes there.
-- **The theme for the docs** is `src/styles/theme.css` on the same tokens,.
+- **The theme for the docs** is `src/styles/theme.css`; both the landing page and the docs read the looks in
+  `src/styles/looks.css`.
 
 ## Run it
 
