@@ -6,7 +6,7 @@ on:
   pull_request:
   workflow_dispatch:
   repository_dispatch:
-    types: [docs-updated]
+    types: [docs-updated, hub-updated]
   schedule:
     - cron: '17 5 * * *'
 
@@ -39,6 +39,22 @@ jobs:
         env:
           INIR_DOCS: inir/docs
           SITE_BASE: /
+      # inir.space/hub/index.json is the official catalogue `inir hub` and setup read (inir-cli hub.go Official)
+      - name: Check out the hub
+        uses: actions/checkout@v4
+        with:
+          repository: snowarch/inir-hub
+          ref: main
+          path: hub
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26"
+          cache: false
+      - name: Build the hub catalogue into /hub
+        run: |
+          go install github.com/snowarch/inir-cli/cmd/inir@main
+          (cd hub && inir hub build --out "$GITHUB_WORKSPACE/dist/hub")
+          mkdir -p dist/hub/schema && cp hub/schema/hub.schema.json dist/hub/schema/
       - name: Publish to gh-pages
         if: github.event_name != 'pull_request'
         run: |
