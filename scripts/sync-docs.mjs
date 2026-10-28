@@ -5,6 +5,7 @@
 // the base's, whose VERSION and CHANGELOG.md sit beside it. Nothing here is edited by hand after a sync.
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
+import { keybindsReference } from './keybinds-reference.mjs';
 import { settingsReference } from './settings-reference.mjs';
 
 const root = resolve(import.meta.dirname, '..');
@@ -34,6 +35,16 @@ const folders = sources.map((dir) => {
 	return { dir, id: meta.id ?? basename(dirname(dir)), edit: meta.edit ?? 'https://github.com/snowarch/iNiR/edit/main/docs/', groups: meta.groups ?? null, order: meta.order ?? 0, files };
 }).map((folder, index) => ({ ...folder, order: index === 0 ? -1 : folder.order })).sort((a, b) => a.order - b.order);
 
+// Pages the base's code lists, built here and served as the base's own: the keybinds from its Niri binds. An older
+// iNiR that still has the page by hand keeps it.
+const virtual = new Map();
+const binds = keybindsReference(join(source, '..', 'defaults', 'niri', 'config.d', '70-binds.kdl'));
+if (binds && !folders[0].files.includes('KEYBINDS.md')) {
+	virtual.set(join(folders[0].dir, 'KEYBINDS.md'), { text: binds, edit: folders[0].edit.replace(/docs\/$/, 'defaults/niri/config.d/70-binds.kdl') });
+	folders[0].files.push('KEYBINDS.md');
+}
+const read = (path) => virtual.get(path)?.text ?? readFileSync(path, 'utf8');
+
 const slugOf = (name) => (name === 'index' || name === 'Home' ? '' : name.toLowerCase().replace(/_/g, '-'));
 const known = new Set(folders.flatMap((folder) => folder.files.map((file) => basename(file, '.md'))).concat('Home'));
 const route = (name, hash = '') => `${base}docs/${slugOf(name) ? slugOf(name) + '/' : ''}${hash}`;
@@ -53,11 +64,11 @@ const shots = {};
 for (const folder of folders) {
 	for (const file of folder.files) {
 		const name = basename(file, '.md');
-		const raw = readFileSync(join(folder.dir, file), 'utf8').replace(/\r\n/g, '\n');
+		const raw = read(join(folder.dir, file)).replace(/\r\n/g, '\n');
 		const heading = raw.match(/^#\s+(.+)$/m);
 		const title = heading ? heading[1].trim() : name.replace(/_/g, ' ');
 		const body = heading ? raw.replace(heading[0], '').replace(/^\s*\n/, '') : raw;
-		const front = ['---', `title: ${JSON.stringify(title)}`, `editUrl: ${JSON.stringify(folder.edit + file)}`, '---', ''];
+		const front = ['---', `title: ${JSON.stringify(title)}`, `editUrl: ${JSON.stringify(virtual.get(join(folder.dir, file))?.edit ?? folder.edit + file)}`, '---', ''];
 		writeFileSync(join(pages, `${slugOf(name) || 'index'}.md`), front.join('\n') + relink(body, folder.id));
 	}
 	for (const kind of ['images', 'assets']) {
@@ -88,7 +99,7 @@ const groupOf = (label) => sidebar.find((group) => group.label === label) ?? sid
 const add = (label, name, text) => {
 	if (known.has(name) && !sidebar.some((group) => group.items.some((item) => item.link === link(name)))) groupOf(label).items.push({ label: text, link: link(name) });
 };
-const titleOf = (folder, name) => readFileSync(join(folder.dir, `${name}.md`), 'utf8').match(/^#\s+(.+)$/m)?.[1].trim() ?? name;
+const titleOf = (folder, name) => read(join(folder.dir, `${name}.md`)).match(/^#\s+(.+)$/m)?.[1].trim() ?? name;
 // The base's groups set the order, empty ones included: the families fill theirs from the hub.
 for (const group of folders[0].groups ?? []) groupOf(group.label);
 for (const folder of folders) {
