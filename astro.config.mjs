@@ -40,11 +40,9 @@ export default defineConfig({
 				{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/pAPTfAhZUJ' },
 			],
 			customCss: ['@fontsource-variable/geist', '@fontsource-variable/geist-mono', './src/styles/tokens.css', './src/styles/theme.css'],
-			// One column with the sections under the title, the site's links in the header, always dark.
+			// The site's links in the header, always dark.
 			components: {
 				Header: './src/components/docs/Header.astro',
-				PageTitle: './src/components/docs/PageTitle.astro',
-				TwoColumnContent: './src/components/docs/TwoColumnContent.astro',
 				ThemeProvider: './src/components/docs/ThemeProvider.astro',
 				ThemeSelect: './src/components/docs/ThemeSelect.astro',
 			},
@@ -61,6 +59,8 @@ export default defineConfig({
 			// The site's own 404 (src/pages/404.astro) wears the landing page's frame.
 			disable404Route: true,
 			pagination: true,
+			// The right rail lists h2 and h3; below 72rem Starlight folds it into the bar under the header.
+			tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 3 },
 		}),
 	],
 });

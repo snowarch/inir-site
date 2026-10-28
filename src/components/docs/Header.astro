@@ -36,6 +36,24 @@ const shouldRenderSearch =
 		<LanguageSelect />
 	</div>
 </div>
+<div class="read-progress" aria-hidden="true"><i></i></div>
+
+<script>
+	// The line under the header fills as the page is read.
+	const bar = document.querySelector<HTMLElement>('.read-progress i');
+	if (bar) {
+		let queued = false;
+		const draw = () => {
+			queued = false;
+			const max = document.documentElement.scrollHeight - innerHeight;
+			bar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max).toFixed(4) : 0})`;
+		};
+		const request = () => { if (!queued) { queued = true; requestAnimationFrame(draw); } };
+		addEventListener('scroll', request, { passive: true });
+		addEventListener('resize', request);
+		draw();
+	}
+</script>
 
 <style>
 	@layer starlight.core {
