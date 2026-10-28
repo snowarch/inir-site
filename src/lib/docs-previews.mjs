@@ -1,63 +1,33 @@
-// `<!-- preview iris island choose=edge -->` in a docs page becomes a small screen drawn in the site's lines: the
-// family's own layout over Niri's columns, the parts the page talks about lit, and the setting's real choices under
-// it, like the previews in iRiS Settings. Pictures are CSS (docs-previews.css); docs-previews.ts runs the choices.
-
-const NAMES = { ii: 'Material', waffle: 'Waffle', iris: 'iRiS' };
-
-// What each family puts on screen; `only` parts are drawn when a page lights them.
-const SCENES = {
-	ii: {
-		parts: ['bar', 'dock'],
-		only: ['sidebar-left', 'sidebar-right', 'overview', 'notifications', 'osd', 'desktop', 'settings', 'lock', 'wallpaper'],
-		state: { bar: 'top' },
-	},
-	waffle: {
-		parts: ['taskbar'],
-		only: ['start', 'action-center', 'notifications', 'widgets', 'desktop', 'settings', 'lock', 'wallpaper'],
-		state: { apps: 'center', taskbar: 'bottom' },
-	},
-	iris: {
-		parts: ['strip', 'island', 'dock', 'pieces'],
-		only: ['page', 'control', 'spotlight', 'desktop', 'settings', 'lock', 'wallpaper', 'orbit'],
-		state: { edge: 'top', layout: 'island', dock: 'auto' },
-	},
-};
-
-const LABELS = {
-	bar: 'Bar', dock: 'Dock', 'sidebar-left': 'Left sidebar', 'sidebar-right': 'Right sidebar', overview: 'Overview',
-	notifications: 'Notifications', osd: 'On-screen display', desktop: 'Desktop widgets', settings: 'Settings', lock: 'Lock screen',
-	wallpaper: 'Wallpaper', taskbar: 'Taskbar', start: 'Start menu', 'action-center': 'Action Center', widgets: 'Widgets',
-	island: 'Island', pieces: 'Pieces', page: 'Island page', control: 'Control Center', spotlight: 'Spotlight', orbit: 'Orbit',
-};
-
-// The setting each choice stands for, with the labels Settings shows.
-const CHOICES = {
-	ii: { bar: { label: 'Bar position', values: { top: 'Top', bottom: 'Bottom', left: 'Left', right: 'Right' } } },
-	waffle: {
-		apps: { label: 'Left-align apps', values: { center: 'Off', left: 'On' } },
-		taskbar: { label: 'Bottom position', values: { bottom: 'On', top: 'Off' } },
-	},
-	iris: {
-		edge: { label: 'Screen edge', values: { top: 'Top', bottom: 'Bottom', left: 'Left', right: 'Right' } },
-		layout: { label: 'Island layout', values: { island: 'Island', left: 'Left', right: 'Right', full: 'Full width', menubar: 'Menu bar' } },
-		dock: { label: 'Dock edge', values: { auto: 'Auto', top: 'Top', bottom: 'Bottom', left: 'Left', right: 'Right' } },
-	},
-};
+// `<!-- preview shot=iris-edge -->` in a docs page becomes a picture of the real shell, made by iNiR's own tooling
+// and kept beside the page (each docs folder's shots/, listed in src/shots.generated.json by sync-docs). A shot with
+// a choice holds one picture per option: the buttons under it switch them, and in view it walks through them by
+// itself, like the previews in iRiS Settings. `<!-- preview parts -->` is the map of iNiR's parts.
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 
-function screen(scene, lit, state) {
-	const def = SCENES[scene];
-	const parts = [...def.parts, ...def.only.filter((p) => lit.includes(p))];
-	const attrs = Object.entries({ ...def.state, ...state }).map(([k, v]) => ` data-${k}="${esc(v)}"`).join('');
-	const items = parts.map((p) => `<i class="pv-${p}${lit.includes(p) ? ' on' : ''}"></i>`).join('');
-	return `<div class="pv-screen" data-scene="${scene}"${attrs} aria-hidden="true"><i class="pv-cols"><b></b><b></b><b></b></i>${items}</div>`;
-}
+let listed;
+const shots = () => {
+	const file = join(process.cwd(), 'src', 'shots.generated.json');
+	return (listed ??= existsSync(file) ? JSON.parse(readFileSync(file, 'utf8')) : {});
+};
 
-function families(lit) {
-	const cells = Object.keys(SCENES).map((f) =>
-		`<div class="pv-fam" data-fam="${f}">${screen(f, lit, {})}<span class="pv-name">${NAMES[f]}</span></div>`).join('');
-	return `<figure class="pv pv-three">${cells}</figure>`;
+function shot(id) {
+	const s = shots()[id];
+	if (!s?.variants?.length) return null;
+	const fams = [...new Set(s.variants.map((v) => v.family))];
+	const pictures = s.variants.map((v, i) =>
+		`<img src="${esc(s.at + v.file)}" alt="${esc(v.label ? `${s.alt}: ${v.label}` : s.alt)}" width="${s.width}" height="${s.height}"`
+		+ ` decoding="async" loading="lazy"${i ? ' class="" aria-hidden="true"' : ' class="on"'}>`).join('');
+	const buttons = s.variants.length > 1
+		? `<div class="pv-seg" role="group" aria-label="${esc(s.label)}"><span>${esc(s.label)}</span>`
+			+ s.variants.map((v, i) => `<button type="button" data-fam="${esc(v.family)}" aria-pressed="${!i}">${esc(v.label)}</button>`).join('')
+			+ '</div>'
+		: '';
+	return `<figure class="pv pv-shot not-content"${fams.length === 1 ? ` data-fam="${esc(fams[0])}"` : ''}>`
+		+ `<div class="pv-frame" tabindex="0" role="button" aria-label="Show full size">${pictures}<i class="pv-run" aria-hidden="true"></i></div>`
+		+ `<figcaption><span class="pv-name">${esc(s.alt)}</span>${buttons}</figcaption></figure>`;
 }
 
 // The parts of iNiR stacked as they run: the looks on top, Niri underneath, the command and inir.space beside them.
@@ -83,23 +53,7 @@ function parts() {
 
 export function preview(args) {
 	const words = args.split(/\s+/).filter(Boolean);
-	const scene = words.shift();
-	const opts = Object.fromEntries(words.filter((w) => w.includes('=')).map((w) => w.split('=')));
-	const lit = words.filter((w) => !w.includes('=')).flatMap((w) => w.split(','));
-	if (scene === 'families') return families(lit);
-	if (scene === 'parts') return parts();
-	if (!SCENES[scene]) return null;
-
-	const state = Object.fromEntries(Object.keys(SCENES[scene].state).filter((k) => opts[k]).map((k) => [k, opts[k]]));
-	const choose = (opts.choose ?? '').split(',').filter((k) => CHOICES[scene]?.[k]);
-	const title = [NAMES[scene], ...lit.map((p) => LABELS[p] ?? p)].join(' · ');
-	const groups = choose.map((key) => {
-		const choice = CHOICES[scene][key];
-		const current = state[key] ?? SCENES[scene].state[key];
-		const buttons = Object.entries(choice.values).map(([v, label]) =>
-			`<button type="button" data-v="${esc(v)}" aria-pressed="${v === current}">${esc(label)}</button>`).join('');
-		return `<div class="pv-seg" role="group" aria-label="${esc(choice.label)}" data-key="${esc(key)}"><span>${esc(choice.label)}</span>${buttons}</div>`;
-	}).join('');
-	return `<figure class="pv" data-fam="${scene === 'ii' || scene === 'waffle' || scene === 'iris' ? scene : ''}">${screen(scene, lit, state)}`
-		+ `<figcaption><span class="pv-name">${esc(title)}</span>${groups}</figcaption></figure>`;
+	if (words[0] === 'parts') return parts();
+	const id = words.find((w) => w.startsWith('shot='))?.slice(5);
+	return id ? shot(id) : null;
 }

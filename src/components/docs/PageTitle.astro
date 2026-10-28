@@ -30,18 +30,61 @@ const families = [
 		else delete root.dataset.family;
 		try { family ? localStorage.setItem('inir-family', family) : localStorage.removeItem('inir-family'); } catch {}
 		show();
+		document.dispatchEvent(new Event('inir-family'));
 	}));
 	show();
 
-	// A preview's choices move its little screen, like the setting would.
-	document.querySelectorAll<HTMLElement>('.pv-seg').forEach((group) => {
-		const screen = group.closest('figure')?.querySelector<HTMLElement>('.pv-screen');
-		const key = group.dataset.key;
-		if (!screen || !key) return;
-		group.querySelectorAll<HTMLButtonElement>('button').forEach((button) => button.addEventListener('click', () => {
-			screen.dataset[key] = button.dataset.v ?? '';
-			group.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
-		}));
+	// A shot's buttons switch its pictures. In view, untouched, it walks through them by itself; the amber line's
+	// animation is the clock. A reader who picked a family sees that family's picture first.
+	const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+	document.querySelectorAll<HTMLElement>('figure.pv-shot').forEach((figure) => {
+		const pictures = [...figure.querySelectorAll<HTMLImageElement>('.pv-frame img')];
+		const buttons = [...figure.querySelectorAll<HTMLButtonElement>('.pv-seg button')];
+		const run = figure.querySelector<HTMLElement>('.pv-run');
+		if (pictures.length < 2 || !run) return;
+		let at = 0, seen = false, held = false, clicked = false, mine = false;
+		const select = (i: number) => {
+			at = i;
+			pictures.forEach((p, j) => { p.classList.toggle('on', j === i); p.toggleAttribute('aria-hidden', j !== i); });
+			buttons.forEach((b, j) => b.setAttribute('aria-pressed', String(j === i)));
+		};
+		const playing = () => figure.classList.toggle('pv-playing', seen && !held && !clicked && !mine && !still);
+		// Only a shot whose options are the families follows the pick; "All" lets it walk again.
+		const own = () => {
+			const i = new Set(buttons.map((b) => b.dataset.fam)).size > 1 ? buttons.findIndex((b) => b.dataset.fam === root.dataset.family) : -1;
+			mine = i >= 0;
+			if (mine) select(i);
+			playing();
+		};
+		buttons.forEach((b, i) => b.addEventListener('click', () => { clicked = true; select(i); playing(); }));
+		run.addEventListener('animationiteration', () => select((at + 1) % pictures.length));
+		new IntersectionObserver(([entry]) => { seen = entry.isIntersecting; playing(); }, { threshold: 0.6 }).observe(figure);
+		figure.addEventListener('pointerenter', () => { held = true; playing(); });
+		figure.addEventListener('pointerleave', () => { held = false; playing(); });
+		figure.addEventListener('focusin', () => { held = true; playing(); });
+		figure.addEventListener('focusout', () => { held = false; playing(); });
+		document.addEventListener('inir-family', own);
+		own();
+	});
+
+	// A click (or Enter) on a shot shows it at full size; any click or Escape closes it, focus goes back.
+	let zoom: HTMLDialogElement | null = null;
+	let from: HTMLElement | null = null;
+	document.querySelectorAll<HTMLElement>('figure.pv-shot .pv-frame').forEach((frame) => {
+		const open = () => {
+			const shown = frame.querySelector<HTMLImageElement>('img.on') ?? frame.querySelector('img');
+			if (!shown) return;
+			if (!zoom) {
+				zoom = document.body.appendChild(Object.assign(document.createElement('dialog'), { className: 'pv-zoom' }));
+				zoom.addEventListener('click', () => zoom?.close());
+				zoom.addEventListener('close', () => from?.focus());
+			}
+			from = frame;
+			zoom.replaceChildren(Object.assign(document.createElement('img'), { src: shown.src, alt: shown.alt }));
+			zoom.showModal();
+		};
+		frame.addEventListener('click', open);
+		frame.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
 	});
 
 	// The parts map says where the part you point at lives and where it comes from.

@@ -1,6 +1,6 @@
 // A Sätteri hast pass over iNiR's docs. The markdown stays plain for GitHub; here a Settings path becomes crumbs, a
 // shortcut becomes keys, a line that starts with a family's name is tagged with it, and a `<!-- preview ... -->`
-// comment becomes a small picture of the screen with the part the page talks about lit (docs-previews.mjs).
+// comment becomes a picture of the real shell or the parts map (docs-previews.mjs).
 import { preview } from './docs-previews.mjs';
 
 const FAMILIES = { material: 'ii', 'material ii': 'ii', waffle: 'waffle', iris: 'iris' };

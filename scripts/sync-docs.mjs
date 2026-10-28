@@ -49,6 +49,7 @@ function relink(text, id) {
 rmSync(pages, { recursive: true, force: true });
 mkdirSync(pages, { recursive: true });
 rmSync(media, { recursive: true, force: true });
+const shots = {};
 for (const folder of folders) {
 	for (const file of folder.files) {
 		const name = basename(file, '.md');
@@ -62,7 +63,17 @@ for (const folder of folders) {
 	for (const kind of ['images', 'assets']) {
 		if (existsSync(join(folder.dir, kind))) cpSync(join(folder.dir, kind), join(media, folder.id, kind), { recursive: true });
 	}
+	// Pictures of the real shell, made beside the pages that show them: copied, and listed for docs-previews.mjs.
+	const made = join(folder.dir, 'shots', 'shots.json');
+	if (existsSync(made)) {
+		cpSync(join(folder.dir, 'shots'), join(media, folder.id, 'shots'), { recursive: true, filter: (path) => !path.endsWith('.json') });
+		for (const [id, { alt, label, width, height, variants }] of Object.entries(JSON.parse(readFileSync(made, 'utf8')))) {
+			if (shots[id]) console.warn(`sync-docs: shot ${id} is listed twice; ${folder.id}'s wins`);
+			shots[id] = { alt, label, width, height, variants, at: `${base}docs-media/${folder.id}/shots/` };
+		}
+	}
 }
+writeFileSync(join(root, 'src', 'shots.generated.json'), JSON.stringify(shots, null, 2) + '\n');
 
 // What each family's Settings holds, generated from its code (INIR_FAMILIES: an inir-hub checkout's families/).
 const reference = settingsReference(resolve(process.env.INIR_FAMILIES ?? join(root, '..', 'inir-hub', 'families')));

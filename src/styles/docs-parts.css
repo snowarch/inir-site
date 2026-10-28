@@ -1,5 +1,5 @@
 /* What docs-markup.mjs builds out of iNiR's markdown: Settings paths as crumbs, shortcuts as keys, the family pick,
-   and the small screens (previews) drawn in the site's lines with the part a page talks about lit in amber. */
+   the pictures of the real shell (previews) and the parts map. */
 
 /* Settings › Path › Like › This */
 .sl-markdown-content .sp {
@@ -59,9 +59,9 @@ main:has(.sl-markdown-content :is(li, p)[data-fam], .sl-markdown-content .sp) .f
 .fam-pick button[aria-pressed='true'] { color: var(--fg); background: var(--bg-3); box-shadow: inset 0 -2px 0 var(--accent); }
 .fam-pick button:focus-visible { outline: 1px solid var(--accent); outline-offset: -1px; }
 
-:root[data-family='ii'] .sl-markdown-content :is(li, p)[data-fam]:not([data-fam='ii']),
-:root[data-family='waffle'] .sl-markdown-content :is(li, p)[data-fam]:not([data-fam='waffle']),
-:root[data-family='iris'] .sl-markdown-content :is(li, p)[data-fam]:not([data-fam='iris']) { display: none; }
+:root[data-family='ii'] .sl-markdown-content :is(li, p, figure)[data-fam]:not([data-fam='ii']),
+:root[data-family='waffle'] .sl-markdown-content :is(li, p, figure)[data-fam]:not([data-fam='waffle']),
+:root[data-family='iris'] .sl-markdown-content :is(li, p, figure)[data-fam]:not([data-fam='iris']) { display: none; }
 :root[data-family='ii'] .sl-markdown-content .sp:not([data-fam='ii']),
 :root[data-family='waffle'] .sl-markdown-content .sp:not([data-fam='waffle']),
 :root[data-family='iris'] .sl-markdown-content .sp:not([data-fam='iris']) { opacity: 0.4; }
@@ -95,125 +95,34 @@ main:has(.sl-markdown-content :is(li, p)[data-fam], .sl-markdown-content .sp) .f
 .pv-seg button[aria-pressed='true'] { position: relative; z-index: 1; border-color: var(--accent); color: var(--fg); background: color-mix(in srgb, var(--accent) 10%, transparent); }
 .pv-seg button:focus-visible { outline: 1px solid var(--accent); outline-offset: 1px; }
 
-.pv-screen {
-	--r: 3px;
-	position: relative;
-	aspect-ratio: 16 / 10;
-	overflow: hidden;
-	background:
-		radial-gradient(60% 70% at 72% 18%, #1a1a1a 0%, transparent 70%),
-		radial-gradient(50% 60% at 18% 90%, #151515 0%, transparent 70%),
-		#0c0c0c;
+/* A picture of the real shell; a shot with options stacks one picture per option and fades between them. The amber
+   hairline along the bottom runs while it walks through them by itself. */
+.sl-markdown-content figure.pv-shot .pv-frame { position: relative; display: grid; overflow: hidden; background: #000; }
+.pv-frame > img {
+	grid-area: 1 / 1;
+	display: block;
+	width: 100%;
+	height: auto;
+	opacity: 0;
+	transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-.pv-screen > i { position: absolute; display: block; box-sizing: border-box; border: 1px solid var(--line-2); background: #131313; border-radius: var(--r); transition: inset 0.45s var(--ease), width 0.45s var(--ease), height 0.45s var(--ease), border-radius 0.45s var(--ease), opacity 0.3s; }
-.pv-screen > i.on {
-	z-index: 3;
-	border-color: var(--accent);
-	background: color-mix(in srgb, var(--accent) 13%, #131313);
-	animation: pv-breathe 2.6s ease-in-out infinite;
+.pv-frame > img.on { opacity: 1; }
+.sl-markdown-content figure.pv-shot .pv-frame { cursor: zoom-in; }
+.sl-markdown-content figure.pv-shot .pv-frame:focus-visible { outline: 1px solid var(--accent); outline-offset: -1px; }
+dialog.pv-zoom { width: min(96vw, 1600px, 96vh * 16 / 9); max-width: none; margin: auto; padding: 0; border: 1px solid var(--line-2); background: #000; cursor: zoom-out; }
+dialog.pv-zoom img { display: block; width: 100%; height: auto; }
+dialog.pv-zoom::backdrop { background: rgb(0 0 0 / 0.82); }
+.pv-frame > .pv-run {
+	position: absolute;
+	inset: auto 0 0 0;
+	height: 2px;
+	background: var(--accent);
+	transform: scaleX(0);
+	transform-origin: left;
+	opacity: 0;
 }
-@keyframes pv-breathe {
-	0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 0%, transparent); }
-	50% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent); }
-}
-
-/* Niri's columns: windows side by side, the strip running off the right edge. */
-.pv-screen > i.pv-cols { inset: 14% -22% 14% 6%; display: flex; gap: 2.5%; border: 0; background: none; }
-.pv-cols b { flex: 0 0 31%; border: 1px solid var(--line); border-radius: var(--r); background: linear-gradient(#171717 0 9%, #101010 9%); }
-.pv-cols b:nth-child(2) { border-color: #333; }
-
-/* Material: a bar on one edge, a dock, sidebars that open from the sides. */
-[data-scene='ii'] > .pv-bar { inset: 0 0 auto 0; height: 5.5%; border-width: 0 0 1px; border-radius: 0; background: linear-gradient(90deg, transparent 44%, #222 44% 56%, transparent 56%) center / 100% 34% no-repeat, #121212; }
-[data-scene='ii'][data-bar='bottom'] > .pv-bar { inset: auto 0 0 0; border-width: 1px 0 0; }
-[data-scene='ii'][data-bar='left'] > .pv-bar,
-[data-scene='ii'][data-bar='right'] > .pv-bar { inset: 0 auto 0 0; width: 3.6%; height: auto; border-width: 0 1px 0 0; background: linear-gradient(transparent 40%, #222 40% 60%, transparent 60%) center / 34% 100% no-repeat, #121212; }
-[data-scene='ii'][data-bar='right'] > .pv-bar { inset: 0 0 0 auto; border-width: 0 0 0 1px; }
-[data-scene='ii'] > .pv-dock { left: 36%; bottom: 3%; width: 28%; height: 7%; border-radius: 6px; }
-[data-scene='ii'][data-bar='bottom'] > .pv-dock { bottom: 9%; }
-[data-scene='ii'] > .pv-sidebar-left { left: 1%; top: 8%; bottom: 2.5%; width: 25%; border-radius: 8px; }
-[data-scene='ii'] > .pv-sidebar-right { right: 1%; top: 8%; bottom: 2.5%; width: 25%; border-radius: 8px; }
-[data-scene='ii'] > .pv-notifications { right: 1.5%; top: 8%; width: 24%; height: 13%; border-radius: 8px; }
-[data-scene='ii'] > .pv-overview { inset: 12% 14% 12% 14%; border-radius: 10px; background: linear-gradient(#1c1c1c 0 0) 50% 10% / 46% 9% no-repeat, #121212; }
-[data-scene='ii'] > .pv-osd { left: 40%; bottom: 14%; width: 20%; height: 6%; border-radius: 999px; }
-
-/* Waffle: Windows 11's taskbar, Start in the middle, the centres on the right. */
-[data-scene='waffle'] > .pv-taskbar { inset: auto 0 0 0; height: 7%; border-width: 1px 0 0; border-radius: 0; background: repeating-linear-gradient(90deg, #262626 0 2.2%, transparent 2.2% 3.4%) 40% 50% / 20% 46% no-repeat, #121212; }
-[data-scene='waffle'][data-apps='left'] > .pv-taskbar { background-position: 1.5% 50%, 0 0; }
-[data-scene='waffle'][data-taskbar='top'] > .pv-taskbar { inset: 0 0 auto 0; border-width: 0 0 1px; }
-[data-scene='waffle'] > .pv-start { left: 30%; bottom: 9%; width: 40%; height: 64%; border-radius: 8px; }
-[data-scene='waffle'][data-apps='left'] > .pv-start { left: 1.2%; }
-[data-scene='waffle'] > .pv-action-center { right: 1.2%; bottom: 9%; width: 28%; height: 44%; border-radius: 8px; }
-[data-scene='waffle'] > .pv-notifications { right: 1.2%; bottom: 9%; width: 26%; height: 86%; border-radius: 8px; }
-[data-scene='waffle'] > .pv-widgets { left: 1.2%; bottom: 9%; width: 30%; height: 86%; border-radius: 8px; }
-[data-scene='waffle'][data-taskbar='top'] > :is(.pv-start, .pv-action-center, .pv-notifications, .pv-widgets) { bottom: auto; top: 9%; }
-
-/* iRiS: one Island on an edge that grows into what opens, a Dock, the pieces around it. */
-[data-scene='iris'] { --r: 6px; }
-[data-scene='iris'] > .pv-island { top: 2.6%; left: 43%; width: 14%; height: 6%; border-radius: 999px; background: #111; }
-[data-scene='iris'][data-edge='bottom'] > .pv-island { top: auto; bottom: 2.6%; }
-[data-scene='iris'][data-edge='left'] > .pv-island { left: 1.4%; top: 40%; width: 3.6%; height: 20%; }
-[data-scene='iris'][data-edge='right'] > .pv-island { left: auto; right: 1.4%; top: 40%; width: 3.6%; height: 20%; }
-[data-scene='iris'][data-layout='left']:is([data-edge='top'], [data-edge='bottom']) > .pv-island { left: 1.6%; }
-[data-scene='iris'][data-layout='right']:is([data-edge='top'], [data-edge='bottom']) > .pv-island { left: 84.4%; }
-[data-scene='iris'][data-layout='left']:is([data-edge='left'], [data-edge='right']) > .pv-island { top: 2.6%; }
-[data-scene='iris'][data-layout='right']:is([data-edge='left'], [data-edge='right']) > .pv-island { top: 77.4%; }
-[data-scene='iris'][data-layout='full']:is([data-edge='top'], [data-edge='bottom']) > .pv-island { left: 1.4%; width: 97.2%; border-radius: 10px; }
-[data-scene='iris'][data-layout='full']:is([data-edge='left'], [data-edge='right']) > .pv-island { top: 2.6%; height: 94.8%; border-radius: 10px; }
-/* Menu bar: a thin strip along the edge, the Island hanging from it as a notch. */
-[data-scene='iris'][data-layout='menubar'] > .pv-island { border-radius: 0 0 14px 14px; box-shadow: 0 0 0 100vmax transparent; }
-[data-scene='iris'][data-layout='menubar'][data-edge='top'] > .pv-island { top: 0; height: 7%; border-top: 0; }
-[data-scene='iris'][data-layout='menubar'][data-edge='bottom'] > .pv-island { bottom: 0; height: 7%; border-bottom: 0; border-radius: 14px 14px 0 0; }
-[data-scene='iris'][data-layout='menubar']:is([data-edge='left'], [data-edge='right']) > .pv-island { width: 4.6%; }
-[data-scene='iris'][data-layout='menubar'][data-edge='left'] > .pv-island { left: 0; border-left: 0; border-radius: 0 14px 14px 0; }
-[data-scene='iris'][data-layout='menubar'][data-edge='right'] > .pv-island { right: 0; border-right: 0; border-radius: 14px 0 0 14px; }
-[data-scene='iris'] > .pv-strip { display: none; inset: 0 0 auto 0; height: 3.4%; border-width: 0 0 1px; border-radius: 0; background: #101010; }
-[data-scene='iris'][data-layout='menubar'] > .pv-strip { display: block; }
-[data-scene='iris'][data-layout='menubar'][data-edge='bottom'] > .pv-strip { inset: auto 0 0 0; border-width: 1px 0 0; }
-[data-scene='iris'][data-layout='menubar'][data-edge='left'] > .pv-strip { inset: 0 auto 0 0; width: 2.2%; height: auto; border-width: 0 1px 0 0; }
-[data-scene='iris'][data-layout='menubar'][data-edge='right'] > .pv-strip { inset: 0 0 0 auto; width: 2.2%; height: auto; border-width: 0 0 0 1px; }
-
-[data-scene='iris'] > .pv-pieces { top: 2.6%; left: 58.2%; width: 7.6%; height: 6%; border: 0; background: radial-gradient(circle at 20% 50%, #1d1d1d 0 19%, transparent 21%), radial-gradient(circle at 74% 50%, #1d1d1d 0 19%, transparent 21%); }
-[data-scene='iris'][data-edge='bottom'] > .pv-pieces { top: auto; bottom: 2.6%; }
-[data-scene='iris']:is([data-edge='left'], [data-edge='right']) > .pv-pieces { display: none; }
-[data-scene='iris']:is([data-layout='left'], [data-layout='right'], [data-layout='full'], [data-layout='menubar']) > .pv-pieces { display: none; }
-
-/* The Dock: Auto takes the edge across from the Island. */
-[data-scene='iris'] > .pv-dock { left: 37%; bottom: 2.6%; width: 26%; height: 8%; border-radius: 12px; }
-[data-scene='iris']:is([data-dock='top'], [data-dock='auto'][data-edge='bottom']) > .pv-dock { bottom: auto; top: 2.6%; }
-[data-scene='iris']:is([data-dock='left'], [data-dock='auto'][data-edge='right']) > .pv-dock { left: 1.4%; top: 33%; bottom: auto; width: 5%; height: 34%; }
-[data-scene='iris']:is([data-dock='right'], [data-dock='auto'][data-edge='left']) > .pv-dock { left: auto; right: 1.4%; top: 33%; bottom: auto; width: 5%; height: 34%; }
-[data-scene='iris'][data-dock='bottom'] > .pv-dock { top: auto; bottom: 2.6%; left: 37%; width: 26%; height: 8%; }
-
-/* The Island growing into a page, over and over. */
-[data-scene='iris'] > .pv-page { top: 2.6%; left: 28%; width: 44%; height: 52%; border-radius: 18px; --grow: pv-grow; clip-path: inset(0 34% 88% 34% round 999px); animation: var(--grow) 5s var(--ease) infinite; }
-[data-scene='iris'] > .pv-page.on { animation: var(--grow) 5s var(--ease) infinite, pv-breathe 2.6s ease-in-out infinite; }
-[data-scene='iris'][data-edge='bottom'] > .pv-page { top: auto; bottom: 2.6%; --grow: pv-grow-up; }
-[data-scene='iris'][data-edge='left'] > .pv-page { top: 24%; left: 1.4%; width: 40%; height: 52%; --grow: pv-grow-side; }
-[data-scene='iris'][data-edge='right'] > .pv-page { top: 24%; left: auto; right: 1.4%; width: 40%; height: 52%; --grow: pv-grow-side-in; }
-/* Hugging an end or spanning the edge, the Island opens in place: no page drawn from the middle. */
-[data-scene='iris']:is([data-layout='left'], [data-layout='right'], [data-layout='full']) > .pv-page { display: none; }
-@keyframes pv-grow { 0%, 18% { clip-path: inset(0 34% 88.5% 34% round 999px); } 42%, 78% { clip-path: inset(0 0 0 0 round 18px); } 100% { clip-path: inset(0 34% 88.5% 34% round 999px); } }
-@keyframes pv-grow-side { 0%, 18% { clip-path: inset(31% 91% 31% 0 round 999px); } 42%, 78% { clip-path: inset(0 0 0 0 round 18px); } 100% { clip-path: inset(31% 91% 31% 0 round 999px); } }
-@keyframes pv-grow-side-in { 0%, 18% { clip-path: inset(31% 0 31% 91% round 999px); } 42%, 78% { clip-path: inset(0 0 0 0 round 18px); } 100% { clip-path: inset(31% 0 31% 91% round 999px); } }
-@keyframes pv-grow-up { 0%, 18% { clip-path: inset(88.5% 34% 0 34% round 999px); } 42%, 78% { clip-path: inset(0 0 0 0 round 18px); } 100% { clip-path: inset(88.5% 34% 0 34% round 999px); } }
-[data-scene='iris'] > .pv-control { top: 10.5%; right: 2%; width: 27%; height: 54%; border-radius: 16px; }
-[data-scene='iris'] > .pv-spotlight { top: 24%; left: 29%; width: 42%; height: 9%; border-radius: 999px; }
-[data-scene='iris'] > .pv-orbit { inset: 16% 34%; border-radius: 50%; border-style: dashed; background: none; }
-
-/* What every family has. */
-.pv-screen > .pv-desktop { left: 3%; bottom: 13%; width: 17%; height: 22%; border-radius: 8px; }
-.pv-screen > .pv-settings { inset: 13% 22% 15% 22%; border-radius: 10px; background: linear-gradient(90deg, #171717 0 26%, transparent 26%), #121212; }
-.pv-screen > .pv-lock { inset: 0; z-index: 4; border: 0; border-radius: 0; background: radial-gradient(circle at 50% 42%, #1e1e1e 0 9%, transparent 9.5%), #0d0d0d; }
-.pv-screen > .pv-wallpaper { inset: 0; z-index: 0; border: 0; border-radius: 0; background: none; }
-.pv-screen > .pv-wallpaper.on { border: 1px solid var(--accent); background: radial-gradient(60% 70% at 72% 18%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%); animation: none; }
-.pv-screen > .pv-lock.on { border: 1px solid var(--accent); background: radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--accent) 30%, #1e1e1e) 0 9%, transparent 9.5%), #0d0d0d; animation: none; }
-
-/* The three families side by side; pointing at one lights its parts. */
-.sl-markdown-content figure.pv-three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); }
-.pv-three .pv-fam { display: grid; gap: 0.55rem; padding: 0.6rem 0.6rem 0.7rem; background: var(--bg-2); }
-.pv-three .pv-fam:hover > .pv-screen > i:not(.pv-cols, .pv-strip) { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 13%, #131313); }
-.pv-three .pv-name { text-align: center; }
-@media (max-width: 40rem) { .sl-markdown-content figure.pv-three { grid-template-columns: minmax(0, 1fr); } }
+.pv-shot.pv-playing .pv-run { opacity: 1; animation: pv-run 4.5s linear infinite; }
+@keyframes pv-run { to { transform: scaleX(1); } }
 
 /* How the parts fit: the looks on top, the base, the runtime and helpers, Niri; the command and inir.space beside. */
 .pv-parts .pt {
@@ -238,7 +147,5 @@ main:has(.sl-markdown-content :is(li, p)[data-fam], .sl-markdown-content .sp) .f
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.pv-screen > i { transition: none; }
-	.pv-screen > i.on { animation: none; }
-	[data-scene='iris'] > .pv-page, [data-scene='iris'] > .pv-page.on { animation: none; clip-path: none; }
+	.pv-frame > img { transition: none; }
 }
