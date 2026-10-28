@@ -41,16 +41,21 @@ function material(dir) {
 function choices(file, sections) {
 	const lines = readFileSync(file, 'utf8').split('\n');
 	const titleAt = (i) => tr(lines.slice(i + 1, i + 7).join('\n').match(/^\s+title: (.*)$/m)?.[1] ?? '')[0];
-	let section = '', sub = '';
+	let section = '', depth = 0;
+	const subs = [];
 	lines.forEach((l, i) => {
-		if (/^\s+(SettingsCardSection|ContentSection) \{/.test(l)) { section = titleAt(i) ?? section; sub = ''; return; }
-		if (/^\s+ContentSubsection \{/.test(l)) { sub = titleAt(i) ?? ''; return; }
+		const before = depth;
+		depth += (l.match(/\{/g) ?? []).length - (l.match(/\}/g) ?? []).length;
+		// a subsection's title holds only inside its own braces
+		while (subs.length && depth <= subs.at(-1)[1]) subs.pop();
+		if (/^\s+(SettingsCardSection|ContentSection) \{/.test(l)) { section = titleAt(i) ?? section; subs.length = 0; return; }
+		if (/^\s+ContentSubsection \{/.test(l)) { subs.push([titleAt(i) ?? '', before]); return; }
 		if (!/^\s+ConfigSelectionArray \{/.test(l) || !sections.has(section)) return;
 		const end = lines.findIndex((x, j) => j > i && /^\s+\]/.test(x));
 		const names = lines.slice(i, end < 0 ? i + 40 : end).flatMap((x) => tr(x.match(/displayName: (.*?)(?:,\s*\w+:|\s*\}|$)/)?.[1] ?? ''));
 		if (names.length < 2) return;
 		const rows = sections.get(section);
-		const label = sub || section;
+		const label = subs.at(-1)?.[0] || section;
 		const said = `${names.slice(0, -1).join(', ')} or ${names.at(-1)}.`;
 		if (rows.has(label)) rows.set(label, rows.get(label) ? `${rows.get(label)} ${said}` : said);
 		else sections.set(section, new Map([[label, said], ...rows]));
