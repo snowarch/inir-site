@@ -56,6 +56,7 @@ const families = [
 			part.addEventListener('pointerenter', show);
 			part.addEventListener('focus', show);
 			part.addEventListener('pointerleave', () => { info.textContent = rest; });
+			part.addEventListener('blur', () => { info.textContent = rest; });
 		});
 	});
 </script>

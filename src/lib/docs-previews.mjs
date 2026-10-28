@@ -75,10 +75,10 @@ const PARTS = [
 ];
 
 function parts() {
-	const cells = PARTS.map((p) => `<div class="pt-${p.id}" tabindex="0" data-at="${esc(p.at)}" data-by="${esc(p.by)}">`
+	const cells = PARTS.map((p) => `<div class="pt-${p.id}" tabindex="0" data-at="${esc(p.at)}" data-by="${esc(p.by)}" aria-label="${esc(`${p.name}: ${p.line}. ${p.at}, from ${p.by}`)}">`
 		+ `<b>${esc(p.name)}</b><span>${esc(p.line)}</span></div>`).join('');
 	return `<figure class="pv pv-parts"><div class="pt">${cells}</div>`
-		+ `<figcaption><span class="pv-name" data-pt-info>Point at a part to see where it lives</span></figcaption></figure>`;
+		+ `<figcaption><span class="pv-name" data-pt-info aria-live="polite">Point at a part to see where it lives</span></figcaption></figure>`;
 }
 
 export function preview(args) {

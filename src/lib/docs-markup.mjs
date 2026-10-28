@@ -54,7 +54,20 @@ function rebuild(value) {
 		}
 		if (at < value.length) rest(value.slice(at));
 	};
-	pass(value, PATH, (m) => crumbs(m[1], m[2]), (run) => pass(run, KEY, (m) => keys(m[0]), (plain) => out.push(text(plain))));
+	// Outside bold, a label that runs on past five words is the sentence carrying on: no crumbs.
+	const prose = (m) => m[2].split(' › ').at(-1).trim().split(/\s+/).length > 5;
+	const paths = (run, rest) => {
+		let at = 0;
+		for (const m of run.matchAll(PATH)) {
+			if (prose(m)) continue;
+			if (m.index > at) rest(run.slice(at, m.index));
+			out.push(crumbs(m[1], m[2]));
+			changed = true;
+			at = m.index + m[0].length;
+		}
+		if (at < run.length) rest(run.slice(at));
+	};
+	paths(value, (run) => pass(run, KEY, (m) => keys(m[0]), (plain) => out.push(text(plain))));
 	return changed ? out : null;
 }
 
