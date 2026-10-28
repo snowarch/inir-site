@@ -83,6 +83,9 @@ h1#_top { font-weight: 600; letter-spacing: -0.025em; line-height: 1.2; color: v
 .sl-markdown-content :is(th, td) { padding: 0.6rem 0.9rem 0.6rem 0; border: 0; border-bottom: 1px solid var(--sl-color-hairline); text-align: left; }
 .sl-markdown-content th { font: 500 0.69rem var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--sl-color-gray-4); border-bottom-color: var(--sl-color-gray-5); }
 .sl-markdown-content tr { background: transparent !important; }
+/* Reference tables name a command or function first: it stays on one line, and keeps its case in a header. */
+.sl-markdown-content td:first-child code { white-space: nowrap; }
+.sl-markdown-content th code { text-transform: none; letter-spacing: 0; }
 .sl-markdown-content blockquote { border-inline-start: 2px solid var(--sl-color-accent); padding-inline-start: 1rem; color: var(--sl-color-gray-2); }
 .starlight-aside { border: 0; border-inline-start: 2px solid var(--sl-color-asides-border, var(--sl-color-accent)); background: var(--sl-color-gray-6); }
 .pagination-links a { border-radius: 0; box-shadow: none; }

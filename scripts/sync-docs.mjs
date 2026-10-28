@@ -5,6 +5,7 @@
 // the base's, whose VERSION and CHANGELOG.md sit beside it. Nothing here is edited by hand after a sync.
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
+import { commandsReference } from './commands-reference.mjs';
 import { withIpcReference } from './ipc-reference.mjs';
 import { keybindsReference } from './keybinds-reference.mjs';
 import { settingsReference } from './settings-reference.mjs';
@@ -36,13 +37,19 @@ const folders = sources.map((dir) => {
 	return { dir, id: meta.id ?? basename(dirname(dir)), edit: meta.edit ?? 'https://github.com/snowarch/iNiR/edit/main/docs/', groups: meta.groups ?? null, order: meta.order ?? 0, files };
 }).map((folder, index) => ({ ...folder, order: index === 0 ? -1 : folder.order })).sort((a, b) => a.order - b.order);
 
-// Pages the base's code lists, built here and served as the base's own: the keybinds from its Niri binds, the IPC
-// targets from its ipc.json into IPC.md's reference region. An older iNiR that still has them by hand keeps them.
+// Pages the code lists, built here and served as the base's own: the keybinds from its Niri binds, the `inir`
+// command from inir-cli's binary, the IPC targets from the base's ipc.json into IPC.md's reference region. An
+// older iNiR that still has them by hand keeps them.
 const virtual = new Map();
 const binds = keybindsReference(join(source, '..', 'defaults', 'niri', 'config.d', '70-binds.kdl'));
 if (binds && !folders[0].files.includes('KEYBINDS.md')) {
 	virtual.set(join(folders[0].dir, 'KEYBINDS.md'), { text: binds, edit: folders[0].edit.replace(/docs\/$/, 'defaults/niri/config.d/70-binds.kdl') });
 	folders[0].files.push('KEYBINDS.md');
+}
+const commands = commandsReference();
+if (commands && !folders[0].files.includes('COMMANDS.md')) {
+	virtual.set(join(folders[0].dir, 'COMMANDS.md'), { text: commands, edit: 'https://github.com/snowarch/inir-cli/edit/main/internal/cli/commands.go' });
+	folders[0].files.push('COMMANDS.md');
 }
 const ipcPage = join(folders[0].dir, 'IPC.md');
 if (folders[0].files.includes('IPC.md')) virtual.set(ipcPage, { text: withIpcReference(readFileSync(ipcPage, 'utf8'), join(source, '..', 'scripts', 'lib', 'ipc.json')) });
