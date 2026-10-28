@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import sidebar from './src/sidebar.generated.json' with { type: 'json' };
 import { renameSync, rmSync } from 'node:fs';
+import docsMarkup from './src/lib/docs-markup.mjs';
 
 // Kira's terms and privacy keep their addresses (/kira-bot/terms.html): the Discord developer portal links them, and
 // Astro would write them as folders.
@@ -39,12 +40,13 @@ export default defineConfig({
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/snowarch/iNiR' },
 				{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/pAPTfAhZUJ' },
 			],
-			customCss: ['@fontsource-variable/geist', '@fontsource-variable/geist-mono', './src/styles/tokens.css', './src/styles/theme.css'],
+			customCss: ['@fontsource-variable/geist', '@fontsource-variable/geist-mono', './src/styles/tokens.css', './src/styles/theme.css', './src/styles/docs-parts.css'],
 			// The site's links in the header, always dark.
 			components: {
 				Header: './src/components/docs/Header.astro',
 				ThemeProvider: './src/components/docs/ThemeProvider.astro',
 				ThemeSelect: './src/components/docs/ThemeSelect.astro',
+				PageTitle: './src/components/docs/PageTitle.astro',
 			},
 			// Vitesse keeps code in muted greens and oranges; blocks take the page's colours and no fake window chrome.
 			expressiveCode: {
@@ -62,5 +64,6 @@ export default defineConfig({
 			// The right rail lists h2 and h3; below 72rem Starlight folds it into the bar under the header.
 			tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 3 },
 		}),
+		docsMarkup(),
 	],
 });

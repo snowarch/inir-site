@@ -1,0 +1,73 @@
+---
+// Starlight's title with the family pick under it: the reader says which family they run once, and lines written for
+// the other two step aside on every page (docs-parts.css). It shows only on pages with Settings paths or family lines.
+// Starlight's PAGE_TITLE_ID, not exported: the "top" link of the page's section list points at it.
+const PAGE_TITLE_ID = '_top';
+
+const families = [
+	{ id: '', name: 'All' },
+	{ id: 'ii', name: 'Material' },
+	{ id: 'waffle', name: 'Waffle' },
+	{ id: 'iris', name: 'iRiS' },
+];
+---
+
+<h1 id={PAGE_TITLE_ID}>{Astro.locals.starlightRoute.entry.data.title}</h1>
+<div class="fam-pick">
+	<span id="fam-pick-label">Your family</span>
+	<div role="group" aria-labelledby="fam-pick-label">
+		{families.map((family) => <button type="button" data-family={family.id} aria-pressed="false">{family.name}</button>)}
+	</div>
+</div>
+
+<script>
+	const root = document.documentElement;
+	const buttons = [...document.querySelectorAll<HTMLButtonElement>('.fam-pick button')];
+	const show = () => buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.family === (root.dataset.family ?? ''))));
+	buttons.forEach((button) => button.addEventListener('click', () => {
+		const family = button.dataset.family ?? '';
+		if (family) root.dataset.family = family;
+		else delete root.dataset.family;
+		try { family ? localStorage.setItem('inir-family', family) : localStorage.removeItem('inir-family'); } catch {}
+		show();
+	}));
+	show();
+
+	// A preview's choices move its little screen, like the setting would.
+	document.querySelectorAll<HTMLElement>('.pv-seg').forEach((group) => {
+		const screen = group.closest('figure')?.querySelector<HTMLElement>('.pv-screen');
+		const key = group.dataset.key;
+		if (!screen || !key) return;
+		group.querySelectorAll<HTMLButtonElement>('button').forEach((button) => button.addEventListener('click', () => {
+			screen.dataset[key] = button.dataset.v ?? '';
+			group.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+		}));
+	});
+
+	// The parts map says where the part you point at lives and where it comes from.
+	document.querySelectorAll<HTMLElement>('.pv-parts').forEach((figure) => {
+		const info = figure.querySelector<HTMLElement>('[data-pt-info]');
+		if (!info) return;
+		const rest = info.textContent ?? '';
+		figure.querySelectorAll<HTMLElement>('.pt > div').forEach((part) => {
+			const show = () => {
+				info.replaceChildren(`${part.querySelector('b')?.textContent}: `, Object.assign(document.createElement('code'), { textContent: part.dataset.at ?? '' }), ` · from ${part.dataset.by}`);
+			};
+			part.addEventListener('pointerenter', show);
+			part.addEventListener('focus', show);
+			part.addEventListener('pointerleave', () => { info.textContent = rest; });
+		});
+	});
+</script>
+
+<style>
+	@layer starlight.core {
+		h1 {
+			margin-top: 1rem;
+			font-size: var(--sl-text-h1);
+			line-height: var(--sl-line-height-headings);
+			font-weight: 600;
+			color: var(--sl-color-white);
+		}
+	}
+</style>

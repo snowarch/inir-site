@@ -1,8 +1,13 @@
 ---
-// The whole site is dark: no stored or system choice to read, and no picker (ThemeSelect is empty).
+// The whole site is dark: no stored or system choice to read, and no picker (ThemeSelect is empty). The reader's
+// family (PageTitle's pick) is set here too, before the page paints, so other families' lines never flash.
 ---
 
 <script is:inline>
 	document.documentElement.dataset.theme = 'dark';
 	window.StarlightThemeProvider = { updatePickers() {} };
+	try {
+		const family = localStorage.getItem('inir-family');
+		if (family) document.documentElement.dataset.family = family;
+	} catch {}
 </script>
