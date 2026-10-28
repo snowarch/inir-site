@@ -100,7 +100,20 @@ function iris(dir) {
 		const rows = pages.get(row[1]).get(group) ?? pages.get(row[1]).set(group, new Map()).get(group);
 		if (!rows.has(label)) rows.set(label, get('description'));
 	}
-	return { title: 'Every iRiS setting', root: 'iRiS Settings', subtitles: titles, pages: [...pages].filter(([, s]) => s.size).map(([id, s]) => [titles.get(id)[0], s, titles.get(id)[1]]) };
+	// Customize's areas hold their own rows (target:, not section:)
+	const areas = new Map([...text.matchAll(/\{ id: "(\w+)", label: "([^"]+)", glyph: "[^"]*"[^\n]*\n\s+about: "([^"]+)" \}/g)].map((m) => [m[1], [`Customize › ${m[2]}`, m[3].replace(/\.$/, ''), new Map()]]));
+	for (const row of text.matchAll(/^\s+\{[^\n]*\btarget: "(\w+)"[^\n]*$/gm)) {
+		const get = (key) => row[0].match(new RegExp(`\\b${key}: "((?:[^"\\\\]|\\\\.)*)"`))?.[1];
+		const label = get('label');
+		if (!label || !areas.has(row[1])) continue;
+		const groups = areas.get(row[1])[2];
+		const rows = groups.get(get('group') ?? '') ?? groups.set(get('group') ?? '', new Map()).get(get('group') ?? '');
+		if (!rows.has(label)) rows.set(label, get('description'));
+	}
+	return { title: 'Every iRiS setting', root: 'iRiS Settings', subtitles: titles, pages: [
+		...[...pages].filter(([, s]) => s.size).map(([id, s]) => [titles.get(id)[0], s, titles.get(id)[1]]),
+		...[...areas.values()].filter(([, , s]) => s.size).map(([title, about, s]) => [title, s, about]),
+	] };
 }
 
 const intro = (root) => `Every option in ${root}, page by page, read from the family's code each time this site is built. In ${root}, **Ctrl+F** finds any of them and takes you there.`;
