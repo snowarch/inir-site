@@ -20,17 +20,24 @@ export default defineConfig({
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/snowarch/iNiR' },
 				{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/pAPTfAhZUJ' },
 			],
-			customCss: ['@fontsource-variable/archivo/wdth.css', '@fontsource-variable/archivo/wdth-italic.css', '@fontsource/jetbrains-mono/400.css',
-				'./src/styles/tokens.css', './src/styles/theme.css'],
+			customCss: ['@fontsource-variable/geist', '@fontsource-variable/geist-mono', './src/styles/tokens.css', './src/styles/theme.css'],
+			// One column with the sections under the title, and the site's links in the header.
+			components: {
+				Header: './src/components/docs/Header.astro',
+				PageTitle: './src/components/docs/PageTitle.astro',
+				TwoColumnContent: './src/components/docs/TwoColumnContent.astro',
+			},
 			// Vitesse keeps code in muted greens and oranges; blocks take the page's colours and no fake window chrome.
 			expressiveCode: {
 				themes: ['vitesse-dark', 'vitesse-light'],
 				useStarlightUiThemeColors: true,
 				defaultProps: { frame: 'code' },
-				styleOverrides: { borderRadius: '10px', codeFontFamily: 'var(--mono)', uiFontFamily: 'var(--mono)', frames: { frameBoxShadowCssValue: 'none' } },
+				styleOverrides: { borderRadius: '0', borderColor: 'var(--sl-color-hairline-light)', codeFontFamily: 'var(--mono)', uiFontFamily: 'var(--mono)', frames: { frameBoxShadowCssValue: 'none' } },
 			},
 			sidebar,
 			lastUpdated: false,
+			// The site's own 404 (src/pages/404.astro) wears the landing page's frame.
+			disable404Route: true,
 			pagination: true,
 		}),
 	],

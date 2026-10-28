@@ -30,16 +30,8 @@ jobs:
           ref: main
           path: inir
           sparse-checkout: docs
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run build
-        env:
-          INIR_DOCS: inir/docs
-          SITE_BASE: /
-      # inir.space/hub/index.json is the official catalogue `inir hub` and setup read (inir-cli hub.go Official)
+      # inir.space/hub/index.json is the official catalogue `inir hub` and setup read (inir-cli hub.go Official).
+      # It is built first: the site's own /hub page reads it, and sync-docs serves it from public/hub.
       - name: Check out the hub
         uses: actions/checkout@v4
         with:
@@ -50,11 +42,21 @@ jobs:
         with:
           go-version: "1.26"
           cache: false
-      - name: Build the hub catalogue into /hub
+      - name: Build the hub catalogue
         run: |
           go install github.com/snowarch/inir-cli/cmd/inir@main
-          (cd hub && inir hub build --out "$GITHUB_WORKSPACE/dist/hub")
-          mkdir -p dist/hub/schema && cp hub/schema/hub.schema.json dist/hub/schema/
+          (cd hub && inir hub build --out "$GITHUB_WORKSPACE/hub-out")
+          mkdir -p hub-out/schema && cp hub/schema/hub.schema.json hub-out/schema/
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          INIR_DOCS: inir/docs
+          INIR_HUB: hub-out
+          SITE_BASE: /
       - name: Publish to gh-pages
         if: github.event_name != 'pull_request'
         run: |

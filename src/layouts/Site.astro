@@ -1,0 +1,71 @@
+---
+// The frame the landing page, /changelog and /hub share: head, nav, footer and the copy buttons.
+import '@fontsource-variable/geist';
+import '@fontsource-variable/geist-mono';
+import '../styles/tokens.css';
+import '../styles/site.css';
+
+interface Props { title: string; description: string; page?: 'home' | 'changelog' | 'hub'; image?: string }
+const { title, description, page = 'home', image = 'shots/iris-principal.webp' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const repo = 'https://github.com/snowarch/iNiR';
+const discord = 'https://discord.gg/pAPTfAhZUJ';
+const current = (name: string) => (page === name ? 'page' : undefined);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="theme-color" content="#0a0a0a" />
+		<link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(`${base}${image}`, Astro.site).href} />
+		<meta name="twitter:card" content="summary_large_image" />
+	</head>
+	<body>
+		<header class="nav">
+			<div class="nav-in">
+				<a class="brand" href={base}><img src={`${base}favicon.svg`} alt="" width="20" height="20" />iNiR</a>
+				<nav class="nav-links" aria-label="Site">
+					<a href={`${base}docs/`}>Docs</a>
+					<a href={`${base}hub/`} aria-current={current('hub')}>Hub</a>
+					<a href={`${base}changelog/`} aria-current={current('changelog')}>Changelog</a>
+				</nav>
+				<div class="nav-end">
+					<a class="gh" href={repo} aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a>
+					<a class="gh" href={discord} aria-label="Discord"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.3 18.3 0 0 0-5.5 0L8.6 3a19.7 19.7 0 0 0-4.9 1.5C.6 9.1-.3 13.6.1 18.1a19.9 19.9 0 0 0 6 3l1.3-2.1c-.7-.3-1.4-.6-2-1l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4c-.6.4-1.3.7-2 1l1.3 2.1a19.8 19.8 0 0 0 6-3c.5-5.2-.9-9.7-3.6-13.7ZM8 15.3c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.5 8 10.5s2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z"/></svg></a>
+					<a class="go" href={`${base}#install`}>Install</a>
+				</div>
+			</div>
+		</header>
+
+		<main class="wrap">
+			<slot />
+			<footer class="foot">
+				<div>
+					<a class="brand" href={base}><img src={`${base}favicon.svg`} alt="" width="18" height="18" />iNiR</a>
+					<p class="lic">GPL-3.0. Built on <a href="https://github.com/YaLTeR/niri">Niri</a> and <a href="https://quickshell.outfoxxed.me/">Quickshell</a>.</p>
+				</div>
+				<div><span class="lbl">iNiR</span><ul><li><a href={`${base}docs/`}>Docs</a></li><li><a href={`${base}hub/`}>Hub</a></li><li><a href={`${base}changelog/`}>Changelog</a></li></ul></div>
+				<div><span class="lbl">Community</span><ul><li><a href={discord}>Discord</a></li><li><a href={repo}>GitHub</a></li><li><a href="https://github.com/snowarch/inir-hub">Add to the hub</a></li></ul></div>
+				<div><span class="lbl">Built on</span><ul><li><a href="https://github.com/YaLTeR/niri">Niri</a></li><li><a href="https://quickshell.outfoxxed.me/">Quickshell</a></li></ul></div>
+			</footer>
+		</main>
+
+		<script>
+			document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((button) => button.addEventListener('click', () => {
+				navigator.clipboard?.writeText(button.dataset.copy ?? '').then(() => {
+					const label = button.querySelector('span');
+					button.classList.add('done');
+					if (label) label.textContent = 'Copied';
+					setTimeout(() => { button.classList.remove('done'); if (label) label.textContent = 'Copy'; }, 1500);
+				});
+			}));
+		</script>
+	</body>
+</html>

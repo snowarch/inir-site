@@ -1,0 +1,17 @@
+---
+import Site from '../layouts/Site.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const arrow = '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 8h8M8.5 4.5 12 8l-3.5 3.5"/></svg>';
+---
+
+<Site title="Not found, iNiR" description="This page is not on inir.space.">
+	<section class="row">
+		<div class="pad" style="padding-block: 96px">
+			<span class="lbl">404</span>
+			<h1 style="margin-top: 14px">Nothing lives here.</h1>
+			<p class="sub">The page moved or never existed. The docs probably have what you were after.</p>
+			<div class="links"><a href={`${base}docs/`}>Docs <Fragment set:html={arrow} /></a><a href={base}>Home <Fragment set:html={arrow} /></a></div>
+		</div>
+	</section>
+</Site>

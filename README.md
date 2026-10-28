@@ -7,16 +7,22 @@ https://inir.space.
 
 ## Where things live
 
-- **The landing page** is `src/pages/index.astro`, styled in `src/styles/home.css` on the shared palette in
-  `src/styles/tokens.css`: black and white with one lime accent, Archivo (its width and weight axes do the motion),
-  JetBrains Mono for the install commands. The mark is `src/assets/inir-mark.svg`. Every picture is a
-  real screenshot of the shell in `public/shots/` (each with a 960 wide copy); distro logos are in `public/distros/`.
-- **What's new** comes from iNiR itself: `npm run sync` reads `VERSION` and the newest section of `CHANGELOG.md`
-  beside `docs/` and writes `src/release.generated.json`, so a release shows up on the next build.
+- **The pages** are `src/pages/`: the landing page, `/changelog` and `/hub`, all in `src/layouts/Site.astro` and
+  `src/styles/site.css` on the shared palette in `src/styles/tokens.css`: near black, hairlines and one amber
+  accent, Geist for text and Geist Mono for labels and commands. The mark is `src/assets/inir-mark.svg`. Every
+  picture is a real screenshot of the shell in `public/shots/` (each with a 960 wide copy); distro logos are in
+  `public/distros/`.
+- **Versions and release notes** come from iNiR itself: `npm run sync` reads `VERSION` and every section of
+  `CHANGELOG.md` beside `docs/` (a section's bold line names the iRiS version) and writes
+  `src/release.generated.json`. The landing page, What's new and `/changelog` follow it, so a release shows up on
+  the next build.
+- **The hub page** reads the catalogue `inir hub build` writes. Point `INIR_HUB` at its output folder and
+  `npm run sync` serves it under `/hub` (`index.json`, packages, previews), the same URLs `inir hub` reads.
 - **The docs are not in this repository.** They live in [`docs/`](https://github.com/snowarch/iNiR/tree/main/docs)
   in iNiR and change with the shell. `npm run sync` copies them in, turns wiki links into site links and builds
   the sidebar from `docs/_Sidebar.md`. To fix a doc, edit it in iNiR; every page has an Edit link that goes there.
-- **The theme for the docs** is `src/styles/theme.css` on the same tokens,.
+- **The theme for the docs** is `src/styles/theme.css` on the same tokens, with three Starlight overrides in
+  `src/components/docs/`: the site's links in the header, and one column with the page's sections under its title.
 
 ## Run it
 

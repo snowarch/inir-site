@@ -64,39 +64,51 @@ const rest = files.map((file) => basename(file, '.md')).filter((name) => slugOf(
 if (rest.length) sidebar.push({ label: 'More', collapsed: true, items: rest.sort().map((name) => ({ label: name.replace(/_/g, ' ').toLowerCase().replace(/^\w/, (c) => c.toUpperCase()), link: `/docs/${slugOf(name)}/` })) });
 writeFileSync(join(root, 'src', 'sidebar.generated.json'), JSON.stringify(sidebar, null, 2) + '\n');
 
-// The landing page names the current release and what it added, from VERSION and the newest section of
-// CHANGELOG.md beside docs/. Without them the page leaves the release out.
-const release = { version: null, date: null, title: null, summary: null, added: [] };
+// The landing page, /changelog and the families row follow iNiR's own files: VERSION and every section of
+// CHANGELOG.md beside docs/ (a section's bold line names the iRiS version). Without them the release is left out.
 const versionFile = join(source, '..', 'VERSION');
 const changelogFile = join(source, '..', 'CHANGELOG.md');
-if (existsSync(versionFile)) release.version = readFileSync(versionFile, 'utf8').trim();
+const release = { version: existsSync(versionFile) ? readFileSync(versionFile, 'utf8').trim() : null, releases: [] };
+const plain = (text) => text.replace(/\*\*?([^*]+)\*\*?/g, '$1').replace(/`([^`]+)`/g, '$1').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').trim();
+const escape = (text) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+// The changelog page shows items as written: code, bold and links, nothing else.
+const inline = (text) => escape(text).replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+	.replace(/\[([^\]]+)\]\((https?:[^)\s"]+)\)/g, '<a href="$2">$1</a>');
+const sentence = (text) => {
+	const first = plain(text.replace(/\s*\(`inir [^)]*\)/g, '')).split(/(?<=\.)\s/)[0];
+	// Sentence case, unless the line opens on a name with its own casing (iRiS) or a command.
+	return /^[a-z]+\b/.test(first) && !text.startsWith('`') ? first.charAt(0).toUpperCase() + first.slice(1) : first;
+};
 if (existsSync(changelogFile)) {
 	const log = readFileSync(changelogFile, 'utf8').replace(/\r\n/g, '\n');
-	const head = log.match(/^## \[(\d+\.\d+\.\d+)\] - (\d{4}-\d{2}-\d{2})$/m);
-	if (head) {
-		const after = log.slice(head.index + head[0].length);
-		const next = after.search(/^## \[/m);
-		const section = next < 0 ? after : after.slice(0, next);
-		const plain = (text) => text.replace(/\*\*?([^*]+)\*\*?/g, '$1').replace(/`([^`]+)`/g, '$1').trim();
-		release.version ??= head[1];
-		release.date = head[2];
-		release.title = section.match(/^\*\*(.+)\*\*$/m)?.[1] ?? null;
-		release.summary = section.split('\n\n').map((part) => part.trim())
-			.find((part) => part && !/^[#>*-]/.test(part)) ?? null;
-		const added = (section.split(/^### /m).find((part) => part.startsWith('Added\n')) ?? '');
-		for (const item of added.split('\n').filter((line) => line.startsWith('- **'))) {
-			const [, name, text] = item.match(/^- \*\*(.+?)\*\*:?\s*(.*)$/) ?? [];
-			if (!name) continue;
-			const command = text.match(/`(inir [^`]+)`/)?.[1] ?? null;
-			const first = plain(text.replace(/\s*\(`inir [^)]*\)/g, '')).split(/(?<=\.)\s/)[0];
-			// Sentence case, unless the line opens on a name with its own casing (iRiS) or a command.
-			const upper = /^[a-z]+\b/.test(first) && !text.startsWith('`');
-			release.added.push({ name: plain(name), text: upper ? first.charAt(0).toUpperCase() + first.slice(1) : first, command });
-		}
-		if (release.summary) release.summary = plain(release.summary);
-	}
+	const heads = [...log.matchAll(/^## \[(\d+\.\d+\.\d+)\] - (\d{4}-\d{2}-\d{2})$/gm)];
+	heads.forEach((head, i) => {
+		const section = log.slice(head.index + head[0].length, heads[i + 1]?.index ?? log.length);
+		const title = section.match(/^\*\*(.+)\*\*$/m)?.[1] ?? null;
+		const summary = section.split('\n\n').map((part) => part.trim()).find((part) => part && !/^[#>*-]/.test(part)) ?? null;
+		const list = (name) => (section.split(/^### /m).find((part) => part.startsWith(`${name}\n`)) ?? '')
+			.split('\n').filter((line) => line.startsWith('- ')).map((line) => {
+				const [, bold, rest] = line.match(/^- \*\*(.+?)\*\*:?\s*(.*)$/) ?? [];
+				return bold ? { name: plain(bold), text: sentence(rest), html: inline(rest) } : { name: null, text: sentence(line.slice(2)), html: inline(line.slice(2)) };
+			});
+		release.releases.push({
+			version: head[1], date: head[2], title, iris: title?.match(/iRiS (\d+(?:\.\d+)*)/)?.[1] ?? null,
+			summary: summary && plain(summary), added: list('Added'), changed: list('Changed'), fixed: list('Fixed'),
+		});
+	});
 }
+release.version ??= release.releases[0]?.version ?? null;
 writeFileSync(join(root, 'src', 'release.generated.json'), JSON.stringify(release, null, 2) + '\n');
 
+// /hub is this site's page over the catalogue `inir hub build` writes (INIR_HUB: its --out folder). Everything but
+// its own gallery page is served as built, under public/hub, so clients keep reading inir.space/hub/index.json.
+const hubSource = process.env.INIR_HUB && resolve(process.env.INIR_HUB);
+const hubOut = join(root, 'public', 'hub');
+if (hubSource && existsSync(join(hubSource, 'index.json'))) {
+	rmSync(hubOut, { recursive: true, force: true });
+	cpSync(hubSource, hubOut, { recursive: true, filter: (path) => path !== join(hubSource, 'index.html') });
+}
+
 console.log(`sync-docs: ${files.length} pages, ${sidebar.length} sidebar groups from ${source}` +
-	(release.version ? `, release ${release.version}` : ', no release notes'));
+	(release.version ? `, release ${release.version}, ${release.releases.length} changelog sections` : ', no release notes') +
+	(existsSync(join(hubOut, 'index.json')) ? ', hub catalogue' : ', no hub catalogue (set INIR_HUB)'));

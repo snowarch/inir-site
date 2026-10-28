@@ -1,0 +1,13 @@
+---
+// The title with the page's sections under it in one line: the docs read in a single column, no right sidebar.
+const PAGE_TITLE_ID = '_top'; // Starlight's id for the title, not exported
+
+const toc = (Astro.locals.starlightRoute.toc?.items ?? []).flatMap((item) => (item.slug === PAGE_TITLE_ID ? item.children : [item]));
+---
+
+<h1 id={PAGE_TITLE_ID}>{Astro.locals.starlightRoute.entry.data.title}</h1>
+{toc.length > 1 && (
+	<nav class="page-toc" aria-label="On this page">
+		{toc.map((item) => <a href={`#${item.slug}`}>{item.text}</a>)}
+	</nav>
+)}

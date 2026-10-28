@@ -1,0 +1,70 @@
+---
+import Site from '../../layouts/Site.astro';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import { day, hub } from '../../lib/data';
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const arrow = '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 8h8M8.5 4.5 12 8l-3.5 3.5"/></svg>';
+// The catalogue's kinds in the order people look for them; a kind the site doesn't know yet still shows.
+const names: Record<string, [string, string]> = {
+	family: ['Families', 'Family'], widget: ['Widgets', 'Widget'], theme: ['Colour themes', 'Colour theme'],
+	'iris-theme': ['iRiS themes', 'iRiS theme'], webapp: ['Web apps', 'Web app'],
+};
+const items = hub?.items ?? [];
+// The Hub docs page ships with the docs that have it; until then the link stays out.
+const guide = existsSync(join(process.cwd(), 'src', 'content', 'docs', 'docs', 'hub.md'));
+const order = Object.keys(names);
+const kinds = [...new Set(items.map((item) => item.kind))].sort((a, b) => (order.indexOf(a) + 1 || 99) - (order.indexOf(b) + 1 || 99));
+const sorted = [...items].sort((a, b) => kinds.indexOf(a.kind) - kinds.indexOf(b.kind) || a.name.localeCompare(b.name));
+---
+
+<Site title="Hub, iNiR" description="Families, widgets, themes and web apps for iNiR, made by the people who use it." page="hub" image="shots/iris-desktop.webp">
+	<section class="row">
+		<div class="pad">
+			<span class="lbl">Hub</span>
+			<h1 style="margin-top: 14px">Plugins for iNiR.</h1>
+			<p class="sub">Open Settings › Hub and press Get. Removing one takes its files and nothing else.</p>
+			<div class="links">{guide && <a href={`${base}docs/hub/`}>How it works <Fragment set:html={arrow} /></a>}<a href="https://github.com/snowarch/inir-hub">Add yours <Fragment set:html={arrow} /></a></div>
+		</div>
+	</section>
+	{hub ? (
+		<section class="row" data-hub>
+			<div class="kinds" role="group" aria-label="Kind">
+				<button type="button" aria-pressed="true" data-kind="">All</button>
+				{kinds.map((kind) => <button type="button" aria-pressed="false" data-kind={kind}>{names[kind]?.[0] ?? kind}</button>)}
+				<span class="tag updated">Updated {day(hub.generated.slice(0, 10))}</span>
+			</div>
+			<div class="items-clip"><div class="items">
+				{sorted.map((item) => (
+					<article class="item" data-kind={item.kind} id={item.id}>
+						<div class="pic">{item.preview && <img src={`${base}hub/${item.preview}`} alt="" loading="lazy" />}</div>
+						<div class="top"><h3>{item.name}</h3><span class="tag">v{item.version}</span></div>
+						{(item.summary || item.description) && <p>{item.summary || item.description}</p>}
+						<div class="foot-l">
+							<span class="chip">{names[item.kind]?.[1] ?? item.kind}</span>
+							{(item.permissions ?? []).map((p) => <span class="chip" title={hub.permissions[p] ?? p}>{p}</span>)}
+							{item.authors?.length && <span class="lbl" style="align-self: center; margin-left: auto">{item.authors.join(', ')}</span>}
+						</div>
+					</article>
+				))}
+			</div></div>
+		</section>
+	) : (
+		<section class="row"><p class="empty">The catalogue was not part of this build.</p></section>
+	)}
+</Site>
+
+<script>
+	// Kinds filter the grid in place; the catalogue is small enough to ship whole.
+	const hub = document.querySelector<HTMLElement>('[data-hub]');
+	if (hub) {
+		const buttons = [...hub.querySelectorAll<HTMLButtonElement>('[data-kind]:is(button)')];
+		const items = [...hub.querySelectorAll<HTMLElement>('.item')];
+		buttons.forEach((button) => button.addEventListener('click', () => {
+			const kind = button.dataset.kind;
+			buttons.forEach((other) => other.setAttribute('aria-pressed', String(other === button)));
+			items.forEach((item) => (item.hidden = Boolean(kind) && item.dataset.kind !== kind));
+		}));
+	}
+</script>
