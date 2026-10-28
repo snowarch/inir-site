@@ -14,14 +14,21 @@ function material(dir) {
 	if (!existsSync(registry) || !existsSync(index)) return null;
 	const names = [...readFileSync(registry, 'utf8').matchAll(/^\s+name: (?:Translation\.tr\()?"([^"]+)"/gm)].map((m) => m[1]);
 	const pages = new Map();
+	// A section's own entry lists its strings in order, each option's name then its description: a description reads
+	// as a sentence (long, or ending in a period), a name doesn't.
+	const sentence = (text) => text.length > 38 || /[.!?]$/.test(text);
 	for (const entry of JSON.parse(readFileSync(index, 'utf8'))) {
 		const page = names[entry.pageIndex];
-		if (!page || !entry.label || entry.label === entry.section) continue;
+		if (!page || !entry.section || entry.label !== entry.section) continue;
 		const sections = pages.get(page) ?? pages.set(page, new Map()).get(page);
 		const rows = sections.get(entry.section) ?? sections.set(entry.section, new Map()).get(entry.section);
-		// The index keeps a row's description among its keywords: the first long one that isn't a name.
-		const description = (entry.keywords ?? []).find((k) => k.length > 24 && k !== entry.label && k !== entry.section);
-		if (!rows.has(entry.label)) rows.set(entry.label, description);
+		let last = null;
+		for (const word of (entry.keywords ?? []).filter((k) => k && k !== entry.section)) {
+			if (sentence(word)) { if (last && !rows.get(last)) rows.set(last, word); continue; }
+			if (!rows.has(word)) rows.set(word, '');
+			last = word;
+		}
+		if (!rows.size) sections.delete(entry.section);
 	}
 	return { title: 'Every Material setting', root: 'Settings', pages: names.filter((name) => pages.has(name)).map((name) => [name, pages.get(name)]) };
 }
