@@ -35,5 +35,5 @@ export function ipcReference(file) {
 export function withIpcReference(text, file) {
 	const list = ipcReference(file);
 	if (!list) return text;
-	return text.replace(/<!-- ipc reference -->[^]*?<!-- \/ipc reference -->/, list);
+	return text.replace(/<!-- ipc reference -->[^]*?<!-- \/ipc reference -->/, () => list);
 }
