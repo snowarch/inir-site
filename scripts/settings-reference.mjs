@@ -92,28 +92,32 @@ function iris(dir) {
 	const text = readFileSync(file, 'utf8');
 	const titles = new Map([...text.matchAll(/\{ id: "(\w+)", cluster: [-\d]+, title: "([^"]+)", subtitle: "([^"]+)"/g)].map((m) => [m[1], [m[2], m[3]]]));
 	const pages = new Map([...titles.keys()].map((id) => [id, new Map()]));
-	for (const row of text.matchAll(/^\s+\{[^\n]*\bsection: "(\w+)"[^\n]*$/gm)) {
-		const get = (key) => row[0].match(new RegExp(`\\b${key}: "((?:[^"\\\\]|\\\\.)*)"`))?.[1];
-		const label = get('label');
-		if (!label || !pages.has(row[1])) continue;
-		const group = get('group') ?? '';
-		const rows = pages.get(row[1]).get(group) ?? pages.get(row[1]).set(group, new Map()).get(group);
+	// Whole groups shown on another page (movedGroups), and where a Customize row (target:) lands (sectionOf), as IrisOptions does
+	const moved = new Map([...(text.match(/movedGroups: \(\{([\s\S]*?)\n\s+\}\)/)?.[1] ?? '').matchAll(/(\w+): \{ to: "(\w+)", groups: \[([^\]]*)\]/g)]
+		.map((m) => [m[1], [m[2], tr(m[3])]]));
+	const place = (section, group) => (moved.get(section)?.[1].includes(group) ? moved.get(section)[0] : section);
+	const sectionOf = (target, path, group) => ({
+		island: 'bar', pieces: 'bubbles', motion: 'motion', dock: 'dock', desktop: 'desktop',
+		bodies: path.startsWith('iris.player.') ? 'player' : group === 'Control Center' ? 'controlCenter' : 'bubbles',
+		places: path.startsWith('iris.wallpaper.') || path.includes('.gallery.') ? 'desktop' : { Spotlight: 'spotlight', Orbit: 'orbit', 'Panel look': 'sidebars' }[group] ?? 'appearance',
+		transients: group === 'Notifications' || group === 'Banners' ? 'notifications' : 'sound',
+	})[target] ?? 'appearance';
+	const known = new Set();
+	const add = (row, section) => {
+		const get = (key) => row.match(new RegExp(`\\b${key}: "((?:[^"\\\\]|\\\\.)*)"`))?.[1];
+		const label = get('label'), group = get('group') ?? '', path = get('path');
+		const id = place(section, group);
+		if (!label || !pages.has(id) || (path && known.has(path))) return;
+		if (path) known.add(path);
+		const rows = pages.get(id).get(group) ?? pages.get(id).set(group, new Map()).get(group);
 		if (!rows.has(label)) rows.set(label, get('description'));
-	}
-	// Customize's areas hold their own rows (target:, not section:)
-	const areas = new Map([...text.matchAll(/\{ id: "(\w+)", label: "([^"]+)", glyph: "[^"]*"[^\n]*\n\s+about: "([^"]+)" \}/g)].map((m) => [m[1], [`Customize › ${m[2]}`, m[3].replace(/\.$/, ''), new Map()]]));
+	};
+	for (const row of text.matchAll(/^\s+\{[^\n]*\bsection: "(\w+)"[^\n]*$/gm)) add(row[0], row[1]);
 	for (const row of text.matchAll(/^\s+\{[^\n]*\btarget: "(\w+)"[^\n]*$/gm)) {
-		const get = (key) => row[0].match(new RegExp(`\\b${key}: "((?:[^"\\\\]|\\\\.)*)"`))?.[1];
-		const label = get('label');
-		if (!label || !areas.has(row[1])) continue;
-		const groups = areas.get(row[1])[2];
-		const rows = groups.get(get('group') ?? '') ?? groups.set(get('group') ?? '', new Map()).get(get('group') ?? '');
-		if (!rows.has(label)) rows.set(label, get('description'));
+		const get = (key) => row[0].match(new RegExp(`\\b${key}: "([^"]*)"`))?.[1] ?? '';
+		add(row[0], sectionOf(row[1], get('path'), get('group')));
 	}
-	return { title: 'Every iRiS setting', root: 'iRiS Settings', subtitles: titles, pages: [
-		...[...pages].filter(([, s]) => s.size).map(([id, s]) => [titles.get(id)[0], s, titles.get(id)[1]]),
-		...[...areas.values()].filter(([, , s]) => s.size).map(([title, about, s]) => [title, s, about]),
-	] };
+	return { title: 'Every iRiS setting', root: 'iRiS Settings', subtitles: titles, pages: [...pages].filter(([, s]) => s.size).map(([id, s]) => [titles.get(id)[0], s, titles.get(id)[1]]) };
 }
 
 const intro = (root) => `Every option in ${root}, page by page, read from the family's code each time this site is built. In ${root}, **Ctrl+F** finds any of them and takes you there.`;
