@@ -1,7 +1,7 @@
 // Every option of each family's Settings, read from the family's own code at build time, so the reference can never
 // lag it: Material's generated search index, Waffle's settings pages, iRiS's option registry. `families` is an
 // inir-hub checkout's families/ folder; each family missing there is left out.
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const tr = (text) => [...text.matchAll(/(?:Translation\.tr\()?"((?:[^"\\]|\\.)*)"\)?/g)].map((m) => m[1].replace(/\\"/g, '"'));
@@ -12,7 +12,8 @@ function material(dir) {
 	const registry = join(dir, 'settings', 'SettingsPageRegistry.qml');
 	const index = join(dir, 'settings', 'settings-search-index.generated.json');
 	if (!existsSync(registry) || !existsSync(index)) return null;
-	const names = [...readFileSync(registry, 'utf8').matchAll(/^\s+name: (?:Translation\.tr\()?"([^"]+)"/gm)].map((m) => m[1]);
+	const listed = [...readFileSync(registry, 'utf8').matchAll(/^\s+name: (?:Translation\.tr\()?"([^"]+)"[\s\S]*?^\s+component: "[^"]*\/([^"/]+)"/gm)];
+	const names = listed.map((m) => m[1]);
 	const pages = new Map();
 	// A section's own entry lists its strings in order, each option's name then its description: a description reads
 	// as a sentence (long, or ending in a period), a name doesn't.
@@ -23,27 +24,50 @@ function material(dir) {
 		const sections = pages.get(page) ?? pages.set(page, new Map()).get(page);
 		const rows = sections.get(entry.section) ?? sections.set(entry.section, new Map()).get(entry.section);
 		let last = null;
-		for (const word of (entry.keywords ?? []).filter((k) => k && k !== entry.section)) {
+		for (const word of (entry.keywords ?? []).filter((k) => k && k !== entry.section && k !== entry.task)) {
 			if (sentence(word)) { if (last && !rows.get(last)) rows.set(last, word); continue; }
 			if (!rows.has(word)) rows.set(word, '');
 			last = word;
 		}
 		if (!rows.size) sections.delete(entry.section);
 	}
+	for (const [, page, file] of listed) {
+		if (pages.has(page) && existsSync(join(dir, 'settings', file))) choices(join(dir, 'settings', file), pages.get(page));
+	}
 	return { title: 'Every Material setting', root: 'Settings', pages: names.filter((name) => pages.has(name)).map((name) => [name, pages.get(name)]) };
 }
 
+// A selector's choices live only in the page's QML: each one goes on its subsection's row, or its section's.
+function choices(file, sections) {
+	const lines = readFileSync(file, 'utf8').split('\n');
+	const titleAt = (i) => tr(lines.slice(i + 1, i + 7).join('\n').match(/^\s+title: (.*)$/m)?.[1] ?? '')[0];
+	let section = '', sub = '';
+	lines.forEach((l, i) => {
+		if (/^\s+(SettingsCardSection|ContentSection) \{/.test(l)) { section = titleAt(i) ?? section; sub = ''; return; }
+		if (/^\s+ContentSubsection \{/.test(l)) { sub = titleAt(i) ?? ''; return; }
+		if (!/^\s+ConfigSelectionArray \{/.test(l) || !sections.has(section)) return;
+		const end = lines.findIndex((x, j) => j > i && /^\s+\]/.test(x));
+		const names = lines.slice(i, end < 0 ? i + 40 : end).flatMap((x) => tr(x.match(/displayName: (.*?)(?:,\s*\w+:|\s*\}|$)/)?.[1] ?? ''));
+		if (names.length < 2) return;
+		const rows = sections.get(section);
+		const label = sub || section;
+		const said = `${names.slice(0, -1).join(', ')} or ${names.at(-1)}.`;
+		if (rows.has(label)) rows.set(label, rows.get(label) ? `${rows.get(label)} ${said}` : said);
+		else sections.set(section, new Map([[label, said], ...rows]));
+	});
+}
+
 function waffle(dir) {
-	const folder = join(dir, 'settings', 'pages');
-	if (!existsSync(folder)) return null;
+	const app = join(dir, 'settings', 'WaffleSettingsApp.qml');
+	if (!existsSync(app)) return null;
 	const pages = [];
-	for (const file of readdirSync(folder).filter((f) => /^W.*Page\.qml$/.test(f)).sort()) {
-		const lines = readFileSync(join(folder, file), 'utf8').split('\n');
-		const title = lines.map((l) => l.match(/^\s+title: (.*)$/)).find(Boolean);
+	for (const [, name, file] of readFileSync(app, 'utf8').matchAll(/name: Translation\.tr\("([^"]+)"\)[\s\S]*?component: Qt\.resolvedUrl\("pages\/([^"]+)"\)/g)) {
+		if (!existsSync(join(dir, 'settings', 'pages', file))) continue;
+		const lines = readFileSync(join(dir, 'settings', 'pages', file), 'utf8').split('\n');
 		const sections = new Map();
 		let card = '';
 		lines.forEach((l, i) => {
-			const block = l.match(/^\s+(WSettingsCard|WSettings(?:Switch|SpinBox|Dropdown|Slider|TextField|Row)) \{/);
+			const block = l.match(/^\s+(WSettingsCard|WSettings(?:Switch|SpinBox|Dropdown|Slider|TextField|Row|Button)) \{/);
 			if (!block) return;
 			const body = lines.slice(i + 1, i + 8).join('\n');
 			if (block[1] === 'WSettingsCard') { card = tr(body.match(/title: (.*)/)?.[1] ?? '')[0] ?? card; return; }
@@ -52,7 +76,7 @@ function waffle(dir) {
 			const rows = sections.get(card) ?? sections.set(card, new Map()).get(card);
 			rows.set(label, tr(body.match(/description: (.*)/)?.[1] ?? '')[0]);
 		});
-		if (sections.size) pages.push([tr(title?.[1] ?? '')[0] ?? file.slice(1, -8), sections]);
+		pages.push([name, sections.size ? sections : new Map([['', new Map()]])]);
 	}
 	return { title: 'Every Waffle setting', root: 'Waffle Settings', pages };
 }
@@ -89,6 +113,7 @@ export function settingsReference(families) {
 			for (const [section, rows] of sections) {
 				if (section) body.push(`### ${section}`, '');
 				for (const [label, description] of rows) body.push(line(label, description));
+				if (!rows.size) body.push('Nothing to set here: you use this page directly.');
 				body.push('');
 			}
 		}
