@@ -2,6 +2,24 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import sidebar from './src/sidebar.generated.json' with { type: 'json' };
+import { renameSync, rmSync } from 'node:fs';
+
+// Kira's terms and privacy keep their addresses (/kira-bot/terms.html): the Discord developer portal links them, and
+// Astro would write them as folders.
+const kiraPages = {
+	name: 'kira-pages',
+	hooks: {
+		'astro:build:done': ({ dir }) => {
+			for (const name of ['terms', 'privacy']) {
+				const folder = new URL(`kira-bot/${name}.html/`, dir);
+				const page = new URL(`kira-bot/${name}.page`, dir);
+				renameSync(new URL('index.html', folder), page);
+				rmSync(folder, { recursive: true });
+				renameSync(page, new URL(`kira-bot/${name}.html`, dir));
+			}
+		},
+	},
+};
 
 // SITE and SITE_BASE come from the deploy; inir.space serves the site at the root.
 const site = process.env.SITE ?? 'https://inir.space';
@@ -11,6 +29,7 @@ export default defineConfig({
 	site,
 	base,
 	integrations: [
+		kiraPages,
 		starlight({
 			title: 'iNiR',
 			description: 'A complete desktop shell for Niri, built on Quickshell.',
@@ -21,14 +40,17 @@ export default defineConfig({
 				{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/pAPTfAhZUJ' },
 			],
 			customCss: ['@fontsource-variable/geist', '@fontsource-variable/geist-mono', './src/styles/tokens.css', './src/styles/theme.css'],
-			// One column with the sections under the title, and the site's links in the header.
+			// One column with the sections under the title, the site's links in the header, always dark.
 			components: {
 				Header: './src/components/docs/Header.astro',
 				PageTitle: './src/components/docs/PageTitle.astro',
 				TwoColumnContent: './src/components/docs/TwoColumnContent.astro',
+				ThemeProvider: './src/components/docs/ThemeProvider.astro',
+				ThemeSelect: './src/components/docs/ThemeSelect.astro',
 			},
 			// Vitesse keeps code in muted greens and oranges; blocks take the page's colours and no fake window chrome.
 			expressiveCode: {
+				// The site is dark only; the light theme stays because Starlight's UI colours want a pair.
 				themes: ['vitesse-dark', 'vitesse-light'],
 				useStarlightUiThemeColors: true,
 				defaultProps: { frame: 'code' },

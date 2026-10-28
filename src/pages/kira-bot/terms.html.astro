@@ -1,15 +1,11 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kira — Terms of Service</title>
-<style>
-:root{color-scheme:light dark;--bg:#fbf8f5;--ink:#241c17;--dim:#6d5f55;--line:#e4dad1;--accent:#b9622a}
-@media (prefers-color-scheme:dark){:root{--bg:#17120f;--ink:#f1e9e2;--dim:#b3a396;--line:#35291f;--accent:#e7a66a}}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
-main{max-width:44rem;margin:0 auto;padding:40px 16px 80px}
-h1{font-size:1.9rem;margin:0 0 .2em} h2{font-size:1.15rem;margin:1.8em 0 .4em;color:var(--accent)}
-p,li{margin:.5em 0} .dim{color:var(--dim)} hr{border:0;border-top:1px solid var(--line);margin:2.4em 0}
-a{color:var(--accent)}
-</style></head><body><main>
+---
+// Kept at /kira-bot/terms.html: the Discord developer portal links this exact address.
+import Site from '../../layouts/Site.astro';
+---
+
+<Site title="Kira, Terms of Service" description="The terms for using the Kira Discord bot and its Activity.">
+	<section class="row">
+		<article class="legal">
 <h1>Terms of Service</h1>
 <p class="dim">Kira (Discord bot and its Activity). Last updated: 2026-10-10. <a href="#es">Versión en español</a></p>
 
@@ -61,4 +57,6 @@ a{color:var(--accent)}
 <h2>Contacto</h2>
 <p>Abrí un issue en <a href="https://github.com/snowarch/inir-site/issues">github.com/snowarch/inir-site/issues</a> mencionando “Kira”, o escribile al dueño por Discord.</p>
 </div>
-</main></body></html>
+		</article>
+	</section>
+</Site>

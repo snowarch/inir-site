@@ -1,6 +1,6 @@
 /* Starlight on the site's palette (tokens.css): near black, hairlines, Geist, amber only where something has focus.
-   The docs read in one column of about 70 characters; the page's sections sit under the title (PageTitle). Light
-   mode takes a dark amber, the bright one is unreadable on white. */
+   The docs read in one column of about 70 characters; the page's sections sit under the title (PageTitle). Dark
+   only, like the rest of the site (ThemeProvider). */
 :root {
 	--sl-font: var(--sans);
 	--sl-font-system-mono: var(--mono);
@@ -16,7 +16,7 @@
 	scrollbar-color: var(--sl-color-gray-5) transparent;
 }
 .sidebar-pane { scrollbar-width: thin; }
-:root[data-theme='dark'], :root:not([data-theme]) {
+:root {
 	color-scheme: dark;
 	--sl-color-accent-low: #2a1d05;
 	--sl-color-accent: #ffb224;
@@ -34,26 +34,6 @@
 	--sl-color-hairline: var(--line);
 	--sl-color-hairline-light: var(--line-2);
 	--sl-color-text: #c2c2c2;
-	--sl-color-text-accent: var(--sl-color-accent);
-}
-:root[data-theme='light'] {
-	color-scheme: light;
-	--sl-color-accent-low: #fff1d6;
-	--sl-color-accent: #8a4b00;
-	--sl-color-accent-high: #5c3200;
-	--sl-color-white: #111111;
-	--sl-color-gray-1: #1c1c1c;
-	--sl-color-gray-2: #383838;
-	--sl-color-gray-3: #555555;
-	--sl-color-gray-4: #767676;
-	--sl-color-gray-5: #d9d9d9;
-	--sl-color-gray-6: #efefef;
-	--sl-color-gray-7: #f7f7f7;
-	--sl-color-black: #ffffff;
-	--sl-color-bg-nav: rgb(255 255 255 / 0.85);
-	--sl-color-bg-sidebar: #ffffff;
-	--sl-color-hairline: #e6e6e6;
-	--sl-color-text: #383838;
 	--sl-color-text-accent: var(--sl-color-accent);
 }
 ::selection { background: var(--sl-color-accent); color: var(--sl-color-black); }
@@ -109,3 +89,7 @@ h1#_top { font-weight: 600; letter-spacing: -0.025em; line-height: 1.2; color: v
 .pagination-links a { border-radius: 0; box-shadow: none; border-color: var(--sl-color-hairline-light); }
 .pagination-links a:hover { border-color: var(--sl-color-accent); }
 .pagination-links .link-title { font-size: 0.95rem; font-weight: 500; }
+/* The header's icons in grey like the landing page's, and no divider where the theme picker used to be */
+.social-icons a { color: var(--sl-color-gray-3); }
+.social-icons a:hover { color: var(--sl-color-white); }
+.social-icons::after { display: none; }

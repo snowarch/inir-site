@@ -217,3 +217,16 @@ h2 { font-weight: 500; font-size: 22px; line-height: 1.2; letter-spacing: -0.02e
 @media (prefers-reduced-motion: reduce) {
 	*, *::before, *::after { transition-duration: 0s !important; }
 }
+
+/* Legal pages (Kira's terms and privacy): the docs' reading column */
+.legal { max-width: 720px; padding: 48px 40px 72px; font-size: 15.5px; line-height: 1.8; color: #c2c2c2; }
+.legal h1 { margin-bottom: 6px; color: var(--fg); }
+.legal h2 { margin: 40px 0 8px; font-size: 18px; font-weight: 600; letter-spacing: -0.015em; color: var(--fg); }
+.legal p, .legal li { margin: 10px 0; }
+.legal ul { list-style: none; }
+.legal li { position: relative; padding-left: 18px; }
+.legal li::before { content: ''; position: absolute; left: 2px; top: 0.9em; width: 6px; height: 1px; background: var(--fg-3); }
+.legal .dim { color: var(--fg-3); font: 500 12px/1.6 var(--mono); }
+.legal a { color: var(--fg); text-decoration: underline; text-decoration-color: rgb(255 178 36 / 0.45); text-underline-offset: 3px; }
+.legal hr { border: 0; border-top: 1px solid var(--line); margin: 48px 0; }
+@media (max-width: 900px) { .legal { padding: 36px 20px 56px; } }
