@@ -70,6 +70,7 @@ jobs:
         env:
           # The base's pages, then each family's from the hub (docs/<id>).
           INIR_DOCS: inir/docs:hub/docs/*
+          INIR_FAMILIES: hub/families
           INIR_HUB: hub-out
           SITE_BASE: /
       - name: Publish to gh-pages

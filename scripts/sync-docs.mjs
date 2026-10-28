@@ -5,6 +5,7 @@
 // the base's, whose VERSION and CHANGELOG.md sit beside it. Nothing here is edited by hand after a sync.
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
+import { settingsReference } from './settings-reference.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const base = (process.env.SITE_BASE ?? '/').replace(/\/?$/, '/');
@@ -63,6 +64,13 @@ for (const folder of folders) {
 	}
 }
 
+// What each family's Settings holds, generated from its code (INIR_FAMILIES: an inir-hub checkout's families/).
+const reference = settingsReference(resolve(process.env.INIR_FAMILIES ?? join(root, '..', 'inir-hub', 'families')));
+for (const page of reference) {
+	const body = page.text.replace(/^# .*\n\n/, '');
+	writeFileSync(join(pages, `${slugOf(page.name)}.md`), ['---', `title: ${JSON.stringify(page.title)}`, 'editUrl: false', '---', '', body].join('\n'));
+}
+
 // Sidebar: groups in the order the base names them, each repo's pages added to the group it names.
 const sidebar = [];
 const groupOf = (label) => sidebar.find((group) => group.label === label) ?? sidebar[sidebar.push({ label, items: [] }) - 1];
@@ -89,6 +97,7 @@ for (const folder of folders) {
 		if (item && label) add(label, item[2] === 'Home' ? 'index' : item[2], item[1]);
 	}
 }
+for (const page of reference) groupOf('Reference').items.push({ label: page.title, link: link(page.name) });
 for (let i = sidebar.length - 1; i >= 0; i--) if (!sidebar[i].items.length) sidebar.splice(i, 1);
 const files = folders.flatMap((folder) => folder.files);
 const rest = files.map((file) => basename(file, '.md')).filter((name) => slugOf(name) && !sidebar.some((group) => group.items.some((item) => item.link === link(name))));
