@@ -1,0 +1,17 @@
+/* One palette for the landing page and the docs: black, white, greys and one acid accent. Archivo everywhere,
+   its width (62-125) and weight (100-900) axes do the work colour would do elsewhere. */
+:root {
+	--bg: #0a0a0a;
+	--bg-2: #111111;
+	--bg-3: #1a1a1a;
+	--fg: #f5f5f5;
+	--fg-2: #a3a3a3;
+	--fg-3: #7a7a7a;
+	--line: rgba(255, 255, 255, 0.08);
+	--line-2: rgba(255, 255, 255, 0.16);
+	--accent: #d7ff3a;
+	--accent-ink: #0a0a0a;
+	--sans: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
+	--mono: 'JetBrains Mono', ui-monospace, monospace;
+	--ease: cubic-bezier(0.2, 0.7, 0.1, 1);
+}
