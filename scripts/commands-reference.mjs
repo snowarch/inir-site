@@ -4,6 +4,7 @@
 import { execFileSync } from 'node:child_process';
 
 const cell = (text) => text.replace(/\|/g, '\\|');
+const prose = (text) => cell(text).replace(/</g, '&lt;');
 
 function flagText(flag) {
 	const takes = flag.values?.length ? ` <${flag.values.join('|')}>` : flag.value ? ` <${flag.value}>` : '';
@@ -25,7 +26,8 @@ export function commandsReference(bin = process.env.INIR_CLI ?? 'inir') {
 	let groups;
 	try {
 		groups = JSON.parse(execFileSync(bin, ['__commands'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], timeout: 10000 }));
-	} catch {
+	} catch (error) {
+		console.warn(`sync-docs: no page of commands, ${bin} __commands failed (${error.code ?? error.status ?? error.message})`);
 		return null;
 	}
 	if (!Array.isArray(groups) || !groups.length) return null;
@@ -35,17 +37,17 @@ export function commandsReference(bin = process.env.INIR_CLI ?? 'inir') {
 	for (const { title, commands } of groups) {
 		out.push(`## ${title}`, '');
 		for (const c of commands) {
-			out.push(`### inir ${c.name}`, '', c.desc, '');
+			out.push(`### inir ${c.name}`, '', prose(c.desc), '');
 			if (c.flags?.length) {
 				out.push('| Option | What it does |', '| --- | --- |');
-				for (const row of flagRows(c.flags)) out.push(`| ${row.text} | ${cell(row.desc)} |`);
+				for (const row of flagRows(c.flags)) out.push(`| ${row.text} | ${prose(row.desc)} |`);
 				out.push('');
 			}
 			if (c.subs?.length) {
 				out.push(`| \`inir ${c.name}\` | What it does |`, '| --- | --- |');
 				for (const s of c.subs) {
 					const opts = flagRows(s.flags).map((row) => row.text).join(', ');
-					out.push(`| \`${cell(s.name)}\` | ${cell(s.desc)}${opts ? `<br>${opts}` : ''} |`);
+					out.push(`| \`${cell(s.name)}\` | ${prose(s.desc)}${opts ? `<br>${opts}` : ''} |`);
 				}
 				out.push('');
 			}
