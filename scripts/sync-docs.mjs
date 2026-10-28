@@ -1,67 +1,98 @@
-// Brings iNiR's docs/ into the site. The docs live in the iNiR repository and change with the shell; this
-// script only adapts them: a title from the first heading, wiki links to site routes, media paths, and the
-// sidebar from docs/_Sidebar.md. Nothing here is edited by hand after a sync.
+// Brings iNiR's docs into the site. Each repo keeps the pages about its own code in its `docs/` (the base in inir, a
+// family in inir-hub's `docs/<id>`), with a `docs.json` naming its pages and the sidebar group each sits in; this
+// script only gathers and adapts them: a title from the first heading, links between pages to site routes, media
+// paths, the sidebar. INIR_DOCS lists the folders, `:` between them, `*` for every folder at that level; the first is
+// the base's, whose VERSION and CHANGELOG.md sit beside it. Nothing here is edited by hand after a sync.
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
-import { basename, join, resolve } from 'node:path';
+import { basename, dirname, join, resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
-const source = resolve(process.env.INIR_DOCS ?? join(root, '..', 'inir', 'docs'));
 const base = (process.env.SITE_BASE ?? '/').replace(/\/?$/, '/');
-const repo = 'https://github.com/snowarch/iNiR';
 const pages = join(root, 'src', 'content', 'docs', 'docs');
 const media = join(root, 'public', 'docs-media');
 
-if (!existsSync(source)) {
+const sources = (process.env.INIR_DOCS ?? join(root, '..', 'inir', 'docs')).split(':').filter(Boolean).flatMap((entry) => {
+	const at = entry.indexOf('*');
+	if (at < 0) return [resolve(entry)];
+	const parent = resolve(entry.slice(0, at));
+	const tail = entry.slice(at + 1).replace(/^\//, '');
+	return existsSync(parent) ? readdirSync(parent).sort().map((name) => resolve(parent, name, tail)).filter(existsSync) : [];
+});
+const source = sources[0];
+if (!source || !existsSync(source)) {
 	console.error(`sync-docs: no docs at ${source}. Set INIR_DOCS to an iNiR checkout's docs/ folder.`);
 	process.exit(1);
 }
 
-const files = readdirSync(source).filter((name) => name.endsWith('.md') && !name.startsWith('_'));
-const slugOf = (name) => (name === 'index' || name === 'Home' ? '' : name.toLowerCase().replace(/_/g, '-'));
-const known = new Set(files.map((file) => basename(file, '.md')).concat('Home'));
-const route = (name, hash = '') => `${base}docs/${slugOf(name) ? slugOf(name) + '/' : ''}${hash}`;
+// docs.json: { id, edit, order, groups: [{ label, pages: [NAME, ...], labels: { NAME: short label } }] }; folders
+// sort by order, the base first. A folder without one (an older iNiR) falls back
+// to its _Sidebar.md.
+const folders = sources.map((dir) => {
+	const meta = existsSync(join(dir, 'docs.json')) ? JSON.parse(readFileSync(join(dir, 'docs.json'), 'utf8')) : {};
+	const files = readdirSync(dir).filter((name) => name.endsWith('.md') && !name.startsWith('_'));
+	return { dir, id: meta.id ?? basename(dirname(dir)), edit: meta.edit ?? 'https://github.com/snowarch/iNiR/edit/main/docs/', groups: meta.groups ?? null, order: meta.order ?? 0, files };
+}).map((folder, index) => ({ ...folder, order: index === 0 ? -1 : folder.order })).sort((a, b) => a.order - b.order);
 
-function relink(text) {
+const slugOf = (name) => (name === 'index' || name === 'Home' ? '' : name.toLowerCase().replace(/_/g, '-'));
+const known = new Set(folders.flatMap((folder) => folder.files.map((file) => basename(file, '.md'))).concat('Home'));
+const route = (name, hash = '') => `${base}docs/${slugOf(name) ? slugOf(name) + '/' : ''}${hash}`;
+const link = (name) => `/docs/${slugOf(name) ? slugOf(name) + '/' : ''}`;
+
+function relink(text, id) {
 	return text
 		.replace(/\]\(([A-Za-z0-9_]+)(\.md)?(#[^)]*)?\)/g, (match, name, _ext, hash) =>
 			known.has(name) ? `](${route(name, hash ?? '')})` : match)
-		.replace(/(\]\(|src=")(?:\.\/)?(images|assets)\//g, `$1${base}docs-media/$2/`)
-		.replace(/\]\(\.\.\/([^)\s]+)\)/g, `](${repo}/blob/main/$1)`);
+		.replace(/(\]\(|src=")(?:\.\/)?(images|assets)\//g, `$1${base}docs-media/${id}/$2/`);
 }
 
 rmSync(pages, { recursive: true, force: true });
 mkdirSync(pages, { recursive: true });
-for (const file of files) {
-	const name = basename(file, '.md');
-	const raw = readFileSync(join(source, file), 'utf8').replace(/\r\n/g, '\n');
-	const heading = raw.match(/^#\s+(.+)$/m);
-	const title = heading ? heading[1].trim() : name.replace(/_/g, ' ');
-	const body = heading ? raw.replace(heading[0], '').replace(/^\s*\n/, '') : raw;
-	const front = ['---', `title: ${JSON.stringify(title)}`, `editUrl: ${JSON.stringify(`${repo}/edit/main/docs/${file}`)}`, '---', ''];
-	const out = join(pages, `${slugOf(name) || 'index'}.md`);
-	writeFileSync(out, front.join('\n') + relink(body));
-}
-
 rmSync(media, { recursive: true, force: true });
-for (const folder of ['images', 'assets']) {
-	if (existsSync(join(source, folder))) cpSync(join(source, folder), join(media, folder), { recursive: true });
-}
-
-// Sidebar: `### Group` headings and `- [Label](TARGET)` items, in the order the wiki shows them.
-const sidebar = [];
-const sidebarFile = join(source, '_Sidebar.md');
-if (existsSync(sidebarFile)) {
-	let group = null;
-	for (const line of readFileSync(sidebarFile, 'utf8').split('\n')) {
-		const head = line.match(/^###\s+(.+)$/);
-		if (head) { group = { label: head[1].trim(), items: [] }; sidebar.push(group); continue; }
-		const item = line.match(/^\s*-\s*\[([^\]]+)\]\(([A-Za-z0-9_]+)(?:\.md)?\)/);
-		if (item && group && known.has(item[2])) group.items.push({ label: item[1], link: `/docs/${slugOf(item[2]) ? slugOf(item[2]) + '/' : ''}` });
+for (const folder of folders) {
+	for (const file of folder.files) {
+		const name = basename(file, '.md');
+		const raw = readFileSync(join(folder.dir, file), 'utf8').replace(/\r\n/g, '\n');
+		const heading = raw.match(/^#\s+(.+)$/m);
+		const title = heading ? heading[1].trim() : name.replace(/_/g, ' ');
+		const body = heading ? raw.replace(heading[0], '').replace(/^\s*\n/, '') : raw;
+		const front = ['---', `title: ${JSON.stringify(title)}`, `editUrl: ${JSON.stringify(folder.edit + file)}`, '---', ''];
+		writeFileSync(join(pages, `${slugOf(name) || 'index'}.md`), front.join('\n') + relink(body, folder.id));
+	}
+	for (const kind of ['images', 'assets']) {
+		if (existsSync(join(folder.dir, kind))) cpSync(join(folder.dir, kind), join(media, folder.id, kind), { recursive: true });
 	}
 }
-const listed = new Set(sidebar.flatMap((group) => group.items.map((item) => item.link)));
-const rest = files.map((file) => basename(file, '.md')).filter((name) => slugOf(name) && !listed.has(`/docs/${slugOf(name)}/`));
-if (rest.length) sidebar.push({ label: 'More', collapsed: true, items: rest.sort().map((name) => ({ label: name.replace(/_/g, ' ').toLowerCase().replace(/^\w/, (c) => c.toUpperCase()), link: `/docs/${slugOf(name)}/` })) });
+
+// Sidebar: groups in the order the base names them, each repo's pages added to the group it names.
+const sidebar = [];
+const groupOf = (label) => sidebar.find((group) => group.label === label) ?? sidebar[sidebar.push({ label, items: [] }) - 1];
+const add = (label, name, text) => {
+	if (known.has(name) && !sidebar.some((group) => group.items.some((item) => item.link === link(name)))) groupOf(label).items.push({ label: text, link: link(name) });
+};
+const titleOf = (folder, name) => readFileSync(join(folder.dir, `${name}.md`), 'utf8').match(/^#\s+(.+)$/m)?.[1].trim() ?? name;
+// The base's groups set the order, empty ones included: the families fill theirs from the hub.
+for (const group of folders[0].groups ?? []) groupOf(group.label);
+for (const folder of folders) {
+	if (folder.groups) {
+		for (const group of folder.groups) for (const name of group.pages) {
+			if (folder.files.includes(`${name}.md`)) add(group.label, name, group.labels?.[name] ?? titleOf(folder, name));
+		}
+		continue;
+	}
+	const legacy = join(folder.dir, '_Sidebar.md');
+	if (!existsSync(legacy)) continue;
+	let label = null;
+	for (const line of readFileSync(legacy, 'utf8').split('\n')) {
+		const head = line.match(/^###\s+(.+)$/);
+		if (head) { label = head[1].trim(); continue; }
+		const item = line.match(/^\s*-\s*\[([^\]]+)\]\(([A-Za-z0-9_]+)(?:\.md)?\)/);
+		if (item && label) add(label, item[2] === 'Home' ? 'index' : item[2], item[1]);
+	}
+}
+for (let i = sidebar.length - 1; i >= 0; i--) if (!sidebar[i].items.length) sidebar.splice(i, 1);
+const files = folders.flatMap((folder) => folder.files);
+const rest = files.map((file) => basename(file, '.md')).filter((name) => slugOf(name) && !sidebar.some((group) => group.items.some((item) => item.link === link(name))));
+if (rest.length) sidebar.push({ label: 'More', collapsed: true, items: rest.sort().map((name) => ({ label: name.replace(/_/g, ' ').toLowerCase().replace(/^\w/, (c) => c.toUpperCase()), link: link(name) })) });
 writeFileSync(join(root, 'src', 'sidebar.generated.json'), JSON.stringify(sidebar, null, 2) + '\n');
 
 // The landing page, /changelog and the families row follow iNiR's own files: VERSION and every section of
@@ -109,6 +140,6 @@ if (hubSource && existsSync(join(hubSource, 'index.json'))) {
 	cpSync(hubSource, hubOut, { recursive: true, filter: (path) => path !== join(hubSource, 'index.html') });
 }
 
-console.log(`sync-docs: ${files.length} pages, ${sidebar.length} sidebar groups from ${source}` +
+console.log(`sync-docs: ${files.length} pages, ${sidebar.length} sidebar groups from ${folders.map((folder) => folder.id).join(', ')}` +
 	(release.version ? `, release ${release.version}, ${release.releases.length} changelog sections` : ', no release notes') +
 	(existsSync(join(hubOut, 'index.json')) ? ', hub catalogue' : ', no hub catalogue (set INIR_HUB)'));
