@@ -1,0 +1,485 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-g5ptsecz"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Global Actions | iNiR</title><link rel="canonical" href="https://inir.space/docs/global-actions/"/><link rel="sitemap" href="/sitemap-index.xml"/><link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v7.3.5"/><meta name="generator" content="Starlight v0.42.4"/><meta property="og:title" content="Global Actions"/><meta property="og:type" content="article"/><meta property="og:url" content="https://inir.space/docs/global-actions/"/><meta property="og:locale" content="en"/><meta property="og:description" content="A complete desktop shell for Niri, built on Quickshell."/><meta property="og:site_name" content="iNiR"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="A complete desktop shell for Niri, built on Quickshell."/><script>
+	document.documentElement.dataset.theme = 'dark';
+	window.StarlightThemeProvider = { updatePickers() {} };
+	try {
+		const family = localStorage.getItem('inir-family');
+		if (family) document.documentElement.dataset.family = family;
+	} catch {}
+</script><link rel="stylesheet" href="/_astro/print.ehPL0gv-.css" media="print"><style>@font-face{font-family:Geist Variable;font-style:normal;font-display:swap;font-weight:100 900;src:url(/_astro/geist-cyrillic-ext-wght-normal.DjL33-gN.woff2)format("woff2-variations");unicode-range:U+460-52F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F}@font-face{font-family:Geist Variable;font-style:normal;font-display:swap;font-weight:100 900;src:url(/_astro/geist-cyrillic-wght-normal.BEAKL7Jp.woff2)format("woff2-variations");unicode-range:U+301,U+400-45F,U+490-491,U+4B0-4B1,U+2116}@font-face{font-family:Geist Variable;font-style:normal;font-display:swap;font-weight:100 900;src:url(/_astro/geist-vietnamese-wght-normal.6IgcOCM7.woff2)format("woff2-variations");unicode-range:U+102-103,U+110-111,U+128-129,U+168-169,U+1A0-1A1,U+1AF-1B0,U+300-301,U+303-304,U+308-309,U+323,U+329,U+1EA0-1EF9,U+20AB}@font-face{font-family:Geist Variable;font-style:normal;font-display:swap;font-weight:100 900;src:url(/_astro/geist-latin-ext-wght-normal.DC-KSUi6.woff2)format("woff2-variations");unicode-range:U+100-2BA,U+2BD-2C5,U+2C7-2CC,U+2CE-2D7,U+2DD-2FF,U+304,U+308,U+329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:Geist Variable;font-style:normal;font-display:swap;font-weight:100 900;src:url(/_astro/geist-latin-wght-normal.BgDaEnEv.woff2)format("woff2-variations");unicode-range:U+??,U+131,U+152-153,U+2BB-2BC,U+2C6,U+2DA,U+2DC,U+304,U+308,U+329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:Geist Mono Variable;font-style:normal;font-display:swap;font-weight:100 900;src:url(/_astro/geist-mono-cyrillic-ext-wght-normal.X_5orZeX.woff2)format("woff2-variations");unicode-range:U+460-52F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F}@font-face{font-family:Geist Mono Variable;font-style:normal;font-display:swap;font-weight:100 900;src:url(/_astro/geist-mono-cyrillic-wght-normal.DiZS0aHC.woff2)format("woff2-variations");unicode-range:U+301,U+400-45F,U+490-491,U+4B0-4B1,U+2116}@font-face{font-family:Geist Mono Variable;font-style:normal;font-display:swap;font-weight:100 900;src:url(/_astro/geist-mono-symbols2-wght-normal.CO5SzqOn.woff2)format("woff2-variations");unicode-range:U+2000-2001,U+2004-2008,U+200A,U+23B8-23BD,U+2500-259F}@font-face{font-family:Geist Mono Variable;font-style:normal;font-display:swap;font-weight:100 900;src:url(/_astro/geist-mono-vietnamese-wght-normal.DadHysG0.woff2)format("woff2-variations");unicode-range:U+102-103,U+110-111,U+128-129,U+168-169,U+1A0-1A1,U+1AF-1B0,U+300-301,U+303-304,U+308-309,U+323,U+329,U+1EA0-1EF9,U+20AB}@font-face{font-family:Geist Mono Variable;font-style:normal;font-display:swap;font-weight:100 900;src:url(/_astro/geist-mono-latin-ext-wght-normal.Bwz-egvJ.woff2)format("woff2-variations");unicode-range:U+100-2BA,U+2BD-2C5,U+2C7-2CC,U+2CE-2D7,U+2DD-2FF,U+304,U+308,U+329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:Geist Mono Variable;font-style:normal;font-display:swap;font-weight:100 900;src:url(/_astro/geist-mono-latin-wght-normal.XN7g48iV.woff2)format("woff2-variations");unicode-range:U+??,U+131,U+152-153,U+2BB-2BC,U+2C6,U+2DA,U+2DC,U+304,U+308,U+329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}:root{--bg:#0a0a0a;--bg-2:#0f0f0f;--bg-3:#171717;--fg:#ededed;--fg-2:#a0a0a0;--fg-3:#7c7c7c;--line:#1f1f1f;--line-2:#2b2b2b;--accent:#ffb224;--accent-ink:#0a0a0a;--sans:"Geist Variable", "Geist", system-ui, sans-serif;--mono:"Geist Mono Variable", "Geist Mono", ui-monospace, monospace;--ease:cubic-bezier(.2, .7, .1, 1)}
+</style><link rel="stylesheet" href="/_astro/index.bCu5X1W5.css"><script type="module" src="/_astro/page.Dwipeu-R.js"></script></head><body class="astro-g5ptsecz"><a class="sl-skip-link astro-qb7clj6f" href="#_top">Skip to content</a><div class="page sl-flex astro-yntsjkba"><header class="header astro-yntsjkba"><div class="header astro-kjbxjria"><div class="title-wrapper sl-flex astro-kjbxjria"><a href="/" class="site-title sl-flex astro-6rvad3va"><img class="astro-6rvad3va" alt src="/_astro/inir-mark.BE5aB_y_.svg" width="64" height="64"><span class="astro-6rvad3va" translate="no">iNiR</span></a><nav class="site-links sl-hidden md:sl-flex astro-kjbxjria" aria-label="Site"><a href="/docs/" aria-current="page" class="astro-kjbxjria">Docs</a><a href="/hub/" class="astro-kjbxjria">Hub</a><a href="/changelog/" class="astro-kjbxjria">Changelog</a></nav></div><div class="sl-flex print:hidden astro-kjbxjria"><site-search class="astro-kjbxjria astro-b5kgnn7o" data-translations="{&quot;placeholder&quot;:&quot;Search docs&quot;}"><button data-open-modal disabled aria-label="Search docs" aria-keyshortcuts="Control+K" class="astro-b5kgnn7o"><svg aria-hidden="true" class="astro-b5kgnn7o astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-b5kgnn7o" aria-hidden="true">Search docs</span><kbd class="sl-hidden md:sl-flex astro-b5kgnn7o" style="display: none;"><kbd class="astro-b5kgnn7o">Ctrl</kbd><kbd class="astro-b5kgnn7o">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search docs" class="astro-b5kgnn7o"><div class="dialog-frame sl-flex astro-b5kgnn7o"><button data-close-modal class="sl-flex md:sl-hidden astro-b5kgnn7o">Cancel</button><div class="search-container astro-b5kgnn7o"><div id="starlight__search" class="astro-b5kgnn7o"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/_astro/Search.astro_astro_type_script_index_0_lang.DZqJ8Bdf.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-kjbxjria"><div class="sl-flex social-icons astro-kjbxjria"><a href="https://github.com/snowarch/iNiR" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">GitHub</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a><a href="https://discord.gg/pAPTfAhZUJ" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">Discord</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M20.32 4.37a19.8 19.8 0 0 0-4.93-1.51 13.78 13.78 0 0 0-.64 1.28 18.27 18.27 0 0 0-5.5 0 12.64 12.64 0 0 0-.64-1.28h-.05A19.74 19.74 0 0 0 3.64 4.4 20.26 20.26 0 0 0 .11 18.09l.02.02a19.9 19.9 0 0 0 6.04 3.03l.04-.02a14.24 14.24 0 0 0 1.23-2.03.08.08 0 0 0-.05-.07 13.1 13.1 0 0 1-1.9-.92.08.08 0 0 1 .02-.1 10.2 10.2 0 0 0 .41-.31h.04a14.2 14.2 0 0 0 12.1 0l.04.01a9.63 9.63 0 0 0 .4.32.08.08 0 0 1-.03.1 12.29 12.29 0 0 1-1.9.91.08.08 0 0 0-.02.1 15.97 15.97 0 0 0 1.27 2.01h.04a19.84 19.84 0 0 0 6.03-3.05v-.03a20.12 20.12 0 0 0-3.57-13.69ZM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42 0-1.33.96-2.42 2.16-2.42 1.21 0 2.18 1.1 2.16 2.42 0 1.34-.96 2.42-2.16 2.42Zm7.97 0c-1.18 0-2.15-1.08-2.15-2.42 0-1.33.95-2.42 2.15-2.42 1.22 0 2.18 1.1 2.16 2.42 0 1.34-.94 2.42-2.16 2.42Z"/></svg></a></div><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div><div class="read-progress astro-kjbxjria" aria-hidden="true"><i class="astro-kjbxjria"></i></div><script type="module">var e=document.querySelector(`.read-progress i`);if(e){let t=!1,n=()=>{t=!1;let n=document.documentElement.scrollHeight-innerHeight;e.style.transform=`scaleX(${n>0?Math.min(1,scrollY/n).toFixed(4):0})`},r=()=>{t||(t=!0,requestAnimationFrame(n))};addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r),n()}</script></header><nav class="sidebar print:hidden astro-yntsjkba" aria-label="Main"><button popovertarget="starlight__sidebar" class="sl-menu-button sl-flex md:sl-hidden print:hidden astro-r2osgdlg"><svg aria-hidden="true" class="open-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg><span class="sr-only astro-r2osgdlg">Menu</span></button><script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script><sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba"><div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="1hpkefn" class="astro-ipdry5cl"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-rmhv4bp6"><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Start</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/docs/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Home</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/install/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Install</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Setup and updates</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/keybinds/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Keybinds</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/commands/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">The inir command</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/limitations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Known limitations</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Make it yours</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/docs/customize/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Make it yours</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/config-system/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Settings</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/panel-families/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Panel families</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/theming-presets/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Colours and themes</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/wallpaper/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Wallpaper</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/desktop-items/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Desktop items</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/hub/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Community Hub</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Families</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/docs/material/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Material</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/editorial-style/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Editorial style</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/organic-edge/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Organic Edge</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/waffle/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Waffle</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/iris/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">iRiS</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Features</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/docs/notifications/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Notifications</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/calendar/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Calendar</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/autostart/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Autostart and session</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/audio-media/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Audio and media</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/game-performance/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Game performance panel</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/japanese-ocr/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Japanese OCR study card</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/vesktop/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Vesktop theme</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">System</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/docs/packages/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Packages</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/compositors/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Compositors</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/optimization/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Optimization</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/void/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Void Linux</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/void-capabilities/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Void capabilities</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/nixos/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">NixOS</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Build on iNiR</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/docs/parts/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">How iNiR fits together</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/ipc/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">IPC reference</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/global-actions/" aria-current="page" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Global Actions</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/architecture-overview/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Architecture</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/runtime/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Runtime and Boot</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/services/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Services Catalogue</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/modules/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Modules Catalogue</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/theming-architecture/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Theming Architecture</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/theming-targets/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Theming Targets</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/theming-modules/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Theming Modules</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Reference</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="6"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/docs/reference-material/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Every Material setting</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/reference-waffle/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Every Waffle setting</span></a></li><li class="astro-rmhv4bp6"><a href="/docs/reference-iris/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Every iRiS setting</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-p4azlveh"><div class="social-icons astro-p4azlveh"><a href="https://github.com/snowarch/iNiR" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">GitHub</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a><a href="https://discord.gg/pAPTfAhZUJ" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">Discord</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M20.32 4.37a19.8 19.8 0 0 0-4.93-1.51 13.78 13.78 0 0 0-.64 1.28 18.27 18.27 0 0 0-5.5 0 12.64 12.64 0 0 0-.64-1.28h-.05A19.74 19.74 0 0 0 3.64 4.4 20.26 20.26 0 0 0 .11 18.09l.02.02a19.9 19.9 0 0 0 6.04 3.03l.04-.02a14.24 14.24 0 0 0 1.23-2.03.08.08 0 0 0-.05-.07 13.1 13.1 0 0 1-1.9-.92.08.08 0 0 1 .02-.1 10.2 10.2 0 0 0 .41-.31h.04a14.2 14.2 0 0 0 12.1 0l.04.01a9.63 9.63 0 0 0 .4.32.08.08 0 0 1-.03.1 12.29 12.29 0 0 1-1.9.91.08.08 0 0 0-.02.1 15.97 15.97 0 0 0 1.27 2.01h.04a19.84 19.84 0 0 0 6.03-3.05v-.03a20.12 20.12 0 0 0-3.57-13.69ZM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42 0-1.33.96-2.42 2.16-2.42 1.21 0 2.18 1.1 2.16 2.42 0 1.34-.96 2.42-2.16 2.42Zm7.97 0c-1.18 0-2.15-1.08-2.15-2.42 0-1.33.95-2.42 2.15-2.42 1.22 0 2.18 1.1 2.16 2.42 0 1.34-.94 2.42-2.16 2.42Z"/></svg></a></div></div></div></div></sl-sidebar-pane></nav><div class="main-frame astro-yntsjkba"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-lrzkfocr"><aside class="right-sidebar-container print:hidden astro-lrzkfocr"><div class="right-sidebar astro-lrzkfocr"><div class="lg:sl-hidden astro-qok35upx"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-66cqc7ze"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-66cqc7ze"><details id="starlight__mobile-toc" class="astro-66cqc7ze"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-66cqc7ze"><span class="toggle sl-flex astro-66cqc7ze">On this page<svg aria-hidden="true" class="caret astro-66cqc7ze astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-66cqc7ze"></span></summary><div class="dropdown astro-66cqc7ze"><ul class="isMobile astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#using-actions" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Using actions</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#categories" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Categories</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#system" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">system</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#appearance" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">appearance</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#tools" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">tools</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#media" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">media</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#settings" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">settings</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#setup" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">setup</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#custom" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">custom</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#turning-categories-off" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Turning categories off</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#ipc" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">IPC</span></a></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C3fM4Kra.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-qok35upx"><div class="sl-container astro-qok35upx"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#using-actions" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Using actions</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#categories" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Categories</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#system" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">system</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#appearance" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">appearance</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#tools" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">tools</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#media" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">media</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#settings" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">settings</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#setup" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">setup</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#custom" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">custom</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#turning-categories-off" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Turning categories off</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#ipc" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">IPC</span></a></li></ul></nav></starlight-toc><script type="module" src="/_astro/TableOfContents.astro_astro_type_script_index_0_lang.BpJaGz7G.js"></script></div></div></div></aside><div class="main-pane astro-lrzkfocr"><main data-pagefind-body class="astro-g5ptsecz" lang="en" dir="ltr"><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><h1 id="_top" class="astro-vz7cuu6x">Global Actions</h1><div class="fam-pick astro-vz7cuu6x"><span id="fam-pick-label" class="astro-vz7cuu6x">Your family</span><div role="group" aria-labelledby="fam-pick-label" class="astro-vz7cuu6x"><button type="button" data-family aria-pressed="false" class="astro-vz7cuu6x">All</button><button type="button" data-family="ii" aria-pressed="false" class="astro-vz7cuu6x">Material</button><button type="button" data-family="waffle" aria-pressed="false" class="astro-vz7cuu6x">Waffle</button><button type="button" data-family="iris" aria-pressed="false" class="astro-vz7cuu6x">iRiS</button></div></div><script type="module">var e=document.documentElement,t=[...document.querySelectorAll(`.fam-pick button`)],n=()=>t.forEach(t=>t.setAttribute(`aria-pressed`,String(t.dataset.family===(e.dataset.family??``))));t.forEach(t=>t.addEventListener(`click`,()=>{let r=t.dataset.family??``;r?e.dataset.family=r:delete e.dataset.family;try{r?localStorage.setItem(`inir-family`,r):localStorage.removeItem(`inir-family`)}catch{}n(),document.dispatchEvent(new Event(`inir-family`))})),n();var r=matchMedia(`(prefers-reduced-motion: reduce)`).matches;document.querySelectorAll(`figure.pv-shot`).forEach(t=>{let n=[...t.querySelectorAll(`.pv-frame img`)],i=[...t.querySelectorAll(`.pv-seg button`)],a=t.querySelector(`.pv-run`);if(n.length<2||!a)return;let o=0,s=!1,c=!1,l=!1,u=!1,d=e=>{o=e,n.forEach((t,n)=>{t.classList.toggle(`on`,n===e),t.toggleAttribute(`aria-hidden`,n!==e)}),i.forEach((t,n)=>t.setAttribute(`aria-pressed`,String(n===e)))},f=()=>t.classList.toggle(`pv-playing`,s&&!c&&!l&&!u&&!r),p=()=>{let t=new Set(i.map(e=>e.dataset.fam)).size>1?i.findIndex(t=>t.dataset.fam===e.dataset.family):-1;u=t>=0,u&&d(t),f()};i.forEach((e,t)=>e.addEventListener(`click`,()=>{l=!0,d(t),f()})),a.addEventListener(`animationiteration`,()=>d((o+1)%n.length)),new IntersectionObserver(([e])=>{s=e.isIntersecting,f()},{threshold:.6}).observe(t),t.addEventListener(`pointerenter`,()=>{c=!0,f()}),t.addEventListener(`pointerleave`,()=>{c=!1,f()}),t.addEventListener(`focusin`,()=>{c=!0,f()}),t.addEventListener(`focusout`,()=>{c=!1,f()}),document.addEventListener(`inir-family`,p),p()});var i=null,a=null;document.querySelectorAll(`figure.pv-shot .pv-frame`).forEach(e=>{let t=()=>{let t=e.querySelector(`img.on`)??e.querySelector(`img`);t&&(i||(i=document.body.appendChild(Object.assign(document.createElement(`dialog`),{className:`pv-zoom`})),i.addEventListener(`click`,()=>i?.close()),i.addEventListener(`close`,()=>a?.focus())),a=e,i.replaceChildren(Object.assign(document.createElement(`img`),{src:t.src,alt:t.alt})),i.showModal())};e.addEventListener(`click`,t),e.addEventListener(`keydown`,e=>{(e.key===`Enter`||e.key===` `)&&(e.preventDefault(),t())})}),document.querySelectorAll(`.pv-parts`).forEach(e=>{let t=e.querySelector(`[data-pt-info]`);if(!t)return;let n=t.textContent??``;e.querySelectorAll(`.pt > div`).forEach(e=>{let r=()=>{t.replaceChildren(`${e.querySelector(`b`)?.textContent}: `,Object.assign(document.createElement(`code`),{textContent:e.dataset.at??``}),` · from ${e.dataset.by}`)};e.addEventListener(`pointerenter`,r),e.addEventListener(`focus`,r),e.addEventListener(`pointerleave`,()=>{t.textContent=n}),e.addEventListener(`blur`,()=>{t.textContent=n})})});</script></div></div><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><div class="sl-markdown-content"><p>Global actions are commands you can run from the Overview search or bind to keys. They are the shell’s command palette.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="using-actions">Using actions</h2><a class="sl-anchor-link" href="#using-actions"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Using actions”</span></a></div>
+<p>Open Overview (<code dir="auto">Super+Space</code>) and type. Actions show up next to your apps. A prefix narrows the search:</p>
+<table>
+<thead>
+<tr>
+<th>Prefix</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">/</code></td>
+<td>Action mode: browse actions by category</td>
+</tr>
+<tr>
+<td><code dir="auto">=</code></td>
+<td>Calculator, through <code dir="auto">qalc</code></td>
+</tr>
+<tr>
+<td><code dir="auto">$</code></td>
+<td>Run a shell command</td>
+</tr>
+<tr>
+<td><code dir="auto">&gt;</code></td>
+<td>Apps</td>
+</tr>
+<tr>
+<td><code dir="auto">;</code></td>
+<td>Clipboard history</td>
+</tr>
+<tr>
+<td><code dir="auto">:</code></td>
+<td>Emoji</td>
+</tr>
+<tr>
+<td><code dir="auto">?</code></td>
+<td>Web search</td>
+</tr>
+</tbody>
+</table>
+<p>Any action can also run from a keybind or a script: <code dir="auto">inir globalActions run &lt;id&gt;</code>. See <a href="/docs/ipc/">IPC.md</a>.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="categories">Categories</h2><a class="sl-anchor-link" href="#categories"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Categories”</span></a></div>
+<p>Actions belong to <code dir="auto">system</code>, <code dir="auto">appearance</code>, <code dir="auto">tools</code>, <code dir="auto">media</code>, <code dir="auto">settings</code>, <code dir="auto">setup</code> or <code dir="auto">custom</code>. Package actions (install, remove, update) sit under <code dir="auto">system</code>. The two iRiS-only actions appear only while iRiS is the active family.</p>
+<p>Use the id in the first column with <code dir="auto">inir globalActions run</code>.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="system">system</h3><a class="sl-anchor-link" href="#system"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “system”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Id</th>
+<th>Name</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">toggle-wifi</code></td>
+<td>Toggle WiFi</td>
+<td>Enable or disable WiFi</td>
+</tr>
+<tr>
+<td><code dir="auto">toggle-bluetooth</code></td>
+<td>Toggle Bluetooth</td>
+<td>Open the Bluetooth manager</td>
+</tr>
+<tr>
+<td><code dir="auto">toggle-nightlight</code></td>
+<td>Toggle Night Light</td>
+<td>Toggle the blue light filter</td>
+</tr>
+<tr>
+<td><code dir="auto">toggle-gamemode</code></td>
+<td>Toggle Game Mode</td>
+<td>Enable or disable Game Mode</td>
+</tr>
+<tr>
+<td><code dir="auto">toggle-dnd</code></td>
+<td>Toggle Do Not Disturb</td>
+<td>Silence notifications</td>
+</tr>
+<tr>
+<td><code dir="auto">lock-screen</code></td>
+<td>Lock Screen</td>
+<td>Lock the screen</td>
+</tr>
+<tr>
+<td><code dir="auto">open-session</code></td>
+<td>Session Menu</td>
+<td>Power off, reboot, log out or suspend</td>
+</tr>
+<tr>
+<td><code dir="auto">open-settings</code></td>
+<td>Open Settings</td>
+<td>Open the shell settings</td>
+</tr>
+<tr>
+<td><code dir="auto">toggle-dashboard</code></td>
+<td>Dashboard</td>
+<td>Open the welcome hub: clock, notifications, media, agenda</td>
+</tr>
+<tr>
+<td><code dir="auto">toggle-control-panel</code></td>
+<td>Toggle Quick Settings</td>
+<td>Open or close the quick settings panel</td>
+</tr>
+<tr>
+<td><code dir="auto">open-network-settings</code></td>
+<td>Network Settings</td>
+<td>Open the network connection manager</td>
+</tr>
+<tr>
+<td><code dir="auto">open-volume-mixer</code></td>
+<td>Volume Mixer</td>
+<td>Open the system volume mixer</td>
+</tr>
+<tr>
+<td><code dir="auto">open-task-manager</code></td>
+<td>Task Manager</td>
+<td>Open the system monitor</td>
+</tr>
+<tr>
+<td><code dir="auto">install-package</code></td>
+<td>Install Package</td>
+<td>Install a package by name (pass it as an argument)</td>
+</tr>
+<tr>
+<td><code dir="auto">remove-package</code></td>
+<td>Remove Package</td>
+<td>Remove a package by name (pass it as an argument)</td>
+</tr>
+<tr>
+<td><code dir="auto">update-system</code></td>
+<td>Update System</td>
+<td>Run a full system update</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="appearance">appearance</h3><a class="sl-anchor-link" href="#appearance"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “appearance”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Id</th>
+<th>Name</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">dark-mode</code></td>
+<td>Switch to Dark Mode</td>
+<td>Apply the dark colour scheme</td>
+</tr>
+<tr>
+<td><code dir="auto">light-mode</code></td>
+<td>Switch to Light Mode</td>
+<td>Apply the light colour scheme</td>
+</tr>
+<tr>
+<td><code dir="auto">accent-color</code></td>
+<td>Change Accent Color</td>
+<td>Set an accent colour (pass a hex code)</td>
+</tr>
+<tr>
+<td><code dir="auto">change-wallpaper</code></td>
+<td>Change Wallpaper (Grid)</td>
+<td>Open the grid wallpaper picker</td>
+</tr>
+<tr>
+<td><code dir="auto">wallpaper-coverflow</code></td>
+<td>Change Wallpaper (Coverflow)</td>
+<td>Open the coverflow wallpaper picker</td>
+</tr>
+<tr>
+<td><code dir="auto">random-wallpaper</code></td>
+<td>Random Wallpaper (Konachan)</td>
+<td>Set a random wallpaper from Konachan</td>
+</tr>
+<tr>
+<td><code dir="auto">style-material</code> to <code dir="auto">style-cookie</code></td>
+<td>Style: …</td>
+<td>Switch the Global Style: <code dir="auto">material</code>, <code dir="auto">cards</code>, <code dir="auto">aurora</code>, <code dir="auto">inir</code>, <code dir="auto">angel</code>, <code dir="auto">regalia</code>, <code dir="auto">zzz</code>, <code dir="auto">editorial</code> or <code dir="auto">cookie</code></td>
+</tr>
+<tr>
+<td><code dir="auto">frame-music</code></td>
+<td>Frame Music</td>
+<td>Toggle music on the iRiS frame (iRiS only)</td>
+</tr>
+<tr>
+<td><code dir="auto">edge-music</code></td>
+<td>Edge Music</td>
+<td>Toggle the Organic Edge music wave (iRiS only)</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="tools">tools</h3><a class="sl-anchor-link" href="#tools"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “tools”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Id</th>
+<th>Name</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">screenshot</code></td>
+<td>Take Screenshot</td>
+<td>Capture a region of the screen</td>
+</tr>
+<tr>
+<td><code dir="auto">color-picker</code></td>
+<td>Color Picker</td>
+<td>Pick a colour from the screen</td>
+</tr>
+<tr>
+<td><code dir="auto">screen-record</code></td>
+<td>Toggle Screen Recording</td>
+<td>Start or stop a fullscreen recording with the configured audio profile</td>
+</tr>
+<tr>
+<td><code dir="auto">open-clipboard</code></td>
+<td>Clipboard History</td>
+<td>Open the clipboard history</td>
+</tr>
+<tr>
+<td><code dir="auto">wipe-clipboard</code></td>
+<td>Wipe Clipboard</td>
+<td>Clear all clipboard history</td>
+</tr>
+<tr>
+<td><code dir="auto">superpaste</code></td>
+<td>Superpaste</td>
+<td>Paste several clipboard entries: a count, with <code dir="auto">i</code> for images (e.g. <code dir="auto">4i</code>)</td>
+</tr>
+<tr>
+<td><code dir="auto">music-recognition</code></td>
+<td>Recognize Music</td>
+<td>Identify the song that is playing</td>
+</tr>
+<tr>
+<td><code dir="auto">open-notepad</code></td>
+<td>Open Notepad</td>
+<td>Open the quick notepad in the sidebar</td>
+</tr>
+<tr>
+<td><code dir="auto">todo</code></td>
+<td>Add Todo</td>
+<td>Add a task (pass the text as an argument)</td>
+</tr>
+<tr>
+<td><code dir="auto">open-cheatsheet</code></td>
+<td>Keyboard Shortcuts</td>
+<td>Show the shortcut cheatsheet</td>
+</tr>
+<tr>
+<td><code dir="auto">toggle-crosshair</code></td>
+<td>Toggle Crosshair</td>
+<td>Show or hide the screen crosshair</td>
+</tr>
+<tr>
+<td><code dir="auto">toggle-tiling</code></td>
+<td>Toggle Tiling Overlay</td>
+<td>Open or close the tiling layout picker</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="media">media</h3><a class="sl-anchor-link" href="#media"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “media”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Id</th>
+<th>Name</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">media-play-pause</code></td>
+<td>Play / Pause</td>
+<td>Toggle playback</td>
+</tr>
+<tr>
+<td><code dir="auto">media-next</code></td>
+<td>Next Track</td>
+<td>Skip to the next track</td>
+</tr>
+<tr>
+<td><code dir="auto">media-previous</code></td>
+<td>Previous Track</td>
+<td>Go to the previous track</td>
+</tr>
+<tr>
+<td><code dir="auto">toggle-mute</code></td>
+<td>Toggle Mute</td>
+<td>Mute or unmute the output</td>
+</tr>
+<tr>
+<td><code dir="auto">toggle-mic-mute</code></td>
+<td>Toggle Microphone Mute</td>
+<td>Mute or unmute the microphone</td>
+</tr>
+<tr>
+<td><code dir="auto">volume-up</code></td>
+<td>Volume Up</td>
+<td>Raise the volume</td>
+</tr>
+<tr>
+<td><code dir="auto">volume-down</code></td>
+<td>Volume Down</td>
+<td>Lower the volume</td>
+</tr>
+<tr>
+<td><code dir="auto">brightness-up</code></td>
+<td>Increase Brightness</td>
+<td>Raise screen brightness</td>
+</tr>
+<tr>
+<td><code dir="auto">brightness-down</code></td>
+<td>Decrease Brightness</td>
+<td>Lower screen brightness</td>
+</tr>
+<tr>
+<td><code dir="auto">toggle-easyeffects</code></td>
+<td>Toggle EasyEffects</td>
+<td>Enable or disable audio effects</td>
+</tr>
+<tr>
+<td><code dir="auto">toggle-media-controls</code></td>
+<td>Toggle Media Controls</td>
+<td>Open or close the fullscreen media controls</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="settings">settings</h3><a class="sl-anchor-link" href="#settings"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “settings”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Id</th>
+<th>Name</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">toggle-bar-autohide</code></td>
+<td>Toggle Bar Auto-hide</td>
+<td>Toggle auto-hide for the top bar</td>
+</tr>
+<tr>
+<td><code dir="auto">toggle-dock</code></td>
+<td>Toggle Dock</td>
+<td>Enable or disable the dock</td>
+</tr>
+<tr>
+<td><code dir="auto">toggle-animations</code></td>
+<td>Toggle Reduced Animations</td>
+<td>Turn reduced animations on or off</td>
+</tr>
+<tr>
+<td><code dir="auto">toggle-low-power</code></td>
+<td>Toggle Low Power Mode</td>
+<td>Toggle low power mode to save battery</td>
+</tr>
+<tr>
+<td><code dir="auto">toggle-overview</code></td>
+<td>Toggle Overview</td>
+<td>Open or close the overview</td>
+</tr>
+<tr>
+<td><code dir="auto">open-sidebar-left</code></td>
+<td>Open Left Sidebar</td>
+<td>Open the left sidebar</td>
+</tr>
+<tr>
+<td><code dir="auto">open-sidebar-right</code></td>
+<td>Open Right Sidebar</td>
+<td>Open the right sidebar</td>
+</tr>
+<tr>
+<td><code dir="auto">toggle-osk</code></td>
+<td>Toggle On-Screen Keyboard</td>
+<td>Show or hide the on-screen keyboard</td>
+</tr>
+<tr>
+<td><code dir="auto">zoom-in</code></td>
+<td>Zoom In</td>
+<td>Increase screen zoom</td>
+</tr>
+<tr>
+<td><code dir="auto">zoom-out</code></td>
+<td>Zoom Out</td>
+<td>Decrease screen zoom</td>
+</tr>
+<tr>
+<td><code dir="auto">zoom-reset</code></td>
+<td>Reset Zoom</td>
+<td>Reset screen zoom to 100%</td>
+</tr>
+<tr>
+<td><code dir="auto">switch-family-ii</code></td>
+<td>Switch to ii Panel Family</td>
+<td>Use the Material layout</td>
+</tr>
+<tr>
+<td><code dir="auto">switch-family-waffle</code></td>
+<td>Switch to Waffle Panel Family</td>
+<td>Use the Windows 11 style layout</td>
+</tr>
+<tr>
+<td><code dir="auto">switch-family-iris</code></td>
+<td>Switch to iRiS Panel Family</td>
+<td>Use the iRiS layout</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="setup">setup</h3><a class="sl-anchor-link" href="#setup"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “setup”</span></a></div>
+<p>Every script in <code dir="auto">scripts/setup/</code> becomes an action named <code dir="auto">setup-&lt;slug&gt;</code>. Type <code dir="auto">/setup</code> to list them. The one shipped recipe is <code dir="auto">setup-spotify</code>, which installs Spotify and configures Spicetify. Each recipe runs in a terminal.</p>
+<p>To add one:</p>
+<ol>
+<li>Copy <code dir="auto">scripts/setup/_template.sh.example</code> to <code dir="auto">scripts/setup/&lt;slug&gt;.sh</code>.</li>
+<li>Fill in its <code dir="auto">@meta</code> header (name, description, icon, keywords) and write the body.</li>
+<li>Make it executable with <code dir="auto">chmod +x</code>.</li>
+</ol>
+<p>The launcher finds new files in the folder without a reload. The maintainer notes are in <code dir="auto">scripts/setup/README.md</code>.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="custom">custom</h3><a class="sl-anchor-link" href="#custom"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “custom”</span></a></div>
+<p>Put an executable script in <code dir="auto">~/.config/illogical-impulse/actions/</code>. The file name without its extension becomes the action name, and the id is <code dir="auto">custom-&lt;name&gt;</code>. The shell runs the file directly, so it needs a shebang line and the executable bit. Arguments after the id are split on spaces.</p>
+<p>For example, <code dir="auto">~/.config/illogical-impulse/actions/deploy.sh</code>:</p>
+<div class="expressive-code"><link rel="stylesheet" href="/_astro/ec.6as78.css"><script type="module" src="/_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#93A093FE;--1:#5E655E">#!/bin/bash</span></div></div><div class="ec-line"><div class="code"><span style="--0:#B8A965;--1:#736312">cd</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81;--1:#905447">~/myproject</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#9C9C9C;--1:#646464">&amp;&amp;</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#82A767;--1:#486E2F">make</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81;--1:#905447">deploy</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82A767;--1:#486E2F">notify-send</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81FE;--1:#905447FE">"</span><span style="--0:#CB8D81;--1:#905447">Deployed</span><span style="--0:#CB8D81FE;--1:#905447FE">"</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81FE;--1:#905447FE">"</span><span style="--0:#CB8D81;--1:#905447">Project deployed successfully</span><span style="--0:#CB8D81FE;--1:#905447FE">"</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="#!/bin/bashcd ~/myproject &amp;&amp; make deploynotify-send &quot;Deployed&quot; &quot;Project deployed successfully&quot;"><div></div></button></div></figure></div>
+<p>Run it with <code dir="auto">inir globalActions run custom-deploy</code>.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="turning-categories-off">Turning categories off</h2><a class="sl-anchor-link" href="#turning-categories-off"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Turning categories off”</span></a></div>
+<p>Each category has a switch under <code dir="auto">search.globalActions</code> in <code dir="auto">config.json</code>: <code dir="auto">enableSystem</code>, <code dir="auto">enableAppearance</code>, <code dir="auto">enableTools</code>, <code dir="auto">enableMedia</code>, <code dir="auto">enableSettings</code>, <code dir="auto">enablePackages</code> (install, remove and update), <code dir="auto">enableSetup</code> and <code dir="auto">enableCustom</code>. All of them default to <code dir="auto">true</code>.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#CB8D81FE;--1:#905447FE">"</span><span style="--0:#CB8D81;--1:#905447">search</span><span style="--0:#CB8D81FE;--1:#905447FE">"</span><span style="--0:#DBD7CAEE;--1:#393A34">: </span><span style="--0:#9C9C9C;--1:#646464">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#B8A965E7;--1:#736312FE">"</span><span style="--0:#B8A965;--1:#736312">globalActions</span><span style="--0:#B8A965E7;--1:#736312FE">"</span><span style="--0:#9C9C9C;--1:#646464">:</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#9C9C9C;--1:#646464">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">    </span><span style="--0:#B8A965E7;--1:#736312FE">"</span><span style="--0:#B8A965;--1:#736312">enableSetup</span><span style="--0:#B8A965E7;--1:#736312FE">"</span><span style="--0:#9C9C9C;--1:#646464">:</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#70A890;--1:#1D714D">false</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#9C9C9C;--1:#646464">}</span></div></div><div class="ec-line"><div class="code"><span style="--0:#9C9C9C;--1:#646464">}</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="&quot;search&quot;: {  &quot;globalActions&quot;: {    &quot;enableSetup&quot;: false  }}"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="ipc">IPC</h2><a class="sl-anchor-link" href="#ipc"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “IPC”</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82A767;--1:#486E2F">inir</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81;--1:#905447">globalActions</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81;--1:#905447">list</span><span style="--0:#DBD7CAEE;--1:#393A34">                     </span><span style="--0:#93A093FE;--1:#5E655E"># every action: id, category and name</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82A767;--1:#486E2F">inir</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81;--1:#905447">globalActions</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81;--1:#905447">list</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81;--1:#905447">tools</span><span style="--0:#DBD7CAEE;--1:#393A34">               </span><span style="--0:#93A093FE;--1:#5E655E"># one category</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82A767;--1:#486E2F">inir</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81;--1:#905447">globalActions</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81;--1:#905447">search</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81FE;--1:#905447FE">"</span><span style="--0:#CB8D81;--1:#905447">screen</span><span style="--0:#CB8D81FE;--1:#905447FE">"</span><span style="--0:#DBD7CAEE;--1:#393A34">          </span><span style="--0:#93A093FE;--1:#5E655E"># search by name, description and keywords</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82A767;--1:#486E2F">inir</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81;--1:#905447">globalActions</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81;--1:#905447">run</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81;--1:#905447">&lt;id&gt;</span><span style="--0:#DBD7CAEE;--1:#393A34">                 </span><span style="--0:#93A093FE;--1:#5E655E"># run an action by id</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82A767;--1:#486E2F">inir</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81;--1:#905447">globalActions</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81;--1:#905447">runWithArgs</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81;--1:#905447">&lt;id&gt;</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81;--1:#905447">&lt;args&gt;</span><span style="--0:#DBD7CAEE;--1:#393A34">  </span><span style="--0:#93A093FE;--1:#5E655E"># run with arguments, e.g. install-package vim</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82A767;--1:#486E2F">inir</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81;--1:#905447">globalActions</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#CB8D81;--1:#905447">open</span><span style="--0:#DBD7CAEE;--1:#393A34">                     </span><span style="--0:#93A093FE;--1:#5E655E"># open the overview in action mode</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="inir globalActions list                     # every action: id, category and nameinir globalActions list tools               # one categoryinir globalActions search &quot;screen&quot;          # search by name, description and keywordsinir globalActions run <id>                 # run an action by idinir globalActions runWithArgs <id> <args>  # run with arguments, e.g. install-package viminir globalActions open                     # open the overview in action mode"><div></div></button></div></figure></div>
+</div><footer class="sl-flex astro-ddtxxk7k"><div class="meta sl-flex astro-ddtxxk7k"><a href="https://github.com/snowarch/iNiR/edit/main/docs/GLOBAL_ACTIONS.md" class="sl-flex print:hidden astro-qlekgd3o"><svg aria-hidden="true" class="astro-qlekgd3o astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.2em;"><path d="M22 7.24a1 1 0 0 0-.29-.71l-4.24-4.24a1 1 0 0 0-1.1-.22 1 1 0 0 0-.32.22l-2.83 2.83L2.29 16.05a1 1 0 0 0-.29.71V21a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .76-.29l10.87-10.93L21.71 8c.1-.1.17-.2.22-.33a1 1 0 0 0 0-.24v-.14l.07-.05ZM6.83 20H4v-2.83l9.93-9.93 2.83 2.83L6.83 20ZM18.17 8.66l-2.83-2.83 1.42-1.41 2.82 2.82-1.41 1.42Z"/></svg>Edit page</a></div><div class="pagination-links print:hidden astro-b5raizh3" dir="ltr"><a href="/docs/ipc/" rel="prev" class="astro-b5raizh3"><svg aria-hidden="true" class="astro-b5raizh3 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg><span class="astro-b5raizh3">Previous<br class="astro-b5raizh3"><span class="link-title astro-b5raizh3">IPC reference</span></span></a><a href="/docs/architecture-overview/" rel="next" class="astro-b5raizh3"><svg aria-hidden="true" class="astro-b5raizh3 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg><span class="astro-b5raizh3">Next<br class="astro-b5raizh3"><span class="link-title astro-b5raizh3">Architecture</span></span></a></div></footer></div></div></main></div></div></div></div></body></html>

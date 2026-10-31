@@ -1,0 +1,334 @@
+{
+ "commit": "1e626b36bd1d8d18da8335fd849af2ffade8b48d",
+ "generated": "2026-10-31T10:55:42+00:00",
+ "home": "https://github.com/snowarch/inir-hub",
+ "items": [
+  {
+   "authors": [
+    "snowarch"
+   ],
+   "description": "",
+   "families": [],
+   "icon": "dashboard",
+   "id": "ii",
+   "kind": "family",
+   "license": "GPL-3.0-only",
+   "minInir": "2.33.0",
+   "name": "Material",
+   "package": "packages/ii-2.33.5.tar.gz",
+   "path": "families/ii",
+   "permissions": [
+    "process",
+    "network",
+    "files"
+   ],
+   "preview": "previews/ii.webp",
+   "provides": "modules/ii",
+   "sha256": "b53c2220acd07741548a0865edee1ac323af5a4213ea46cd4f55150bdc86f42b",
+   "size": 1011355,
+   "summary": "Material 3 Expressive panels, bars, docks and widgets in nine global styles.",
+   "surfaces": [
+    "shell"
+   ],
+   "tags": [
+    "family"
+   ],
+   "updated": "2026-10-30",
+   "version": "2.33.5"
+  },
+  {
+   "authors": [
+    "snowarch"
+   ],
+   "description": "",
+   "families": [],
+   "icon": "visibility",
+   "id": "iris",
+   "kind": "family",
+   "license": "GPL-3.0-only",
+   "minInir": "2.33.0",
+   "name": "iRiS",
+   "package": "packages/iris-2.33.17.tar.gz",
+   "path": "families/iris",
+   "permissions": [
+    "process",
+    "network",
+    "files"
+   ],
+   "preview": "previews/iris.webp",
+   "provides": "modules/iris",
+   "sha256": "eb0dc8ba55b42c52127921b46198cfe5bf50a8310ef9c02dc0b76a8d5ec8f05e",
+   "size": 1241060,
+   "summary": "One living body: the Island, the chassis and Apple-grade motion.",
+   "surfaces": [
+    "shell"
+   ],
+   "tags": [
+    "family"
+   ],
+   "updated": "2026-10-30",
+   "version": "2.33.17"
+  },
+  {
+   "authors": [
+    "snowarch"
+   ],
+   "description": "",
+   "families": [],
+   "icon": "grid_view",
+   "id": "waffle",
+   "kind": "family",
+   "license": "GPL-3.0-only",
+   "minInir": "2.33.0",
+   "name": "Waffle",
+   "package": "packages/waffle-2.33.3.tar.gz",
+   "path": "families/waffle",
+   "permissions": [
+    "process",
+    "files"
+   ],
+   "preview": "previews/waffle.webp",
+   "provides": "modules/waffle",
+   "requires": [
+    "ii"
+   ],
+   "sha256": "c793ade7929d89906cf486e2f8e5fd170f608e31b8b21cae2645fb4e58235741",
+   "size": 284165,
+   "summary": "Windows 11 for people who want it: taskbar, Start, Action Center.",
+   "surfaces": [
+    "shell"
+   ],
+   "tags": [
+    "family"
+   ],
+   "updated": "2026-10-30",
+   "version": "2.33.3"
+  },
+  {
+   "authors": [
+    "snowarch"
+   ],
+   "description": "Soft glass over the wallpaper, moss-green accent, amber highlight and slow, gentle motion.",
+   "families": [
+    "iris"
+   ],
+   "icon": "style",
+   "id": "moss-garden",
+   "kind": "iris-theme",
+   "license": "MIT",
+   "minInir": "",
+   "name": "Moss Garden",
+   "package": "packages/moss-garden-1.0.0.tar.gz",
+   "path": "iris-themes/moss-garden",
+   "permissions": [],
+   "preview": "previews/moss-garden.svg",
+   "sha256": "3b2d50abfd111b99eac4f86a2ef2ec8f0ed9eaa3dd60566749b90b9c38e0c7f1",
+   "size": 541,
+   "summary": "Soft moss-green glass with slow, gentle motion",
+   "surfaces": [
+    "look"
+   ],
+   "tags": [
+    "glass",
+    "green",
+    "calm"
+   ],
+   "updated": "2026-10-30",
+   "version": "1.0.0"
+  },
+  {
+   "authors": [
+    "snowarch"
+   ],
+   "dark": false,
+   "description": "Warm paper and amber light, a calm light theme for daytime work.",
+   "families": [
+    "material",
+    "waffle"
+   ],
+   "icon": "palette",
+   "id": "paper-lantern",
+   "kind": "theme",
+   "license": "MIT",
+   "minInir": "",
+   "name": "Paper Lantern",
+   "package": "packages/paper-lantern-1.0.0.tar.gz",
+   "path": "themes/paper-lantern",
+   "permissions": [],
+   "preview": "previews/paper-lantern.svg",
+   "sha256": "2419c655c37d53c17c405f30d04c930243aa5151650b12dc3351b9071173eb38",
+   "size": 685,
+   "summary": "Warm paper and amber light for daytime",
+   "surfaces": [
+    "colours"
+   ],
+   "swatch": [
+    "#fff8f5",
+    "#fdeadf",
+    "#8b5122",
+    "#755946",
+    "#686028",
+    "#3d3027"
+   ],
+   "tags": [
+    "light",
+    "warm"
+   ],
+   "updated": "2026-10-30",
+   "version": "1.0.0"
+  },
+  {
+   "authors": [
+    "snowarch"
+   ],
+   "dark": true,
+   "description": "Cool sea-glass teal over deep slate, for long nights at the terminal.",
+   "families": [
+    "material",
+    "waffle"
+   ],
+   "icon": "palette",
+   "id": "tidepool",
+   "kind": "theme",
+   "license": "MIT",
+   "minInir": "",
+   "name": "Tidepool",
+   "package": "packages/tidepool-1.0.0.tar.gz",
+   "path": "themes/tidepool",
+   "permissions": [],
+   "preview": "previews/tidepool.svg",
+   "sha256": "a2e524f261a69e1ae30e47ff82e8677d99df72e3cf96dd0d41a96a019f09e0ab",
+   "size": 711,
+   "summary": "Sea-glass teal over deep slate",
+   "surfaces": [
+    "colours"
+   ],
+   "swatch": [
+    "#0a0f0e",
+    "#131b1a",
+    "#82d6cb",
+    "#b1ccc7",
+    "#9dcde4",
+    "#dce8e5"
+   ],
+   "tags": [
+    "dark",
+    "cool"
+   ],
+   "updated": "2026-10-30",
+   "version": "1.0.0"
+  },
+  {
+   "authors": [
+    "snowarch"
+   ],
+   "description": "Excalidraw as a tab of Material's left sidebar: sketch a layout, a flow or an idea without leaving the desktop. Your drawings stay in the site's own storage.",
+   "families": [
+    "material"
+   ],
+   "icon": "draw",
+   "id": "excalidraw",
+   "kind": "webapp",
+   "license": "MIT",
+   "minInir": "",
+   "name": "Excalidraw",
+   "package": "packages/excalidraw-1.0.0.tar.gz",
+   "path": "webapps/excalidraw",
+   "permissions": [],
+   "preview": "previews/excalidraw.webp",
+   "sha256": "d1b942f74fc40c7962d407d2232cd05ccc4ca362c921166b751b130a8d5a0af7",
+   "size": 187,
+   "summary": "A hand-drawn whiteboard in the left sidebar",
+   "surfaces": [
+    "sidebar"
+   ],
+   "tags": [
+    "drawing",
+    "productivity"
+   ],
+   "updated": "2026-10-30",
+   "url": "https://excalidraw.com",
+   "version": "1.0.0"
+  },
+  {
+   "authors": [
+    "snowarch"
+   ],
+   "description": "Days left until a date you care about. The figure sits in a Material shape you pick, and a wavy bar shows how much of the wait has gone by. Also a line on the iRiS Island and a card in Waffle's Widgets panel.",
+   "families": [
+    "material",
+    "iris",
+    "waffle"
+   ],
+   "featured": true,
+   "icon": "hourglass_bottom",
+   "id": "countdown",
+   "kind": "widget",
+   "license": "MIT",
+   "minInir": "2.33.0",
+   "name": "Countdown",
+   "package": "packages/countdown-1.0.0.tar.gz",
+   "path": "widgets/countdown",
+   "permissions": [],
+   "preview": "previews/countdown.webp",
+   "sha256": "a32bc60c680e0aa7f444018e330ba819ca2d8a1336db4453b02f054f14e49ff9",
+   "size": 6777,
+   "summary": "Days left until a date you care about, in every family",
+   "surfaces": [
+    "desktop",
+    "island",
+    "waffle-widgets"
+   ],
+   "tags": [
+    "time",
+    "example"
+   ],
+   "updated": "2026-10-30",
+   "version": "1.0.0"
+  },
+  {
+   "authors": [
+    "snowarch"
+   ],
+   "description": "Any command, kept fresh on the desktop or on the iRiS Island. What it prints picks the look: a percentage gets a bar, a number gets a large figure, text gets lines. It only runs while it is on screen, and an error shows what the command said.",
+   "families": [
+    "material",
+    "iris"
+   ],
+   "icon": "terminal",
+   "id": "shell-line",
+   "kind": "widget",
+   "license": "MIT",
+   "minInir": "2.33.0",
+   "name": "Shell Line",
+   "package": "packages/shell-line-1.0.0.tar.gz",
+   "path": "widgets/shell-line",
+   "permissions": [
+    "process"
+   ],
+   "preview": "previews/shell-line.webp",
+   "sha256": "0149b9e7ca682dd18241f44809d2fb9e84a5d8bbb3d31233cd24fc4fafb6432f",
+   "size": 6073,
+   "summary": "Any command, drawn as a bar, a figure or lines",
+   "surfaces": [
+    "desktop",
+    "island"
+   ],
+   "tags": [
+    "system",
+    "terminal",
+    "example"
+   ],
+   "updated": "2026-10-30",
+   "version": "1.0.0"
+  }
+ ],
+ "name": "iNiR Hub",
+ "permissions": {
+  "files": "Reads or writes files outside its own folder",
+  "inject": "Injects scripts into the site it opens",
+  "network": "Talks to the internet",
+  "process": "Runs commands on your computer"
+ },
+ "schema": 1
+}
