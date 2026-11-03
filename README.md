@@ -19,8 +19,8 @@ https://inir.space.
 - **The hub page** reads the catalogue `inir hub build` writes. Point `INIR_HUB` at its output folder and
   `npm run sync` serves it under `/hub` (`index.json`, packages, previews), the same URLs `inir hub` reads.
 - **The docs are not in this repository.** They live in [`docs/`](https://github.com/snowarch/iNiR/tree/main/docs)
-  in iNiR and change with the shell. `npm run sync` copies them in, turns wiki links into site links and builds
-  the sidebar from `docs/_Sidebar.md`. To fix a doc, edit it in iNiR; every page has an Edit link that goes there.
+  in iNiR and in each family's folder of inir-hub (`docs/<id>`), and change with the code. `npm run sync` copies
+  them in, turns wiki links into site links and builds the sidebar from each folder's `docs.json`. To fix a doc, edit it in iNiR; every page has an Edit link that goes there.
 - **The theme for the docs** is `src/styles/theme.css` on the same tokens, with three Starlight overrides in
   `src/components/docs/`: the site's links in the header, and one column with the page's sections under its title.
 
