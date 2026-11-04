@@ -8,7 +8,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const arrow = '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 8h8M8.5 4.5 12 8l-3.5 3.5"/></svg>';
 // The catalogue's kinds in the order people look for them; a kind the site doesn't know yet still shows.
 const names: Record<string, [string, string]> = {
-	family: ['Families', 'Family'], widget: ['Widgets', 'Widget'], theme: ['Colour themes', 'Colour theme'],
+	family: ['Families', 'Family'], design: ['Designs', 'Design'], widget: ['Widgets', 'Widget'],
+	component: ['Components', 'Component'], theme: ['Colour themes', 'Colour theme'],
 	'iris-theme': ['iRiS themes', 'iRiS theme'], webapp: ['Web apps', 'Web app'],
 };
 const items = hub?.items ?? [];
