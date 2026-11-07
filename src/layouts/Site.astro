@@ -6,7 +6,7 @@ import '../styles/tokens.css';
 import '../styles/site.css';
 
 interface Props { title: string; description: string; page?: 'home' | 'changelog' | 'hub'; image?: string }
-const { title, description, page = 'home', image = 'shots/iris-principal.webp' } = Astro.props;
+const { title, description, page = 'home', image = 'shots/iris-3-desktop.webp' } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const repo = 'https://github.com/snowarch/iNiR';
 const discord = 'https://discord.gg/pAPTfAhZUJ';

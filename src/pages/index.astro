@@ -11,10 +11,11 @@ const shot = (name: string) => ({
 });
 const install = ['git clone https://github.com/snowarch/inir.git', 'cd inir', './setup install'];
 const latest = releases[0];
-const iris = releases.find((release) => release.iris)?.iris;
+// Before 3.0 a release named its iRiS version; families carry their own in the Hub since.
+const iris = latest?.iris;
 
-// The hero takes turns through iRiS, the family the release notes number.
-const reel = ['iris-principal', 'iris-desktop', 'iris-dock', 'iris-card', 'iris-light'];
+// The hero takes turns through iRiS as the latest release shows it.
+const reel = ['iris-3-desktop', 'iris-3-island', 'iris-3-prism', 'iris-3-airisu', 'iris-3-widgets'];
 
 const families = [
 	{ hub: 'ii', name: 'Material ii', shot: 'material-1' },

@@ -1,11 +1,19 @@
 ---
 import Site from '../layouts/Site.astro';
-import { day, releases } from '../lib/data';
+import { day, releases, type Item } from '../lib/data';
 
 const repo = 'https://github.com/snowarch/iNiR';
 // The newest dozen; the rest stay in CHANGELOG.md on GitHub.
 const shown = releases.slice(0, 12);
 const arrow = '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 8h8M8.5 4.5 12 8l-3.5 3.5"/></svg>';
+// Items under "#### Area" lines come in areas; a section without them is one list.
+const areas = (items: Item[]) => items.reduce<{ name: string | null; items: Item[] }[]>((all, item) => {
+	const last = all.at(-1);
+	if (last && last.name === item.group) last.items.push(item);
+	else all.push({ name: item.group, items: [item] });
+	return all;
+}, []);
+const two = (n: number) => String(n + 1).padStart(2, '0');
 ---
 
 <Site title="Changelog, iNiR" description="Every iNiR release, newest first." page="changelog">
@@ -16,21 +24,48 @@ const arrow = '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M
 			<div class="links"><a href={`${repo}/blob/main/CHANGELOG.md`}>CHANGELOG.md <Fragment set:html={arrow} /></a><a href={`${repo}/releases`}>Releases <Fragment set:html={arrow} /></a></div>
 		</div>
 	</section>
-	{shown.map((release) => (
+	{shown.map((release, index) => (
 		<section class="row rel" id={`v${release.version}`}>
 			<div>
 				<div class="sticky">
-					<span class="ver">{release.version}</span>
-					<span class="tag">{release.iris && <span class="iris">iRiS {release.iris} · </span>}{day(release.date)}</span>
+					<a class="ver" href={`#v${release.version}`}>{release.version}</a>
+					<span class="tag">{day(release.date)}</span>
+					{release.iris && <span class="tag iris">iRiS {release.iris}</span>}
+					{index === 0 && <span class="latest lbl"><i aria-hidden="true"></i>Latest</span>}
 				</div>
 			</div>
 			<div class="body">
-				{release.summary && <p>{release.summary}</p>}
-				{release.added.length > 0 && (<><h3 class="lbl">Added</h3><ul>{release.added.map((item) => <li>{item.name && <><strong>{item.name}</strong>: </>}<Fragment set:html={item.html} /></li>)}</ul></>)}
+				{release.summary && <p class="sum">{release.summary}</p>}
+				{release.hero && (
+					<figure class="hero-shot"><img src={release.hero} alt={`iNiR ${release.version}`} width="1920" height="1080" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" /></figure>
+				)}
+				{release.highlights.length > 0 && (
+					<ol class="highlights">
+						{release.highlights.map((shot, n) => (
+							<li>
+								<figure><img src={shot.src} alt={shot.title} width="1920" height="1080" loading="lazy" decoding="async" /></figure>
+								<span class="n tag">{two(n)}</span>
+								<b>{shot.title}</b>
+								{shot.line && <span class="line">{shot.line}</span>}
+							</li>
+						))}
+					</ol>
+				)}
+				{release.added.length > 0 && (
+					<>
+						<h3 class="lbl">Added</h3>
+						{areas(release.added).map((area) => (
+							<div class="area">
+								{area.name && <h4 class="tag"><span>{area.name}</span><span class="count">{area.items.length}</span></h4>}
+								<ul>{area.items.map((item) => <li>{item.name && <><strong>{item.name}</strong>: </>}<Fragment set:html={item.html} /></li>)}</ul>
+							</div>
+						))}
+					</>
+				)}
 				{release.changed.length > 0 && (<><h3 class="lbl">Changed</h3><ul>{release.changed.map((item) => <li>{item.name && <><strong>{item.name}</strong>: </>}<Fragment set:html={item.html} /></li>)}</ul></>)}
 				{release.fixed.length > 0 && (
 					<details class="fixes">
-						<summary class="lbl"><h3 style="display: inline; font: inherit">Fixed</h3></summary>
+						<summary class="lbl"><h3 style="display: inline; font: inherit">Fixed</h3><span class="count">{release.fixed.length}</span></summary>
 						<ul>{release.fixed.map((item) => <li>{item.name && <><strong>{item.name}</strong>: </>}<Fragment set:html={item.html} /></li>)}</ul>
 					</details>
 				)}

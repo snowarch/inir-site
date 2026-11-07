@@ -137,7 +137,9 @@ if (rest.length) sidebar.push({ label: 'More', collapsed: true, items: rest.sort
 writeFileSync(join(root, 'src', 'sidebar.generated.json'), JSON.stringify(sidebar, null, 2) + '\n');
 
 // The landing page, /changelog and the families row follow iNiR's own files: VERSION and every section of
-// CHANGELOG.md beside docs/ (a section's bold line names the iRiS version). Without them the release is left out.
+// CHANGELOG.md beside docs/ (before 3.0 a section's bold line named the iRiS version), and a release's pictures in
+// docs/images/releases/<version>/, the same ones its GitHub release shows: 00-* is the hero, captions.tsv
+// ("file<TAB>title<TAB>line") the highlights, in order. Without them that part is left out.
 const versionFile = join(source, '..', 'VERSION');
 const changelogFile = join(source, '..', 'CHANGELOG.md');
 const release = { version: existsSync(versionFile) ? readFileSync(versionFile, 'utf8').trim() : null, releases: [] };
@@ -151,6 +153,7 @@ const sentence = (text) => {
 	// Sentence case, unless the line opens on a name with its own casing (iRiS) or a command.
 	return /^[a-z]+\b/.test(first) && !text.startsWith('`') ? first.charAt(0).toUpperCase() + first.slice(1) : first;
 };
+rmSync(join(root, 'public', 'changelog'), { recursive: true, force: true });
 if (existsSync(changelogFile)) {
 	const log = readFileSync(changelogFile, 'utf8').replace(/\r\n/g, '\n');
 	const heads = [...log.matchAll(/^## \[(\d+\.\d+\.\d+)\] - (\d{4}-\d{2}-\d{2})$/gm)];
@@ -158,14 +161,33 @@ if (existsSync(changelogFile)) {
 		const section = log.slice(head.index + head[0].length, heads[i + 1]?.index ?? log.length);
 		const title = section.match(/^\*\*(.+)\*\*$/m)?.[1] ?? null;
 		const summary = section.split('\n\n').map((part) => part.trim()).find((part) => part && !/^[#>*-]/.test(part)) ?? null;
-		const list = (name) => (section.split(/^### /m).find((part) => part.startsWith(`${name}\n`)) ?? '')
-			.split('\n').filter((line) => line.startsWith('- ')).map((line) => {
+		// A "#### Area" line inside a section groups the items under it (3.0 on); older sections have none.
+		const list = (name) => {
+			let group = null;
+			return (section.split(/^### /m).find((part) => part.startsWith(`${name}\n`)) ?? '').split('\n').flatMap((line) => {
+				if (line.startsWith('#### ')) group = plain(line.slice(5));
+				if (!line.startsWith('- ')) return [];
 				const [, bold, rest] = line.match(/^- \*\*(.+?)\*\*:?\s*(.*)$/) ?? [];
-				return bold ? { name: plain(bold), text: sentence(rest), html: inline(rest) } : { name: null, text: sentence(line.slice(2)), html: inline(line.slice(2)) };
+				return [bold ? { name: plain(bold), text: sentence(rest), html: inline(rest), group } : { name: null, text: sentence(line.slice(2)), html: inline(line.slice(2)), group }];
 			});
+		};
+		const shots = join(source, 'images', 'releases', head[1]);
+		const served = `${base}changelog/${head[1]}/`;
+		let hero = null, highlights = [];
+		if (existsSync(shots)) {
+			const out = join(root, 'public', 'changelog', head[1]);
+			mkdirSync(out, { recursive: true });
+			cpSync(shots, out, { recursive: true, filter: (path) => !path.endsWith('.tsv') });
+			hero = readdirSync(shots).sort().find((name) => name.startsWith('00-')) ?? null;
+			hero &&= served + hero;
+			const captions = join(shots, 'captions.tsv');
+			if (existsSync(captions)) highlights = readFileSync(captions, 'utf8').split('\n').map((row) => row.split('\t'))
+				.filter(([file, title]) => file && title && existsSync(join(shots, file)))
+				.map(([file, title, line]) => ({ src: served + file, title: title.trim(), line: line?.trim() || null }));
+		}
 		release.releases.push({
 			version: head[1], date: head[2], title, iris: title?.match(/iRiS (\d+(?:\.\d+)*)/)?.[1] ?? null,
-			summary: summary && plain(summary), added: list('Added'), changed: list('Changed'), fixed: list('Fixed'),
+			summary: summary && plain(summary), added: list('Added'), changed: list('Changed'), fixed: list('Fixed'), hero, highlights,
 		});
 	});
 }
