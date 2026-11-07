@@ -1,0 +1,442 @@
+{
+ "blocked": [],
+ "commit": "8ce8674485982ba7eaabd4e687fae920dc35121c",
+ "generated": "2026-11-07T11:43:49+00:00",
+ "home": "https://github.com/snowarch/inir-hub",
+ "items": [
+  {
+   "added": "2026-11-06",
+   "authors": [
+    "snowarch"
+   ],
+   "description": "No logo, eleven lines, the accent from your wallpaper on every theme change. Pick what it shows from its page here, or comment lines in ~/.config/fastfetch/config.jsonc. An existing config is kept as config.jsonc.before-inir.",
+   "families": [],
+   "icon": "terminal",
+   "id": "fastfetch",
+   "kind": "component",
+   "license": "MIT",
+   "minInir": "2.33.0",
+   "name": "Fastfetch",
+   "package": "packages/fastfetch-1.1.0.tar.gz",
+   "path": "components/fastfetch",
+   "permissions": [
+    "process",
+    "files"
+   ],
+   "preview": "previews/fastfetch.webp",
+   "provides": "modules/fastfetch",
+   "sha256": "8094ce8d27eb1d8851d52d9c9142f73d11f8d5a07d6bbc6f9acc86421c1c4d0b",
+   "size": 2938,
+   "summary": "A quiet fastfetch in your iNiR colours; pick what it shows",
+   "surfaces": [
+    "shell"
+   ],
+   "tags": [
+    "terminal",
+    "fastfetch",
+    "colours"
+   ],
+   "updated": "2026-11-06",
+   "version": "1.1.0"
+  },
+  {
+   "added": "2026-11-06",
+   "authors": [
+    "snowarch"
+   ],
+   "description": "A Design for iRiS: the same shell in another colour, type and motion. Lacquer and gofun paper from inir-accel's airisu palette, a vermilion hanko for what is live, figures that lean like a livery number, detents instead of springs, and an Island that stamps the day as a seal.",
+   "families": [
+    "iris"
+   ],
+   "icon": "brush",
+   "id": "airisu",
+   "kind": "design",
+   "license": "GPL-3.0-only",
+   "minInir": "2.33.0",
+   "name": "AIRISU",
+   "package": "packages/airisu-1.0.1.tar.gz",
+   "path": "designs/airisu",
+   "permissions": [],
+   "preview": "previews/airisu.webp",
+   "provides": "modules/airisu",
+   "requires": [
+    "iris"
+   ],
+   "sha256": "12d0b3edd282026d56c287039975cce5da352fe8f1229dd7be40fa6285277183",
+   "size": 35870,
+   "summary": "iRiS in lacquer: urushi black, a vermilion seal, leaning figures",
+   "surfaces": [
+    "look"
+   ],
+   "tags": [
+    "design",
+    "japanese",
+    "lacquer",
+    "vermilion"
+   ],
+   "updated": "2026-11-06",
+   "version": "1.0.1"
+  },
+  {
+   "added": "2026-11-06",
+   "authors": [
+    "snowarch"
+   ],
+   "description": "",
+   "families": [],
+   "hosts": [
+    "9animetv.to",
+    "ankiweb.net",
+    "coingecko.com",
+    "discord.com",
+    "google.com",
+    "jogruber.de",
+    "konachan.net",
+    "m3.material.io",
+    "openai.com",
+    "sponsor.ajay.app",
+    "vcrdb.net",
+    "wallhaven.cc",
+    "wikimedia.org",
+    "www.apache.org",
+    "yande.re",
+    "youtube.com"
+   ],
+   "icon": "dashboard",
+   "id": "ii",
+   "kind": "family",
+   "license": "GPL-3.0-only",
+   "minInir": "2.33.0",
+   "name": "Material",
+   "package": "packages/ii-2.35.3.tar.gz",
+   "path": "families/ii",
+   "permissions": [
+    "process",
+    "network",
+    "files"
+   ],
+   "preview": "previews/ii.webp",
+   "provides": "modules/ii",
+   "sha256": "05fe6d7465b7892e933d9956fb6bffcc5ae58eff82fee2384016e134916fdd1d",
+   "size": 2827652,
+   "summary": "Material 3 Expressive panels, bars, docks and widgets in nine global styles.",
+   "surfaces": [
+    "shell"
+   ],
+   "tags": [
+    "family"
+   ],
+   "updated": "2026-11-06",
+   "version": "2.35.3"
+  },
+  {
+   "added": "2026-11-06",
+   "authors": [
+    "snowarch"
+   ],
+   "description": "",
+   "families": [],
+   "hosts": [
+    "bing.com",
+    "brave.com",
+    "duckduckgo.com",
+    "google.com",
+    "startpage.com"
+   ],
+   "icon": "visibility",
+   "id": "iris",
+   "kind": "family",
+   "license": "GPL-3.0-only",
+   "minInir": "2.33.0",
+   "name": "iRiS",
+   "package": "packages/iris-2.33.37.tar.gz",
+   "path": "families/iris",
+   "permissions": [
+    "process",
+    "network",
+    "files"
+   ],
+   "preview": "previews/iris.webp",
+   "provides": "modules/iris",
+   "sha256": "99c5be7872f8d9a3e18bde8156ae8d8542e01cd174952caff3aa1a7f0381f045",
+   "size": 3170331,
+   "summary": "One living body: the Island, the chassis and Apple-grade motion.",
+   "surfaces": [
+    "shell"
+   ],
+   "tags": [
+    "family"
+   ],
+   "updated": "2026-11-06",
+   "version": "2.33.37"
+  },
+  {
+   "added": "2026-11-06",
+   "authors": [
+    "snowarch"
+   ],
+   "description": "",
+   "families": [],
+   "icon": "grid_view",
+   "id": "waffle",
+   "kind": "family",
+   "license": "GPL-3.0-only",
+   "minInir": "2.33.0",
+   "name": "Waffle",
+   "package": "packages/waffle-2.34.5.tar.gz",
+   "path": "families/waffle",
+   "permissions": [
+    "process",
+    "files"
+   ],
+   "preview": "previews/waffle.webp",
+   "provides": "modules/waffle",
+   "requires": [
+    "ii"
+   ],
+   "sha256": "141b96f3dd017a2b76d5b976867e7fda9b1ec318d6c7d558aeba0bd1a9270a57",
+   "size": 668775,
+   "summary": "Windows 11 for people who want it: taskbar, Start, Action Center.",
+   "surfaces": [
+    "shell"
+   ],
+   "tags": [
+    "family"
+   ],
+   "updated": "2026-11-06",
+   "version": "2.34.5"
+  },
+  {
+   "added": "2026-11-06",
+   "authors": [
+    "snowarch"
+   ],
+   "description": "Soft glass over the wallpaper, moss-green accent, amber highlight and slow, gentle motion.",
+   "families": [
+    "iris"
+   ],
+   "icon": "style",
+   "id": "moss-garden",
+   "kind": "iris-theme",
+   "license": "MIT",
+   "minInir": "",
+   "name": "Moss Garden",
+   "package": "packages/moss-garden-1.0.0.tar.gz",
+   "path": "iris-themes/moss-garden",
+   "permissions": [],
+   "preview": "previews/moss-garden.svg",
+   "sha256": "3b2d50abfd111b99eac4f86a2ef2ec8f0ed9eaa3dd60566749b90b9c38e0c7f1",
+   "size": 541,
+   "summary": "Soft moss-green glass with slow, gentle motion",
+   "surfaces": [
+    "look"
+   ],
+   "tags": [
+    "glass",
+    "green",
+    "calm"
+   ],
+   "updated": "2026-11-06",
+   "version": "1.0.0"
+  },
+  {
+   "added": "2026-11-06",
+   "authors": [
+    "snowarch"
+   ],
+   "dark": false,
+   "description": "Warm paper and amber light, a calm light theme for daytime work.",
+   "families": [
+    "material",
+    "waffle"
+   ],
+   "icon": "palette",
+   "id": "paper-lantern",
+   "kind": "theme",
+   "license": "MIT",
+   "minInir": "",
+   "name": "Paper Lantern",
+   "package": "packages/paper-lantern-1.0.0.tar.gz",
+   "path": "themes/paper-lantern",
+   "permissions": [],
+   "preview": "previews/paper-lantern.svg",
+   "sha256": "2419c655c37d53c17c405f30d04c930243aa5151650b12dc3351b9071173eb38",
+   "size": 685,
+   "summary": "Warm paper and amber light for daytime",
+   "surfaces": [
+    "colours"
+   ],
+   "swatch": [
+    "#fff8f5",
+    "#fdeadf",
+    "#8b5122",
+    "#755946",
+    "#686028",
+    "#3d3027"
+   ],
+   "tags": [
+    "light",
+    "warm"
+   ],
+   "updated": "2026-11-06",
+   "version": "1.0.0"
+  },
+  {
+   "added": "2026-11-06",
+   "authors": [
+    "snowarch"
+   ],
+   "dark": true,
+   "description": "Cool sea-glass teal over deep slate, for long nights at the terminal.",
+   "families": [
+    "material",
+    "waffle"
+   ],
+   "icon": "palette",
+   "id": "tidepool",
+   "kind": "theme",
+   "license": "MIT",
+   "minInir": "",
+   "name": "Tidepool",
+   "package": "packages/tidepool-1.0.0.tar.gz",
+   "path": "themes/tidepool",
+   "permissions": [],
+   "preview": "previews/tidepool.svg",
+   "sha256": "a2e524f261a69e1ae30e47ff82e8677d99df72e3cf96dd0d41a96a019f09e0ab",
+   "size": 711,
+   "summary": "Sea-glass teal over deep slate",
+   "surfaces": [
+    "colours"
+   ],
+   "swatch": [
+    "#0a0f0e",
+    "#131b1a",
+    "#82d6cb",
+    "#b1ccc7",
+    "#9dcde4",
+    "#dce8e5"
+   ],
+   "tags": [
+    "dark",
+    "cool"
+   ],
+   "updated": "2026-11-06",
+   "version": "1.0.0"
+  },
+  {
+   "added": "2026-11-06",
+   "authors": [
+    "snowarch"
+   ],
+   "description": "Excalidraw as a tab of Material's left sidebar: sketch a layout, a flow or an idea without leaving the desktop. Your drawings stay in the site's own storage.",
+   "families": [
+    "material"
+   ],
+   "icon": "draw",
+   "id": "excalidraw",
+   "kind": "webapp",
+   "license": "MIT",
+   "minInir": "",
+   "name": "Excalidraw",
+   "package": "packages/excalidraw-1.0.0.tar.gz",
+   "path": "webapps/excalidraw",
+   "permissions": [],
+   "preview": "previews/excalidraw.webp",
+   "sha256": "d1b942f74fc40c7962d407d2232cd05ccc4ca362c921166b751b130a8d5a0af7",
+   "size": 187,
+   "summary": "A hand-drawn whiteboard in the left sidebar",
+   "surfaces": [
+    "sidebar"
+   ],
+   "tags": [
+    "drawing",
+    "productivity"
+   ],
+   "updated": "2026-11-06",
+   "url": "https://excalidraw.com",
+   "version": "1.0.0"
+  },
+  {
+   "added": "2026-11-06",
+   "authors": [
+    "snowarch"
+   ],
+   "description": "Days left until a date you care about. The figure sits in a Material shape you pick, and a wavy bar shows how much of the wait has gone by. Also a line on the iRiS Island and a card in Waffle's Widgets panel.",
+   "families": [
+    "material",
+    "iris",
+    "waffle"
+   ],
+   "featured": true,
+   "icon": "hourglass_bottom",
+   "id": "countdown",
+   "kind": "widget",
+   "license": "MIT",
+   "minInir": "2.33.0",
+   "name": "Countdown",
+   "package": "packages/countdown-1.0.0.tar.gz",
+   "path": "widgets/countdown",
+   "permissions": [],
+   "preview": "previews/countdown.webp",
+   "sha256": "fc0b96bc1bc55abbb967850f4b78e82233e50a6a6ceb6b9d28babaef8bbe62f4",
+   "size": 6645,
+   "summary": "Days left until a date you care about, in every family",
+   "surfaces": [
+    "desktop",
+    "island",
+    "waffle-widgets"
+   ],
+   "tags": [
+    "time",
+    "example"
+   ],
+   "updated": "2026-11-06",
+   "version": "1.0.0"
+  },
+  {
+   "added": "2026-11-06",
+   "authors": [
+    "snowarch"
+   ],
+   "description": "Any command, kept fresh on the desktop or on the iRiS Island. What it prints picks the look: a percentage gets a bar, a number gets a large figure, text gets lines. It only runs while it is on screen, and an error shows what the command said.",
+   "families": [
+    "material",
+    "iris"
+   ],
+   "icon": "terminal",
+   "id": "shell-line",
+   "kind": "widget",
+   "license": "MIT",
+   "minInir": "2.33.0",
+   "name": "Shell Line",
+   "package": "packages/shell-line-1.0.0.tar.gz",
+   "path": "widgets/shell-line",
+   "permissions": [
+    "process"
+   ],
+   "preview": "previews/shell-line.webp",
+   "sha256": "02d7c1404dc53573e44b4f1cfceee948bd890829b397f257e205da36a766f694",
+   "size": 5941,
+   "summary": "Any command, drawn as a bar, a figure or lines",
+   "surfaces": [
+    "desktop",
+    "island"
+   ],
+   "tags": [
+    "system",
+    "terminal",
+    "example"
+   ],
+   "updated": "2026-11-06",
+   "version": "1.0.0"
+  }
+ ],
+ "name": "iNiR Hub",
+ "permissions": {
+  "files": "Reads or writes files outside its own folder",
+  "inject": "Injects scripts into the site it opens",
+  "network": "Talks to the internet",
+  "process": "Runs commands on your computer"
+ },
+ "schema": 1
+}
