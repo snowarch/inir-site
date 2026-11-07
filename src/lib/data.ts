@@ -13,6 +13,8 @@ export type HubItem = {
 	id: string; kind: string; name: string; version: string; summary?: string; description?: string;
 	authors?: string[]; preview?: string; permissions?: string[]; updated?: string; minInir?: string;
 	changes?: { version: string; notes: string[] }[];
+	// Folded daily from the relays people's shells publish to (hub.social in their config.json).
+	downloads?: number; installs?: number; votesUp?: number; votesDown?: number; reactions?: Record<string, number>;
 };
 export type Hub = { generated: string; commit?: string; permissions: Record<string, string>; items: HubItem[] };
 
