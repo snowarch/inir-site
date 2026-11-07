@@ -42,6 +42,12 @@ const sorted = [...items].sort((a, b) => kinds.indexOf(a.kind) - kinds.indexOf(b
 						<div class="pic">{item.preview && <img src={`${base}hub/${item.preview}`} alt="" loading="lazy" />}</div>
 						<div class="top"><h3>{item.name}</h3><span class="tag">v{item.version}</span></div>
 						{(item.summary || item.description) && <p>{item.summary || item.description}</p>}
+						{item.changes?.[0] && (
+							<ul class="news" aria-label={`New in ${item.changes[0].version}`}>
+								<li class="lbl">New in v{item.changes[0].version}</li>
+								{item.changes[0].notes.slice(0, 3).map((note) => <li>{note}</li>)}
+							</ul>
+						)}
 						<div class="foot-l">
 							<span class="chip">{names[item.kind]?.[1] ?? item.kind}</span>
 							{(item.permissions ?? []).map((p) => <span class="chip" title={hub.permissions[p] ?? p}>{p}</span>)}
