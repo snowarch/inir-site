@@ -44,13 +44,13 @@ const arrow = '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M
 const copy = '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="2"/><path d="M3 10.5V4a1.5 1.5 0 0 1 1.5-1.5H11"/></svg>';
 ---
 
-<Site title="iNiR, the desktop shell for Niri" description="iNiR is a complete desktop shell for the Niri compositor, built on Quickshell.">
+<Site title="iNiR, the desktop shell for Niri and Umbriel" description="iNiR is a complete desktop shell for the Niri and Umbriel compositors, built on Quickshell.">
 	<section class="row split hero">
 		<div class="pad">
 			{version && (
 				<a class="release tag" href={`${base}changelog/`}><i aria-hidden="true"></i><b>v{version}</b>{iris && <span>iRiS {iris}</span>}{latest && <span>{day(latest.date)}</span>}</a>
 			)}
-			<h1>The desktop shell for Niri.</h1>
+			<h1>The desktop shell for Niri and Umbriel.</h1>
 			<p class="sub">Built on Quickshell. Set up from one app, no config files.</p>
 			<div class="cmd">
 				<code><span class="pr">$</span>{install.join(' && ')}</code>
@@ -145,7 +145,7 @@ const copy = '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><rect x="5"
 		<div class="pad">
 			<span class="lbl">Install</span>
 			<h2 id="install-title" style="margin-top: 14px">Three commands.</h2>
-			<p class="sub" style="margin-top: 8px">Restart, then pick Niri at the login screen.</p>
+			<p class="sub" style="margin-top: 8px">Restart, then pick Niri or Umbriel at the login screen.</p>
 			<div class="links"><a href={docs('install/')}>Install guide <Fragment set:html={arrow} /></a></div>
 		</div>
 		<div class="term">
