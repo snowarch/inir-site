@@ -1,6 +1,6 @@
 ---
 import Site from '../layouts/Site.astro';
-import { day, releases, type Item } from '../lib/data';
+import { day, releases, type Highlight, type Item } from '../lib/data';
 
 const repo = 'https://github.com/snowarch/iNiR';
 // The newest dozen; the rest stay in CHANGELOG.md on GitHub.
@@ -14,6 +14,9 @@ const areas = (items: Item[]) => items.reduce<{ name: string | null; items: Item
 	return all;
 }, []);
 const two = (n: number) => String(n + 1).padStart(2, '0');
+// The first picture leads alone when the rest fill their two columns; otherwise all of them make the grid.
+const leads = (release: { hero: string | null; highlights: { src: string }[] }) => !!release.hero && (release.highlights.length === 0 || (release.highlights[0].src === release.hero && release.highlights.length % 2 === 1));
+const grid = (release: { hero: string | null; highlights: Highlight[] }) => leads(release) ? release.highlights.slice(1) : release.highlights;
 ---
 
 <Site title="Changelog, iNiR" description="Every iNiR release, newest first." page="changelog">
@@ -36,12 +39,12 @@ const two = (n: number) => String(n + 1).padStart(2, '0');
 			</div>
 			<div class="body">
 				{release.summary && <p class="sum">{release.summary}</p>}
-				{release.hero && (
+				{leads(release) && (
 					<figure class="hero-shot"><img src={release.hero} alt={`iNiR ${release.version}`} width="1920" height="1080" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" /></figure>
 				)}
-				{release.highlights.length > 0 && (
+				{grid(release).length > 0 && (
 					<ol class="highlights">
-						{release.highlights.map((shot, n) => (
+						{grid(release).map((shot, n) => (
 							<li>
 								<figure><img src={shot.src} alt={shot.title} width="1920" height="1080" loading="lazy" decoding="async" /></figure>
 								<span class="n tag">{two(n)}</span>
@@ -69,6 +72,8 @@ const two = (n: number) => String(n + 1).padStart(2, '0');
 						<ul>{release.fixed.map((item) => <li>{item.name && <><strong>{item.name}</strong>: </>}<Fragment set:html={item.html} /></li>)}</ul>
 					</details>
 				)}
+				{release.issues?.length > 0 && (<><h3 class="lbl">Issues and pull requests</h3><ul>{release.issues.map((item) => <li><Fragment set:html={item.html} /></li>)}</ul></>)}
+				{release.thanks && (<><h3 class="lbl">Thanks</h3><p class="thanks"><Fragment set:html={release.thanks} /></p></>)}
 			</div>
 		</section>
 	))}

@@ -147,7 +147,11 @@ const plain = (text) => text.replace(/\*\*?([^*]+)\*\*?/g, '$1').replace(/`([^`]
 const escape = (text) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 // The changelog page shows items as written: code, bold and links, nothing else.
 const inline = (text) => escape(text).replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-	.replace(/\[([^\]]+)\]\((https?:[^)\s"]+)\)/g, '<a href="$2">$1</a>');
+	.replace(/\[([^\]]+)\]\((https?:[^)\s"]+)\)/g, '<a href="$2">$1</a>')
+	// A link to a file of the repo has no page here: its words stay.
+	.replace(/\[([^\]]+)\]\((?!https?:)[^)\s]+\)/g, '$1')
+	// A bare #123 is an issue or pull request of the base; GitHub sends either number to the right page.
+	.replace(/(^|[\s(])#(\d+)\b/g, '$1<a href="https://github.com/snowarch/iNiR/issues/$2">#$2</a>');
 const sentence = (text) => {
 	const first = plain(text.replace(/\s*\(`inir [^)]*\)/g, '')).split(/(?<=\.)\s/)[0];
 	// Sentence case, unless the line opens on a name with its own casing (iRiS) or a command.
@@ -171,6 +175,8 @@ if (existsSync(changelogFile)) {
 				return [bold ? { name: plain(bold), text: sentence(rest), html: inline(rest), group } : { name: null, text: sentence(line.slice(2)), html: inline(line.slice(2)), group }];
 			});
 		};
+		// The people behind it: one paragraph under "### Contributors".
+		const thanks = (section.split(/^### /m).find((part) => part.startsWith('Contributors\n')) ?? '').split('\n').slice(1).join(' ').trim();
 		const shots = join(source, 'images', 'releases', head[1]);
 		const served = `${base}changelog/${head[1]}/`;
 		let hero = null, highlights = [];
@@ -187,7 +193,7 @@ if (existsSync(changelogFile)) {
 		}
 		release.releases.push({
 			version: head[1], date: head[2], title, iris: title?.match(/iRiS (\d+(?:\.\d+)*)/)?.[1] ?? null,
-			summary: summary && plain(summary), added: list('Added'), changed: list('Changed'), fixed: list('Fixed'), hero, highlights,
+			summary: summary && plain(summary), added: list('Added'), changed: list('Changed'), fixed: list('Fixed'), issues: list('Issues / PRs'), thanks: thanks ? inline(thanks) : null, hero, highlights,
 		});
 	});
 }

@@ -160,6 +160,8 @@ h2 { font-weight: 500; font-size: 22px; line-height: 1.2; letter-spacing: -0.02e
 .rel .highlights .line { grid-column: 2; font-size: 13px; line-height: 1.6; color: var(--fg-2); }
 .rel h3 { margin: 36px 0 12px; }
 .rel .area + .area { margin-top: 28px; }
+.rel .thanks { max-width: 680px; font-size: 14px; line-height: 1.7; color: var(--fg-2); }
+.rel .thanks a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px; }
 .rel h4 { display: flex; justify-content: space-between; max-width: 680px; margin: 0 0 12px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--fg); }
 .rel h4 .count { color: var(--fg-3); }
 .rel ul { display: flex; flex-direction: column; gap: 8px; max-width: 680px; }

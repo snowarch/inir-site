@@ -8,7 +8,7 @@ export type Item = { name: string | null; text: string; html: string; group: str
 export type Highlight = { src: string; title: string; line: string | null };
 export type Release = {
 	version: string; date: string; title: string | null; iris: string | null; summary: string | null;
-	added: Item[]; changed: Item[]; fixed: Item[];
+	added: Item[]; changed: Item[]; fixed: Item[]; issues: Item[]; thanks: string | null;
 	// The release's own pictures (docs/images/releases/<version>/ in iNiR), when it has them.
 	hero: string | null; highlights: Highlight[];
 };
