@@ -34,7 +34,7 @@ export default defineConfig({
 		starlight({
 			title: 'iNiR',
 			description: 'A complete desktop shell for Niri, built on Quickshell.',
-			favicon: '/favicon.svg',
+			favicon: '/icon.svg',
 			logo: { dark: './src/assets/inir-mark-dark.svg', light: './src/assets/inir-mark-light.svg' },
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/snowarch/iNiR' },
