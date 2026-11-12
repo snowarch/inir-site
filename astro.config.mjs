@@ -35,7 +35,7 @@ export default defineConfig({
 			title: 'iNiR',
 			description: 'A complete desktop shell for Niri, built on Quickshell.',
 			favicon: '/favicon.svg',
-			logo: { src: './src/assets/inir-mark.svg' },
+			logo: { dark: './src/assets/inir-mark-dark.svg', light: './src/assets/inir-mark-light.svg' },
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/snowarch/iNiR' },
 				{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/pAPTfAhZUJ' },

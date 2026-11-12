@@ -28,7 +28,7 @@ svg { fill: currentColor; }
 .nav { position: sticky; top: 0; z-index: 10; background: rgb(10 10 10 / 0.85); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
 .nav-in { display: flex; align-items: stretch; height: 52px; max-width: 1200px; margin: 0 auto; border-inline: 1px solid var(--line); }
 .brand { display: flex; align-items: center; gap: 9px; padding: 0 20px; border-right: 1px solid var(--line); font-weight: 600; font-size: 14px; letter-spacing: -0.01em; }
-.brand img { border-radius: 5px; }
+.brand img { display: block; }
 .nav-links { display: flex; }
 .nav-links a, .nav-end a { display: flex; align-items: center; gap: 8px; padding: 0 18px; font: 500 11.5px var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-2); transition: color 0.2s, background 0.2s; }
 .nav-links a:hover, .nav-end a:hover { color: var(--fg); background: var(--bg-2); }
