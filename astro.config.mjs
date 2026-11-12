@@ -33,7 +33,7 @@ export default defineConfig({
 		kiraPages,
 		starlight({
 			title: 'iNiR',
-			description: 'A complete desktop shell for Niri, built on Quickshell.',
+			description: 'A complete desktop shell for Niri and Umbriel, built on Quickshell.',
 			favicon: '/icon.svg',
 			logo: { dark: './src/assets/inir-mark-dark.svg', light: './src/assets/inir-mark-light.svg' },
 			social: [

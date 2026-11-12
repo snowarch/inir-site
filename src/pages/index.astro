@@ -15,7 +15,8 @@ const latest = releases[0];
 const iris = latest?.iris;
 
 // The hero takes turns through iRiS as the latest release shows it.
-const reel = ['iris-3-desktop', 'iris-3-island', 'iris-3-prism', 'iris-3-airisu', 'iris-3-widgets'];
+// The README's pictures and the last release's, every family and what is new.
+const reel = ['readme-hero', '3.1-glyphs', 'readme-iris', 'readme-material', 'readme-waffle', '3.1-compositor', '3.1-radio'];
 
 const families = [
 	{ hub: 'ii', name: 'Material ii', shot: 'material-1' },
@@ -64,7 +65,7 @@ const copy = '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><rect x="5"
 		<div class="reel" data-reel>
 			<div class="reel-stage">
 				{reel.map((name, index) => (
-					<img {...shot(name)} sizes="(max-width: 900px) 94vw, 660px" width="1920" height="1080" alt={index === 0 ? 'iNiR with the iRiS family' : ''}
+					<img {...shot(name)} sizes="(max-width: 900px) 94vw, 660px" width="1920" height="1080" alt={index === 0 ? 'The iNiR desktop' : ''}
 						class={index === 0 ? 'on' : undefined} loading={index === 0 ? 'eager' : 'lazy'} fetchpriority={index === 0 ? 'high' : 'auto'} />
 				))}
 			</div>

@@ -39,7 +39,7 @@ const PARTS = [
 	{ id: 'base', name: 'The base', line: 'Services, Settings, IPC, setup, update, wizard', at: '~/.config/quickshell/inir', by: 'iNiR' },
 	{ id: 'qsrs', name: 'qs-rs', line: 'Runtime: loads and draws the shell', at: '~/.local/share/inir/runtime', by: 'qs-rs' },
 	{ id: 'accel', name: 'inir-accel', line: 'Helpers: colours, thumbnails, images', at: '~/.local/share/inir/accel', by: 'inir-accel' },
-	{ id: 'niri', name: 'Niri', line: 'Compositor: your windows', at: '~/.config/niri', by: 'your distro' },
+	{ id: 'niri', name: 'Niri or Umbriel', line: 'Compositor: your windows', at: '~/.config/niri, ~/.config/umbriel', by: 'your distro' },
 	{ id: 'cli', name: 'inir', line: 'The command you type', at: '~/.local/share/inir/cli/inir', by: 'inir-cli' },
 	{ id: 'space', name: 'inir.space', line: 'Hub catalogue, releases, docs', at: 'fetched by setup and inir update', by: 'inir-site' },
 ];

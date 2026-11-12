@@ -1,6 +1,6 @@
 # iNiR site
 
-The website and documentation for [iNiR](https://github.com/snowarch/iNiR), a desktop shell for Niri.
+The website and documentation for [iNiR](https://github.com/snowarch/iNiR), a desktop shell for Niri and Umbriel.
 
 Built with [Astro](https://astro.build) and [Starlight](https://starlight.astro.build). Published at
 https://inir.space.
