@@ -81,7 +81,9 @@ jobs:
           cache: false
       - name: Build the hub catalogue
         run: |
-          go install github.com/snowarch/inir-cli/cmd/inir@main
+          # Straight from GitHub: the module proxy answers @main from a cache minutes old, so a fix to
+          # `inir hub build` pushed just before missed the next catalogue (11-13).
+          GOPRIVATE=github.com/snowarch/inir-cli go install github.com/snowarch/inir-cli/cmd/inir@main
           # Downloads and votes: stats.json on the hub's stats branch (its daily stats workflow).
           git -C hub fetch -q origin stats:refs/remotes/origin/stats || true
           (cd hub && inir hub build --out "$GITHUB_WORKSPACE/hub-out" \
