@@ -9,9 +9,9 @@ https://inir.space.
 
 - **The pages** are `src/pages/`: the landing page, `/changelog` and `/hub`, all in `src/layouts/Site.astro` and
   `src/styles/site.css` on the shared palette in `src/styles/tokens.css`: near black, hairlines and one amber
-  accent, Geist for text and Geist Mono for labels and commands. The mark is `src/assets/inir-mark.svg`. Every
-  picture is a real screenshot of the shell in `public/shots/` (each with a 960 wide copy); distro logos are in
-  `public/distros/`.
+  accent, Geist for text and Geist Mono for labels and commands. The mark is `src/assets/inir-mark-dark.svg` (and
+  `-light` for light backgrounds). Every picture is a real screenshot of the shell in `public/shots/` (the landing's
+  with a 960 wide copy); distro logos are in `public/distros/`.
 - **Versions and release notes** come from iNiR itself: `npm run sync` reads `VERSION` and every section of
   `CHANGELOG.md` beside `docs/` (a section's bold line names the iRiS version) and writes
   `src/release.generated.json`. The landing page, What's new and `/changelog` follow it, so a release shows up on
@@ -21,8 +21,9 @@ https://inir.space.
 - **The docs are not in this repository.** They live in [`docs/`](https://github.com/snowarch/iNiR/tree/main/docs)
   in iNiR and in each family's folder of inir-hub (`docs/<id>`), and change with the code. `npm run sync` copies
   them in, turns wiki links into site links and builds the sidebar from each folder's `docs.json`. To fix a doc, edit it in iNiR; every page has an Edit link that goes there.
-- **The theme for the docs** is `src/styles/theme.css` on the same tokens, with three Starlight overrides in
-  `src/components/docs/`: the site's links in the header, and one column with the page's sections under its title.
+- **The theme for the docs** is `src/styles/theme.css` on the same tokens, with four Starlight overrides in
+  `src/components/docs/`: the site's links in the header, one column with the page's sections under its title and the
+  family pick, and one dark look with no theme picker.
 
 ## Run it
 
@@ -39,9 +40,9 @@ npm run dev
 
 ## Deploying
 
-GitHub Pages serves the `gh-pages` branch. Pushing to `main` builds the site and publishes it there; it also
-rebuilds every day, and when iNiR sends a `docs-updated` dispatch, so doc changes show up without touching this
-repository. Pull requests build as a check.
+GitHub Pages serves the `gh-pages` branch. Pushing to `main` builds the site and publishes it there. Every 20
+minutes it also looks at its sources (iNiR's docs and version, the hub) and builds when one moved, and once a day
+anyway, so doc and hub changes show up without touching this repository. Pull requests build as a check.
 
 `npm run deploy` does the same from your machine.
 
