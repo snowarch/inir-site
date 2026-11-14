@@ -1,0 +1,1028 @@
+{
+ "blocked": [],
+ "commit": "6e4fc44340e2a5b500e88a667d58056035090b29",
+ "generated": "2026-11-14T12:11:11+00:00",
+ "home": "https://github.com/snowarch/inir-hub",
+ "items": [
+  {
+   "added": "2026-11-02",
+   "authors": [
+    "snowarch"
+   ],
+   "changes": [
+    {
+     "version": "1.2.0",
+     "notes": [
+      "A fastfetch config of your own is never replaced: iNiR's look waits until you turn it on in its Hub page",
+      "One switch in its Hub page turns iNiR's look off and puts your own config back; removing the plugin does too"
+     ]
+    },
+    {
+     "version": "1.1.1",
+     "notes": [
+      "A new preview, made from a clean desktop"
+     ]
+    }
+   ],
+   "description": "No logo, eleven lines, the accent from your wallpaper on every theme change. A config of your own is never replaced: one switch in its page here turns iNiR's look on or off and gives yours back, and its chips pick what it shows.",
+   "download": "https://github.com/snowarch/inir-hub/releases/download/packages/fastfetch-1.2.0.tar.gz",
+   "downloads": 189,
+   "families": [],
+   "icon": "terminal",
+   "id": "fastfetch",
+   "installs": 551,
+   "kind": "component",
+   "license": "MIT",
+   "minInir": "2.33.0",
+   "name": "Fastfetch",
+   "package": "packages/fastfetch-1.2.0.tar.gz",
+   "path": "components/fastfetch",
+   "permissions": [
+    "process",
+    "files"
+   ],
+   "preview": "previews/fastfetch.webp",
+   "provides": "modules/fastfetch",
+   "reactions": {
+    "❤️": 2
+   },
+   "sha256": "fb81df2741afabb0b48c10c815441585e6921d4d70011e88ee1b506ef185e19d",
+   "size": 4293,
+   "summary": "A quiet fastfetch in your iNiR colours; one switch turns it on or off",
+   "surfaces": [
+    "shell"
+   ],
+   "tags": [
+    "terminal",
+    "fastfetch",
+    "colours"
+   ],
+   "updated": "2026-11-10",
+   "version": "1.2.0",
+   "votesDown": 2,
+   "votesUp": 7
+  },
+  {
+   "added": "2026-11-13",
+   "authors": [
+    "xsteban1410"
+   ],
+   "changes": [
+    {
+     "version": "1.0.1",
+     "notes": [
+      "Refresh the Hub preview and require iNiR 3.1.1"
+     ]
+    }
+   ],
+   "description": "",
+   "download": "https://github.com/snowarch/inir-hub/releases/download/packages/media-corner-1.0.1.tar.gz",
+   "downloads": 492,
+   "families": [
+    "iris"
+   ],
+   "hosts": [
+    "anilist.co",
+    "cinemeta-catalogs.strem.io",
+    "graphql.anilist.co",
+    "images.metahub.space",
+    "live.metahub.space",
+    "m.media-amazon.com",
+    "s4.anilist.co",
+    "v3-cinemeta.strem.io",
+    "www.imdb.com",
+    "www.youtube.com"
+   ],
+   "icon": "movie",
+   "id": "media-corner",
+   "installs": 77,
+   "kind": "component",
+   "license": "MIT",
+   "minInir": "3.1.1",
+   "name": "Media Corner",
+   "package": "packages/media-corner-1.0.1.tar.gz",
+   "path": "components/media-corner",
+   "permissions": [
+    "network"
+   ],
+   "preview": "previews/media-corner.webp",
+   "provides": "modules/media-corner",
+   "sha256": "a4b37c0f7bb4a55cd03304543e0099fdf51665892f2e77ca3cd01a283d541b8e",
+   "size": 50536,
+   "summary": "Browse anime, films and series and see where they stream",
+   "surfaces": [
+    "shell"
+   ],
+   "tags": [
+    "anime",
+    "movies",
+    "series",
+    "anilist",
+    "catalog"
+   ],
+   "updated": "2026-11-13",
+   "version": "1.0.1",
+   "votesDown": 0,
+   "votesUp": 0
+  },
+  {
+   "added": "2026-11-04",
+   "authors": [
+    "snowarch"
+   ],
+   "changes": [
+    {
+     "version": "1.0.3",
+     "notes": [
+      "A new preview, made from a clean desktop"
+     ]
+    }
+   ],
+   "description": "A Design for iRiS: the same shell in another colour, type and motion. Lacquer and gofun paper from inir-accel's airisu palette, a vermilion hanko for what is live, figures that lean like a livery number, detents instead of springs, and an Island that stamps the day as a seal.",
+   "download": "https://github.com/snowarch/inir-hub/releases/download/packages/airisu-1.0.3.tar.gz",
+   "downloads": 110,
+   "families": [
+    "iris"
+   ],
+   "icon": "brush",
+   "id": "airisu",
+   "installs": 553,
+   "kind": "design",
+   "license": "GPL-3.0-only",
+   "minInir": "2.33.0",
+   "name": "AIRISU",
+   "package": "packages/airisu-1.0.3.tar.gz",
+   "path": "designs/airisu",
+   "permissions": [],
+   "preview": "previews/airisu.webp",
+   "provides": "modules/airisu",
+   "reactions": {
+    "❤️": 6,
+    "🤯": 1,
+    "🫃": 7
+   },
+   "requires": [
+    "iris"
+   ],
+   "sha256": "af860833f72a43f7a28c516983d029c6e8ba5512d77a435199e88a2ac91f6eba",
+   "size": 35874,
+   "summary": "iRiS in lacquer: urushi black, a vermilion seal, leaning figures",
+   "surfaces": [
+    "look"
+   ],
+   "tags": [
+    "design",
+    "japanese",
+    "lacquer",
+    "vermilion"
+   ],
+   "updated": "2026-11-07",
+   "version": "1.0.3",
+   "votesDown": 0,
+   "votesUp": 8
+  },
+  {
+   "added": "2026-11-10",
+   "authors": [
+    "snowarch"
+   ],
+   "changes": [
+    {
+     "version": "1.0.0",
+     "notes": [
+      "The whole shell in Prism's language: the near-black of Prism Settings, white solids, round marks and hairlines of light, quick to move",
+      "Black that is never flat: each panel takes a soft haze of the spectrum from one corner",
+      "Controls of their own: ON and OFF written on the switch, white levels with the spectrum at their head, lit tiles in solid white",
+      "The Island at rest: a thread of white light meets the hour and leaves it as the spectrum",
+      "Desktop widgets wear their Prism faces while it is on"
+     ]
+    }
+   ],
+   "description": "A Design for iRiS that dresses the whole shell in the language of Prism, iRiS's Settings: the three near-black neutrals and Apple's label inks, white solids for what is chosen, squircle marks, rows numbered like a chart, a hairline of light on every edge and calm motion. At rest the Island's hour is the prism: white light enters, the spectrum leaves. Desktop widgets wear their Prism faces of frosted glass while it is on; your accent still marks where you are.",
+   "download": "https://github.com/snowarch/inir-hub/releases/download/packages/prism-1.0.0.tar.gz",
+   "downloads": 191,
+   "families": [
+    "iris"
+   ],
+   "icon": "flare",
+   "id": "prism",
+   "installs": 236,
+   "kind": "design",
+   "license": "GPL-3.0-only",
+   "minInir": "3.0.2",
+   "name": "Prism",
+   "package": "packages/prism-1.0.0.tar.gz",
+   "path": "designs/prism",
+   "permissions": [],
+   "preview": "previews/prism.webp",
+   "provides": "modules/prism",
+   "requires": [
+    "iris"
+   ],
+   "sha256": "feb60ee3d0928c7353cd5b67299bba4fa02d042895512344f249cad447bb579f",
+   "size": 4819,
+   "summary": "iRiS in Prism's language: near-black, white solids, the hour as a prism",
+   "surfaces": [
+    "look"
+   ],
+   "tags": [
+    "design",
+    "prism",
+    "dark",
+    "spectrum"
+   ],
+   "updated": "2026-11-11",
+   "version": "1.0.0",
+   "votesDown": 0,
+   "votesUp": 0
+  },
+  {
+   "added": "2026-10-27",
+   "authors": [
+    "snowarch"
+   ],
+   "changes": [
+    {
+     "version": "2.36.2",
+     "notes": [
+      "Floating tools (Super+G): Clock, Timer and Network join the bench, set up in Settings › Panels › Floating tools",
+      "Text fields open their right-click menu in Material's look, inside the panel, so a sidebar no longer closes under it",
+      "A fresh install starts with no wallpaper or backdrop dim",
+      "The left sidebar leaves no empty gap where a card has nothing to show (weather offline, no wallpapers)"
+     ]
+    },
+    {
+     "version": "2.36.1",
+     "notes": [
+      "Choosing a file, a folder or a colour opens the shell's own picker in your colours, not a white window",
+      "The colour picker reads the screen on Niri too (no hyprpicker)"
+     ]
+    },
+    {
+     "version": "2.36.0",
+     "notes": [
+      "Hub widgets show in the sidebars: a card in the left one's Widgets column, a tab in the right one (Settings, Sidebars)",
+      "Hub: a web app you installed gets a button that turns on the sidebar's Web apps tab"
+     ]
+    },
+    {
+     "version": "2.35.15",
+     "notes": [
+      "A live stream (a radio, a live video) shows Live with a full line instead of a timeline that slides back and forth",
+      "On Umbriel, an app's menu in the dock and the bar sends its window to the scratchpad and back",
+      "Edit desktop: the size keys over a widget take the pointer after you move it"
+     ]
+    },
+    {
+     "version": "2.35.14",
+     "notes": [
+      "Searches that find nothing answer with a little personality",
+      "About shows the new iNiR mark in your colours",
+      "Edit desktop: hub widgets sit in their own aisle (Radio in Media) and search finds them by what they do"
+     ]
+    },
+    {
+     "version": "2.35.13",
+     "notes": [
+      "Widgets: Background strength reaches a solid plate and tints the glass; Blur background hides in styles without glass"
+     ]
+    },
+    {
+     "version": "2.35.12",
+     "notes": [
+      "Left sidebar: crowded tabs fade at the edge; translator and AI chat buttons fit their cards (#328)"
+     ]
+    },
+    {
+     "version": "2.35.11",
+     "notes": [
+      "Wallpaper: a Pause row: never, behind fullscreen, or when windows cover it"
+     ]
+    }
+   ],
+   "description": "",
+   "download": "https://github.com/snowarch/inir-hub/releases/download/packages/ii-2.36.2.tar.gz",
+   "downloads": 483,
+   "families": [],
+   "hosts": [
+    "9animetv.to",
+    "ankiweb.net",
+    "coingecko.com",
+    "discord.com",
+    "google.com",
+    "jogruber.de",
+    "konachan.net",
+    "m3.material.io",
+    "openai.com",
+    "sponsor.ajay.app",
+    "vcrdb.net",
+    "wallhaven.cc",
+    "wikimedia.org",
+    "www.apache.org",
+    "yande.re",
+    "youtube.com"
+   ],
+   "icon": "dashboard",
+   "id": "ii",
+   "installs": 579,
+   "kind": "family",
+   "license": "GPL-3.0-only",
+   "minInir": "3.1.1",
+   "name": "Material",
+   "package": "packages/ii-2.36.2.tar.gz",
+   "path": "families/ii",
+   "permissions": [
+    "process",
+    "network",
+    "files"
+   ],
+   "preview": "previews/ii.webp",
+   "provides": "modules/ii",
+   "sha256": "3b3d1b34fb20238127ef439a8a69727757165fad8dabf18faa08953a0352de19",
+   "size": 2847187,
+   "summary": "Material 3 Expressive panels, bars, docks and widgets in nine global styles.",
+   "surfaces": [
+    "shell"
+   ],
+   "tags": [
+    "family"
+   ],
+   "updated": "2026-11-13",
+   "version": "2.36.2",
+   "votesDown": 0,
+   "votesUp": 2
+  },
+  {
+   "added": "2026-10-27",
+   "authors": [
+    "snowarch"
+   ],
+   "changes": [
+    {
+     "version": "2.33.87",
+     "notes": [
+      "Bubbles hide like the Island and the Dock: Settings › Bubbles › Visibility, with the same three options (#10)",
+      "With more than one screen, the widget gallery chooses where a widget goes: one screen or every screen (#9)"
+     ]
+    },
+    {
+     "version": "2.33.86",
+     "notes": [
+      "Floating tools (Super+G): Clock, Timer and Network join the bench, set up in iRiS Settings › Gaming & Fullscreen › Floating tools",
+      "Island timers: right click stops one (with Undo), middle click pauses it; the open Island has pause and stop, and the time reads whole",
+      "The dock slides its icons into place when an app opens or closes, without a flicker",
+      "Text fields open their right-click menu in iRiS's look, inside the panel, so a sidebar no longer closes under it",
+      "Window previews in Orbit and the Overview stay live when focus moves",
+      "A fresh install starts with no wallpaper or backdrop dim"
+     ]
+    },
+    {
+     "version": "2.33.85",
+     "notes": [
+      "Choosing a file, a folder or a picture opens the shell's own picker in your colours, not a white window"
+     ]
+    },
+    {
+     "version": "2.33.84",
+     "notes": [
+      "One key can open a page of the Island and close it again: `inir iris togglePage desktop`",
+      "Edit desktop: the size keys over a widget take the pointer after you move it"
+     ]
+    },
+    {
+     "version": "2.33.83",
+     "notes": [
+      "Bubbles can live on the screens you pick (Settings, Display, Screens): the Island elsewhere stays clean",
+      "Island player: a live stream shows Live with a full line instead of a timeline that slides back and forth",
+      "On Umbriel, an app's menu in the dock sends its window to the scratchpad and back",
+      "Island: a hub widget's module can fill its row on the Desktop page (the radio's player)",
+      "Player chips show the same cover as the player, a station's logo included"
+     ]
+    },
+    {
+     "version": "2.33.82",
+     "notes": [
+      "Settings reopens on the group you left, Glyph art included",
+      "Glyph art: its rows start from the new, finer factory values",
+      "About shows the new iNiR mark in your colours",
+      "Edit desktop: hub widgets sit in their own aisle (Radio in Media) and search finds them by what they do"
+     ]
+    },
+    {
+     "version": "2.33.81",
+     "notes": [
+      "Searches that find nothing answer with a little personality",
+      "Hub: “Nothing matches” sits in the middle of the page"
+     ]
+    },
+    {
+     "version": "2.33.80",
+     "notes": [
+      "Controls: tile rows show only with the iRiS face that draws them"
+     ]
+    }
+   ],
+   "description": "",
+   "download": "https://github.com/snowarch/inir-hub/releases/download/packages/iris-2.33.87.tar.gz",
+   "downloads": 544,
+   "families": [],
+   "hosts": [
+    "bing.com",
+    "brave.com",
+    "duckduckgo.com",
+    "google.com",
+    "startpage.com"
+   ],
+   "icon": "visibility",
+   "id": "iris",
+   "installs": 577,
+   "kind": "family",
+   "license": "GPL-3.0-only",
+   "minInir": "3.1.1",
+   "name": "iRiS",
+   "package": "packages/iris-2.33.87.tar.gz",
+   "path": "families/iris",
+   "permissions": [
+    "process",
+    "network",
+    "files"
+   ],
+   "preview": "previews/iris.webp",
+   "provides": "modules/iris",
+   "reactions": {
+    "❤️": 7,
+    "🫃": 8
+   },
+   "sha256": "27db723933e5b296e2caa43e7f310ee1364bceb8f5816343ed3594d76d1ba5d2",
+   "size": 3543205,
+   "summary": "One living body: the Island, the chassis and Apple-grade motion.",
+   "surfaces": [
+    "shell"
+   ],
+   "tags": [
+    "family"
+   ],
+   "updated": "2026-11-13",
+   "version": "2.33.87",
+   "votesDown": 0,
+   "votesUp": 8
+  },
+  {
+   "added": "2026-10-27",
+   "authors": [
+    "snowarch"
+   ],
+   "changes": [
+    {
+     "version": "2.34.16",
+     "notes": [
+      "Floating tools (Super+G): Clock, Timer and Network join the bench, set up in Waffle Settings › Interface › Floating tools",
+      "Live pins show on the desktop under Waffle too",
+      "Text fields open their right-click menu in Waffle's look",
+      "Task View previews stay live when focus moves",
+      "A fresh install starts with no wallpaper or backdrop dim"
+     ]
+    },
+    {
+     "version": "2.34.15",
+     "notes": [
+      "Choosing a file or a colour opens the shell's own picker in your colours, not a white window"
+     ]
+    },
+    {
+     "version": "2.34.14",
+     "notes": [
+      "Media flyout: a live stream hides its timeline instead of sliding it back and forth",
+      "Taskbar menus wear the taskbar’s own colour and glass",
+      "A window preview no longer covers an open taskbar menu"
+     ]
+    },
+    {
+     "version": "2.34.13",
+     "notes": [
+      "On Umbriel, an app's menu in the taskbar sends its window to the scratchpad and back"
+     ]
+    },
+    {
+     "version": "2.34.12",
+     "notes": [
+      "Searches that find nothing answer with a little personality",
+      "Hub: “Nothing matches” sits in the middle of the page",
+      "About shows the new iNiR mark in your colours"
+     ]
+    },
+    {
+     "version": "2.34.11",
+     "notes": [
+      "Wallpaper: a Pause row: never, behind fullscreen, or when windows cover it",
+      "Taskbar: no longer ignores every click after a start or reload (thanks skrblk, #317)"
+     ]
+    },
+    {
+     "version": "2.34.10",
+     "notes": [
+      "Glyph wallpaper: a still picture now sways, breathes rings of light and shimmers; colours from a list; Restore defaults",
+      "Wallpaper › Draw the wallpaper as glyphs: your wallpaper, a word or a built-in subject as glowing characters, in sixteen looks",
+      "Hub: a plugin that changes a file of yours, like Fastfetch, gets a switch that turns it off and gives yours back"
+     ]
+    },
+    {
+     "version": "2.34.9",
+     "notes": [
+      "Runs on NixOS: every tool and app is found on your PATH, not only in /usr/bin"
+     ]
+    }
+   ],
+   "description": "",
+   "download": "https://github.com/snowarch/inir-hub/releases/download/packages/waffle-2.34.16.tar.gz",
+   "downloads": 475,
+   "families": [],
+   "icon": "grid_view",
+   "id": "waffle",
+   "installs": 555,
+   "kind": "family",
+   "license": "GPL-3.0-only",
+   "minInir": "3.1.1",
+   "name": "Waffle",
+   "package": "packages/waffle-2.34.16.tar.gz",
+   "path": "families/waffle",
+   "permissions": [
+    "process",
+    "files"
+   ],
+   "preview": "previews/waffle.webp",
+   "provides": "modules/waffle",
+   "requires": [
+    "ii"
+   ],
+   "sha256": "16774ca94d747ae9049398f9d4e63e348c25e46e95753c0e43e1bfe0aa1e04f5",
+   "size": 676621,
+   "summary": "Windows 11 for people who want it: taskbar, Start, Action Center.",
+   "surfaces": [
+    "shell"
+   ],
+   "tags": [
+    "family"
+   ],
+   "updated": "2026-11-13",
+   "version": "2.34.16",
+   "votesDown": 0,
+   "votesUp": 1
+  },
+  {
+   "added": "2026-10-09",
+   "authors": [
+    "snowarch"
+   ],
+   "changes": [],
+   "description": "Soft glass over the wallpaper, moss-green accent, amber highlight and slow, gentle motion.",
+   "download": "https://github.com/snowarch/inir-hub/releases/download/packages/moss-garden-1.0.0.tar.gz",
+   "downloads": 4,
+   "families": [
+    "iris"
+   ],
+   "icon": "style",
+   "id": "moss-garden",
+   "installs": 57,
+   "kind": "iris-theme",
+   "license": "MIT",
+   "minInir": "",
+   "name": "Moss Garden",
+   "package": "packages/moss-garden-1.0.0.tar.gz",
+   "path": "iris-themes/moss-garden",
+   "permissions": [],
+   "preview": "previews/moss-garden.svg",
+   "sha256": "3b2d50abfd111b99eac4f86a2ef2ec8f0ed9eaa3dd60566749b90b9c38e0c7f1",
+   "size": 541,
+   "summary": "Soft moss-green glass with slow, gentle motion",
+   "surfaces": [
+    "look"
+   ],
+   "tags": [
+    "glass",
+    "green",
+    "calm"
+   ],
+   "updated": "2026-10-09",
+   "version": "1.0.0",
+   "votesDown": 0,
+   "votesUp": 1
+  },
+  {
+   "added": "2026-10-09",
+   "authors": [
+    "snowarch"
+   ],
+   "changes": [],
+   "dark": false,
+   "description": "Warm paper and amber light, a calm light theme for daytime work.",
+   "download": "https://github.com/snowarch/inir-hub/releases/download/packages/paper-lantern-1.0.0.tar.gz",
+   "downloads": 6,
+   "families": [
+    "material",
+    "waffle"
+   ],
+   "icon": "palette",
+   "id": "paper-lantern",
+   "installs": 37,
+   "kind": "theme",
+   "license": "MIT",
+   "minInir": "",
+   "name": "Paper Lantern",
+   "package": "packages/paper-lantern-1.0.0.tar.gz",
+   "path": "themes/paper-lantern",
+   "permissions": [],
+   "preview": "previews/paper-lantern.svg",
+   "sha256": "2419c655c37d53c17c405f30d04c930243aa5151650b12dc3351b9071173eb38",
+   "size": 685,
+   "summary": "Warm paper and amber light for daytime",
+   "surfaces": [
+    "colours"
+   ],
+   "swatch": [
+    "#fff8f5",
+    "#fdeadf",
+    "#8b5122",
+    "#755946",
+    "#686028",
+    "#3d3027"
+   ],
+   "tags": [
+    "light",
+    "warm"
+   ],
+   "updated": "2026-10-09",
+   "version": "1.0.0",
+   "votesDown": 0,
+   "votesUp": 1
+  },
+  {
+   "added": "2026-10-09",
+   "authors": [
+    "snowarch"
+   ],
+   "changes": [],
+   "dark": true,
+   "description": "Cool sea-glass teal over deep slate, for long nights at the terminal.",
+   "download": "https://github.com/snowarch/inir-hub/releases/download/packages/tidepool-1.0.0.tar.gz",
+   "downloads": 6,
+   "families": [
+    "material",
+    "waffle"
+   ],
+   "icon": "palette",
+   "id": "tidepool",
+   "installs": 66,
+   "kind": "theme",
+   "license": "MIT",
+   "minInir": "",
+   "name": "Tidepool",
+   "package": "packages/tidepool-1.0.0.tar.gz",
+   "path": "themes/tidepool",
+   "permissions": [],
+   "preview": "previews/tidepool.svg",
+   "sha256": "a2e524f261a69e1ae30e47ff82e8677d99df72e3cf96dd0d41a96a019f09e0ab",
+   "size": 711,
+   "summary": "Sea-glass teal over deep slate",
+   "surfaces": [
+    "colours"
+   ],
+   "swatch": [
+    "#0a0f0e",
+    "#131b1a",
+    "#82d6cb",
+    "#b1ccc7",
+    "#9dcde4",
+    "#dce8e5"
+   ],
+   "tags": [
+    "dark",
+    "cool"
+   ],
+   "updated": "2026-10-09",
+   "version": "1.0.0",
+   "votesDown": 0,
+   "votesUp": 0
+  },
+  {
+   "added": "2026-10-09",
+   "authors": [
+    "snowarch"
+   ],
+   "changes": [],
+   "description": "Excalidraw as a tab of Material's left sidebar: sketch a layout, a flow or an idea without leaving the desktop. Your drawings stay in the site's own storage.",
+   "download": "https://github.com/snowarch/inir-hub/releases/download/packages/excalidraw-1.0.0.tar.gz",
+   "downloads": 3,
+   "families": [
+    "material"
+   ],
+   "icon": "draw",
+   "id": "excalidraw",
+   "installs": 50,
+   "kind": "webapp",
+   "license": "MIT",
+   "minInir": "",
+   "name": "Excalidraw",
+   "package": "packages/excalidraw-1.0.0.tar.gz",
+   "path": "webapps/excalidraw",
+   "permissions": [],
+   "preview": "previews/excalidraw.webp",
+   "sha256": "d1b942f74fc40c7962d407d2232cd05ccc4ca362c921166b751b130a8d5a0af7",
+   "size": 187,
+   "summary": "A hand-drawn whiteboard in the left sidebar",
+   "surfaces": [
+    "sidebar"
+   ],
+   "tags": [
+    "drawing",
+    "productivity"
+   ],
+   "updated": "2026-10-10",
+   "url": "https://excalidraw.com",
+   "version": "1.0.0",
+   "votesDown": 0,
+   "votesUp": 1
+  },
+  {
+   "added": "2026-11-11",
+   "authors": [
+    "snowarch"
+   ],
+   "changes": [],
+   "description": "What is playing, your wallpaper, a picture, a word or one of nine built-in subjects, drawn as glowing glyphs that never sit still: sixteen styles, every character set, palette and screen effect of Afterglyph. Drawn by the graphics card. Also a card in Waffle's Widgets panel.",
+   "download": "https://github.com/snowarch/inir-hub/releases/download/packages/afterglyph-2.2.1.tar.gz",
+   "downloads": 8,
+   "families": [
+    "material",
+    "iris",
+    "waffle"
+   ],
+   "icon": "blur_on",
+   "id": "afterglyph",
+   "installs": 43,
+   "kind": "widget",
+   "license": "MIT",
+   "minInir": "3.0.2",
+   "name": "Afterglyph",
+   "package": "packages/afterglyph-2.2.1.tar.gz",
+   "path": "widgets/afterglyph",
+   "permissions": [],
+   "preview": "previews/afterglyph.webp",
+   "sha256": "32f06bf2e3a93cd211a5502159c17f233e5c4df1ff867165d25ccbbc8f9893f9",
+   "size": 8618,
+   "summary": "Music, wallpaper, words and nine subjects as living glyphs, in sixteen styles",
+   "surfaces": [
+    "desktop",
+    "waffle-widgets"
+   ],
+   "tags": [
+    "art",
+    "music",
+    "wallpaper",
+    "glyphs"
+   ],
+   "updated": "2026-11-11",
+   "version": "2.2.1",
+   "votesDown": 0,
+   "votesUp": 1
+  },
+  {
+   "added": "2026-10-09",
+   "authors": [
+    "snowarch"
+   ],
+   "changes": [
+    {
+     "version": "1.1.0",
+     "notes": [
+      "A card in Material's left sidebar, and a tab you can turn on for the right sidebar"
+     ]
+    }
+   ],
+   "description": "Days left until a date you care about. The figure sits in a Material shape you pick, and a wavy bar shows how much of the wait has gone by. Also a card in Material's sidebars, a line on the iRiS Island and a card in Waffle's Widgets panel.",
+   "download": "https://github.com/snowarch/inir-hub/releases/download/packages/countdown-1.1.0.tar.gz",
+   "downloads": 9,
+   "families": [
+    "material",
+    "iris",
+    "waffle"
+   ],
+   "featured": true,
+   "icon": "hourglass_bottom",
+   "id": "countdown",
+   "installs": 60,
+   "kind": "widget",
+   "license": "MIT",
+   "minInir": "2.33.0",
+   "name": "Countdown",
+   "package": "packages/countdown-1.1.0.tar.gz",
+   "path": "widgets/countdown",
+   "permissions": [],
+   "preview": "previews/countdown.webp",
+   "sha256": "607b21eda84d9a19d75b8ce57540bb739210007231fa48070daebef4b923319c",
+   "size": 7693,
+   "summary": "Days left until a date you care about, in every family",
+   "surfaces": [
+    "desktop",
+    "island",
+    "waffle-widgets",
+    "sidebar"
+   ],
+   "tags": [
+    "time",
+    "example"
+   ],
+   "updated": "2026-11-12",
+   "version": "1.1.0",
+   "votesDown": 0,
+   "votesUp": 4
+  },
+  {
+   "added": "2026-11-12",
+   "authors": [
+    "yukazakiri"
+   ],
+   "changes": [
+    {
+     "version": "0.6.0",
+     "notes": [
+      "Layout switch in the widget header, layout IPC and a visual layout picker"
+     ]
+    }
+   ],
+   "description": "Docker containers on your desktop in three layouts, with live CPU/memory monitoring, lifecycle controls, logs and RAM/CPU limit sliders.",
+   "download": "https://github.com/snowarch/inir-hub/releases/download/packages/inir-docker-0.6.0.tar.gz",
+   "downloads": 7,
+   "families": [
+    "material",
+    "iris"
+   ],
+   "icon": "deployed_code",
+   "id": "inir-docker",
+   "installs": 21,
+   "kind": "widget",
+   "license": "MIT",
+   "minInir": "3.0.0",
+   "name": "iNiR Docker",
+   "package": "packages/inir-docker-0.6.0.tar.gz",
+   "path": "widgets/inir-docker",
+   "permissions": [
+    "process"
+   ],
+   "preview": "previews/inir-docker.webp",
+   "sha256": "23dc1d151d97da577fdccc5443a49cefccd3687cf496f4ca5c4e8cb7923b546c",
+   "size": 19565,
+   "summary": "Docker containers with live CPU and memory",
+   "surfaces": [
+    "desktop",
+    "island"
+   ],
+   "tags": [
+    "docker",
+    "containers",
+    "system",
+    "dev"
+   ],
+   "updated": "2026-11-12",
+   "version": "0.6.0",
+   "votesDown": 0,
+   "votesUp": 1
+  },
+  {
+   "added": "2026-11-09",
+   "authors": [
+    "snowarch"
+   ],
+   "changes": [
+    {
+     "version": "2.3.0",
+     "notes": [
+      "Under iRiS the desktop card wears the family's widget designs: iRiS (its glass and plate), Prism and Material, in the three sizes",
+      "Pick one from the card's quick controls, or let it follow the design every widget wears"
+     ]
+    },
+    {
+     "version": "2.2.0",
+     "notes": [
+      "The desktop card in three sizes: small (play, find, next), medium (station, place, song, volume) and large, with your stations a click away",
+      "A bigger play button and keys; a station name that wraps instead of being cut",
+      "The Instrument look follows the three sizes too"
+     ]
+    },
+    {
+     "version": "2.1.2",
+     "notes": [
+      "In Countries, Genres or Languages, a word that matches none searches stations by name",
+      "`inir radio toggle` answers what the radio turns into"
+     ]
+    },
+    {
+     "version": "2.1.0",
+     "notes": [
+      "A tuner with search, countries, genres, languages, favourites and volume, drawn in each family's own look",
+      "Its commands answer with no face on screen, for keybinds"
+     ]
+    }
+   ],
+   "description": "Live stations from anywhere in the world. Press play and it finds one playing a genre you like, or anything at all; next takes you to another place. Shows the station, where it is and what it plays now. A card on the desktop, a player on the iRiS Island, a card in Waffle's Widgets panel.",
+   "download": "https://github.com/snowarch/inir-hub/releases/download/packages/radio-2.3.1.tar.gz",
+   "downloads": 6,
+   "families": [
+    "material",
+    "iris",
+    "waffle"
+   ],
+   "hosts": [
+    "de1.api.radio-browser.info",
+    "de2.api.radio-browser.info",
+    "duckduckgo.com",
+    "fi1.api.radio-browser.info"
+   ],
+   "icon": "radio",
+   "id": "radio",
+   "installs": 24,
+   "kind": "widget",
+   "license": "MIT",
+   "minInir": "3.1.0",
+   "name": "Radio",
+   "package": "packages/radio-2.3.1.tar.gz",
+   "path": "widgets/radio",
+   "permissions": [
+    "process",
+    "network"
+   ],
+   "preview": "previews/radio.webp",
+   "reactions": {
+    "🔥": 1
+   },
+   "sha256": "7236d9061e751bf09477147df6af83ac4b681042f76bcfc6b0848437774fef23",
+   "size": 66440,
+   "summary": "Live stations from anywhere in the world, one click to play",
+   "surfaces": [
+    "desktop",
+    "island",
+    "waffle-widgets"
+   ],
+   "tags": [
+    "music",
+    "radio",
+    "discovery"
+   ],
+   "updated": "2026-11-12",
+   "version": "2.3.1",
+   "votesDown": 0,
+   "votesUp": 1
+  },
+  {
+   "added": "2026-10-09",
+   "authors": [
+    "snowarch"
+   ],
+   "changes": [],
+   "description": "Any command, kept fresh on the desktop or on the iRiS Island. What it prints picks the look: a percentage gets a bar, a number gets a large figure, text gets lines. It only runs while it is on screen, and an error shows what the command said.",
+   "download": "https://github.com/snowarch/inir-hub/releases/download/packages/shell-line-1.0.0.tar.gz",
+   "downloads": 3,
+   "families": [
+    "material",
+    "iris"
+   ],
+   "icon": "terminal",
+   "id": "shell-line",
+   "installs": 50,
+   "kind": "widget",
+   "license": "MIT",
+   "minInir": "2.33.0",
+   "name": "Shell Line",
+   "package": "packages/shell-line-1.0.0.tar.gz",
+   "path": "widgets/shell-line",
+   "permissions": [
+    "process"
+   ],
+   "preview": "previews/shell-line.webp",
+   "sha256": "02d7c1404dc53573e44b4f1cfceee948bd890829b397f257e205da36a766f694",
+   "size": 5941,
+   "summary": "Any command, drawn as a bar, a figure or lines",
+   "surfaces": [
+    "desktop",
+    "island"
+   ],
+   "tags": [
+    "system",
+    "terminal",
+    "example"
+   ],
+   "updated": "2026-11-01",
+   "version": "1.0.0",
+   "votesDown": 0,
+   "votesUp": 0
+  }
+ ],
+ "name": "iNiR Hub",
+ "permissions": {
+  "files": "Reads or writes files outside its own folder",
+  "inject": "Injects scripts into the site it opens",
+  "network": "Talks to the internet",
+  "process": "Runs commands on your computer"
+ },
+ "schema": 1
+}
