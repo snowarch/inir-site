@@ -113,7 +113,8 @@ h2 { font-weight: 500; font-size: 22px; line-height: 1.2; letter-spacing: -0.02e
 .past p { color: var(--fg-2); font-size: 13px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden; }
 
 /* Distros */
-.runs { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); }
+/* one row however many distros; on a phone rows of four, the last one's cells widening to fill it */
+.runs { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
 .runs a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; height: 104px; color: var(--fg-2); font-size: 12.5px; transition: color 0.2s, background 0.2s; }
 .runs a + a { border-left: 1px solid var(--line); }
 .runs a:hover { background: var(--bg-2); color: var(--fg); }
@@ -221,9 +222,10 @@ h2 { font-weight: 500; font-size: 22px; line-height: 1.2; letter-spacing: -0.02e
 	.term { padding: 28px 20px; }
 	.cells, .items { grid-template-columns: minmax(0, 1fr); }
 	.cells > * + * { border-left: 0; border-top: 1px solid var(--line); }
-	.runs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-	.runs a:nth-child(4) { border-left: 0; }
-	.runs a:nth-child(n + 4) { border-top: 1px solid var(--line); }
+	.runs { display: flex; flex-wrap: wrap; }
+	.runs a { flex: 1 0 25%; }
+	.runs a:nth-child(4n + 1) { border-left: 0; }
+	.runs a:nth-child(n + 5) { border-top: 1px solid var(--line); }
 	.inside ol { border-right: 0; }
 	.stage { display: none; }
 	.inside li.on a { box-shadow: none; background: none; color: var(--fg-2); }
