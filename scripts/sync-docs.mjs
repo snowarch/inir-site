@@ -64,7 +64,7 @@ function relink(text, id) {
 	return text
 		.replace(/\]\(([A-Za-z0-9_]+)(\.md)?(#[^)]*)?\)/g, (match, name, _ext, hash) =>
 			known.has(name) ? `](${route(name, hash ?? '')})` : match)
-		.replace(/(\]\(|src=")(?:\.\/)?(images|assets)\//g, `$1${base}docs-media/${id}/$2/`);
+		.replace(/(\]\(|src=")(?:\.\/)?(images|assets|shots)\//g, `$1${base}docs-media/${id}/$2/`);
 }
 
 rmSync(pages, { recursive: true, force: true });
@@ -81,13 +81,13 @@ for (const folder of folders) {
 		const front = ['---', `title: ${JSON.stringify(title)}`, `editUrl: ${JSON.stringify(virtual.get(join(folder.dir, file))?.edit ?? folder.edit + file)}`, '---', ''];
 		writeFileSync(join(pages, `${slugOf(name) || 'index'}.md`), front.join('\n') + relink(body, folder.id));
 	}
-	for (const kind of ['images', 'assets']) {
-		if (existsSync(join(folder.dir, kind))) cpSync(join(folder.dir, kind), join(media, folder.id, kind), { recursive: true });
+	// A page's pictures, linked as images/, assets/ or shots/ beside it; shots/ without its shots.json is plain pictures.
+	for (const kind of ['images', 'assets', 'shots']) {
+		if (existsSync(join(folder.dir, kind))) cpSync(join(folder.dir, kind), join(media, folder.id, kind), { recursive: true, filter: (path) => kind !== 'shots' || !path.endsWith('.json') });
 	}
-	// Pictures of the real shell, made beside the pages that show them: copied, and listed for docs-previews.mjs.
+	// Pictures of the real shell, made beside the pages that show them: listed for docs-previews.mjs.
 	const made = join(folder.dir, 'shots', 'shots.json');
 	if (existsSync(made)) {
-		cpSync(join(folder.dir, 'shots'), join(media, folder.id, 'shots'), { recursive: true, filter: (path) => !path.endsWith('.json') });
 		for (const [id, { alt, label, width, height, variants }] of Object.entries(JSON.parse(readFileSync(made, 'utf8')))) {
 			if (shots[id]) console.warn(`sync-docs: shot ${id} is listed twice; ${folder.id}'s wins`);
 			shots[id] = { alt, label, width, height, variants, at: `${base}docs-media/${folder.id}/shots/` };
