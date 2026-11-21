@@ -9,7 +9,8 @@ on:
     types: [docs-updated, hub-updated]
   schedule:
     # Every 20 minutes the site looks at its sources and builds only when one moved since the last deploy, so a merge
-    # to the hub or the base's docs reaches inir.space without a token on their side; once a day it builds anyway.
+    # to the hub, the hub's stats or the base's docs reaches inir.space without a token on their side; once a day it
+    # builds anyway.
     - cron: '*/20 * * * *'
     - cron: '17 5 * * *'
 
@@ -17,13 +18,16 @@ permissions:
   contents: write
 
 jobs:
-  # What the published site was built from is in the gh-pages commit ("hub <sha>", "docs <sha>"): a scheduled run
-  # builds only when a source moved since.
+  # What the published site was built from is in the gh-pages commit ("hub <sha>", "stats <sha>", "docs <sha>"): a
+  # scheduled run builds only when a source moved since. The stats branch counts as a source: the catalogue carries its
+  # downloads, installs, votes and reactions, and every shell reads them from inir.space/hub/index.json, so a new
+  # stats.json reached people only with the next day's build.
   moved:
     runs-on: ubuntu-latest
     outputs:
       build: ${{ steps.look.outputs.build }}
       hub: ${{ steps.look.outputs.hub }}
+      stats: ${{ steps.look.outputs.stats }}
       docs: ${{ steps.look.outputs.docs }}
     steps:
       - id: look
@@ -31,16 +35,18 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           hub=$(git ls-remote https://github.com/snowarch/inir-hub refs/heads/main | cut -f1)
+          stats=$(git ls-remote https://github.com/snowarch/inir-hub refs/heads/stats | cut -f1)
           docs=$(git ls-remote https://github.com/snowarch/iNiR refs/heads/main | cut -f1)
           echo "hub=$hub" >> "$GITHUB_OUTPUT"
+          echo "stats=$stats" >> "$GITHUB_OUTPUT"
           echo "docs=$docs" >> "$GITHUB_OUTPUT"
           build=true
           if [ "${{ github.event_name }}" = schedule ] && [ "${{ github.event.schedule }}" != '17 5 * * *' ]; then
             last=$(gh api "repos/${{ github.repository }}/commits/gh-pages" --jq .commit.message 2>/dev/null || true)
-            if grep -qx "hub $hub" <<<"$last" && grep -qx "docs $docs" <<<"$last"; then build=false; fi
+            if grep -qx "hub $hub" <<<"$last" && grep -qx "stats $stats" <<<"$last" && grep -qx "docs $docs" <<<"$last"; then build=false; fi
           fi
           echo "build=$build" >> "$GITHUB_OUTPUT"
-          echo "hub ${hub::7}, docs ${docs::7}: build=$build"
+          echo "hub ${hub::7}, stats ${stats::7}, docs ${docs::7}: build=$build"
 
   build:
     needs: moved
@@ -84,8 +90,9 @@ jobs:
           # Straight from GitHub: the module proxy answers @main from a cache minutes old, so a fix to
           # `inir hub build` pushed just before missed the next catalogue (11-13).
           GOPRIVATE=github.com/snowarch/inir-cli go install github.com/snowarch/inir-cli/cmd/inir@main
-          # Downloads and votes: stats.json on the hub's stats branch (its daily stats workflow).
-          git -C hub fetch -q origin stats:refs/remotes/origin/stats || true
+          # Downloads, installs, votes and reactions: stats.json on the hub's stats branch (its stats workflow), at
+          # the commit the moved job saw, so the gh-pages commit names what was built.
+          git -C hub fetch -q origin ${{ needs.moved.outputs.stats || 'stats' }} && git -C hub update-ref refs/remotes/origin/stats FETCH_HEAD || true
           (cd hub && inir hub build --out "$GITHUB_WORKSPACE/hub-out" \
             --packages-at https://github.com/snowarch/inir-hub/releases/download/packages)
           mkdir -p hub-out/schema && cp hub/schema/hub.schema.json hub-out/schema/
@@ -111,5 +118,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -q -m "build: publish site" -m "hub ${{ needs.moved.outputs.hub }}
+          stats ${{ needs.moved.outputs.stats }}
           docs ${{ needs.moved.outputs.docs }}"
           git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages
