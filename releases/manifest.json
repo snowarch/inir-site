@@ -1,0 +1,6 @@
+{
+  "parts": {
+    "qs-rs": "https://github.com/snowarch/qs-rs/releases/download/v{version}/{file}",
+    "inir-accel": "https://github.com/snowarch/inir-accel/releases/download/v{version}/{file}"
+  }
+}

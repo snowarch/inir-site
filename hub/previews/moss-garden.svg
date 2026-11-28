@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800">
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#203226"/><stop offset="1" stop-color="#0c1710"/></linearGradient></defs>
+<rect width="1280" height="800" fill="url(#sky)"/>
+<rect x="380" y="0" width="520" height="560" rx="33" fill="#171c19" fill-opacity="0.92"/>
+<rect x="580" y="32" width="120" height="16" rx="8" fill="#dde4df" fill-opacity="0.85"/>
+<rect x="420" y="96" width="440" height="200" rx="24" fill="#27302a"/>
+<circle cx="520" cy="196" r="64" fill="none" stroke="#dde4df" stroke-opacity="0.12" stroke-width="12"/>
+<circle cx="520" cy="196" r="64" fill="none" stroke="#5ccc85" stroke-width="12" stroke-linecap="round"
+        stroke-dasharray="282 402" transform="rotate(-90 520 196)"/>
+<rect x="624" y="160" width="180" height="22" rx="11" fill="#dde4df" fill-opacity="0.85"/>
+<rect x="624" y="200" width="132" height="16" rx="8" fill="#dde4df" fill-opacity="0.45"/>
+<circle cx="816" cy="140" r="10" fill="#eeb34f"/>
+<rect x="420" y="320" width="440" height="88" rx="24" fill="#27302a"/>
+<rect x="452" y="358" width="376" height="12" rx="6" fill="#dde4df" fill-opacity="0.12"/>
+<rect x="452" y="358" width="236" height="12" rx="6" fill="#5ccc85"/>
+<rect x="420" y="432" width="208" height="96" rx="24" fill="#5ccc85"/>
+<rect x="652" y="432" width="208" height="96" rx="24" fill="#27302a"/>
+<circle cx="700" cy="480" r="18" fill="#eeb34f"/>
+<rect x="452" y="668" width="376" height="84" rx="29" fill="#171c19" fill-opacity="0.92"/>
+<rect x="476" y="682" width="56" height="56" rx="15" fill="#dde4df" fill-opacity="0.16"/>
+<rect x="544" y="682" width="56" height="56" rx="15" fill="#dde4df" fill-opacity="0.16"/>
+<rect x="612" y="682" width="56" height="56" rx="15" fill="#5ccc85"/>
+<rect x="680" y="682" width="56" height="56" rx="15" fill="#dde4df" fill-opacity="0.16"/>
+<rect x="748" y="682" width="56" height="56" rx="15" fill="#dde4df" fill-opacity="0.16"/>
+<title>Moss Garden</title>
+</svg>
